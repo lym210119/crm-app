@@ -19,7 +19,11 @@ minRequest.interceptors.response((response) => {
 
 // 设置默认配置
 minRequest.setConfig((config) => {
-  config.baseURL = 'http://192.168.1.10:8080'
+  if (process.env.NODE_ENV === 'development') {
+    config.baseURL = 'http://192.168.1.10:8080/crm-app'
+  } else {
+    config.baseURL = 'https://65style.github.io/crm-app'
+  }
   return config
 })
 
