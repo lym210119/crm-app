@@ -1,0 +1,341 @@
+{
+	"code": 10000,
+	"message": "success",
+	"data": [{
+		"id": 1,
+		"title": "总机中心",
+		"submenu": [{
+				"icon": "/static/c1.png",
+				"text": "总机热线",
+				"url": "/pages/zongjirexian/zongjirexian"
+			},
+			{
+				"icon": "/static/c2.png",
+				"text": "录入客户",
+				"url": "/pages/lurukehu/lurukehu"
+			},
+			{
+				"icon": "/static/c3.png",
+				"text": "通话记录",
+				"url": "/pages/tonghuajilu/tonghuajilu"
+			}
+		]
+	}, {
+		"id": 2,
+		"title": "营销中心",
+		"submenu": [
+			{
+				"icon": "/static/c4.png",
+				"text": "我的客户",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c5.png",
+				"text": "录入客户",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c6.png",
+				"text": "有效新客",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c7.png",
+				"text": "客户总表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c8.png",
+				"text": "急需跟进",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "公海客户",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c1.png",
+				"text": "重点关注",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c2.png",
+				"text": "预约上门",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c3.png",
+				"text": "签单列表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c4.png",
+				"text": "通话记录",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c5.png",
+				"text": "离职转移",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 3,
+		"title": "做单中心",
+		"submenu": [{
+				"icon": "/static/c9.png",
+				"text": "做单看板",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "做单管理",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "做单计划",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "做单跟进",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "离职分配",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 4,
+		"title": "财务中心",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "定金列表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "结算管理",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "做单报销",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "报销列表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "财务业绩",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 5,
+		"title": "贷后中心",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "贷后列表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "回访记录",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "回访统计",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "满意度",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 6,
+		"title": "人力中心",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "发布公告",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "管理公告",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "公告列表",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "新增员工",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "员工档案",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "任务分配",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通关设置",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通关审批",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通关进度",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "员工成长",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 7,
+		"title": "知识中心",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "资方配置",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "产品大纲",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "知识管理",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "知识查询",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 8,
+		"title": "统计数据",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "签单统计",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "做单业绩",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "营销业绩",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "资方放款",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "客户类型",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "客户标签",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "活跃分析",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "工作效率",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通话数据",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通话分析",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "通话排名",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 9,
+		"title": "导入数据",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "批量导入",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 10,
+		"title": "维护数据",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "无效审核",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "无效列表",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 11,
+		"title": "系统设置",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "部门管理",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "角色配置",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "区域管理",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "评级配置",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "参数配置",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "个性配置",
+				"url": "/pages/client/client"
+			}
+		]
+	}, {
+		"id": 12,
+		"title": "智能群呼",
+		"submenu": [
+			{
+				"icon": "/static/c9.png",
+				"text": "群呼人员",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "任务分配",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "群呼结果",
+				"url": "/pages/client/client"
+			}, {
+				"icon": "/static/c9.png",
+				"text": "群呼统计",
+				"url": "/pages/client/client"
+			}
+		]
+	}]
+}

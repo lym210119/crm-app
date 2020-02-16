@@ -1,16 +1,91 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "pages": [
+    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "backgroundColor": "f3f5f9"
+      }
+    },
+    {
+      "path": "pages/client/client",
+      "style": {
+        "navigationBarTitleText": "客户"
+      }
+    },
+    {
+      "path": "pages/work/work",
+      "style": {
+        "navigationBarTitleText": "工作台"
+      }
+    },
+    {
+      "path": "pages/task/task",
+      "style": {
+        "navigationBarTitleText": "任务"
+      }
+    },
+    {
+      "path": "pages/mine/mine",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    }, 
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "锦衣卫",
+    "navigationBarBackgroundColor": "#19aa8d",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#19aa8d",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabBar/index.png",
+        "selectedIconPath": "static/tabBar/index-selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/client/client",
+        "iconPath": "static/tabBar/client.png",
+        "selectedIconPath": "static/tabBar/client-selected.png",
+        "text": "客户"
+      },
+      {
+        "pagePath": "pages/work/work",
+        "iconPath": "static/tabBar/work.png",
+        "selectedIconPath": "static/tabBar/work-selected.png",
+        "text": "工作台"
+      },
+      {
+        "pagePath": "pages/task/task",
+        "iconPath": "static/tabBar/task.png",
+        "selectedIconPath": "static/tabBar/task-selected.png",
+        "text": "任务"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/tabBar/mine.png",
+        "selectedIconPath": "static/tabBar/mine-selected.png",
+        "text": "我的"
+      }
+    ]
+  }
 }
