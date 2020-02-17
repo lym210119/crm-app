@@ -9,6 +9,25 @@
       }
     },
     {
+      "path": "pages/indexFilter/indexFilter",
+      "style": {
+        "navigationBarTitleText": "自定义筛选项",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "确定",
+                "fontSize": "14",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/client/client",
       "style": {
         "navigationBarTitleText": "客户",
