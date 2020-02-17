@@ -1,13 +1,13 @@
 <template>
 	<view class="task-page">
 		<scroll-view scroll-y="true" style="height: 100%" class="content">
-			<view class="list" v-for="(item, i) in 18" :key="i">
+			<view class="list" v-for="(item, i) in dataList" :key="i">
 				<view class="list-left">
-					<text class="iconfont icon-kefu1"></text>
+					<text class="iconfont" :class="item.icon"></text>
 				</view>
 				<view class="list-right">
-					<view class="title">今日需联系客户</view>
-					<view class="title-small">暂无今日需联系客户</view>
+					<view class="title">{{item.title}}</view>
+					<view class="title-small">{{item.desc}}</view>
 				</view>
 			</view>
 		</scroll-view>
@@ -21,7 +21,48 @@
 		},
 		data() {
 			return {
-
+				dataList: [
+					{
+						icon: 'icon-kefu1',
+						title: '今日需联系客户',
+						desc: '暂无今日需联系客户'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '分配给我的线索',
+						desc: '暂无分配给我的线索'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '分配给我的客户',
+						desc: '暂无分配给我的客户'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '待进入公海的客户',
+						desc: '暂无待进入公海的客户'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '即将到期的合同',
+						desc: '暂无即将到期的合同'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '待审核的合同',
+						desc: '财务提交了新的合同，正在等待您的审批'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '待审核的回款',
+						desc: '暂无待审核的回款'
+					},
+					{
+						icon: 'icon-kefu1',
+						title: '待审核的办公',
+						desc: '暂无待审核的办公'
+					},
+				]
 			}
 		},
 		methods: {

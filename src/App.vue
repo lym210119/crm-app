@@ -5,10 +5,15 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			// 设置 tabbar badge 
+			uni.setTabBarBadge({
+				index: 3,
+				text: '1'
+			})
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
 	}
 </script>
 

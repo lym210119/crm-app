@@ -21,7 +21,7 @@ minRequest.setConfig((config) => {
   if (process.env.NODE_ENV === 'development') {
     config.baseURL = 'http://192.168.1.10:8080/crm-app/'
   } else {
-    config.baseURL = 'https://65style.github.io/crm-app/'
+    config.baseURL = 'https://style65.gitee.io/crm-app/'
   }
   return config
 })

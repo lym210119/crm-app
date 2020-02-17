@@ -1,5 +1,5 @@
 <template>
-	<view class="uni-fab-box">
+	<movable-area class="uni-fab-box">
 <!-- 		<view class="uni-padding-wrap">
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn(0)"><text class="word-btn-white">切换菜单({{ directionStr }}显示)</text></view>
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'bottom')"><text class="word-btn-white">左下角显示</text></view>
@@ -7,10 +7,15 @@
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('left', 'top')"><text class="word-btn-white">左上角显示</text></view>
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'top')"><text class="word-btn-white">右上角显示</text></view>
 		</view> -->
-		<!-- <movable-view :x="x" :y="y" direction="all" @change="onChange"> -->
-			<uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" />
-		<!-- </movable-view> -->
-	</view>
+
+			<movable-view :x="x" :y="y" direction="all" @change="onChange">
+				<view class="fab-bar">
+					<text class="iconfont icon-bohao"></text>
+				</view>
+				<!-- <uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" /> -->
+			</movable-view>
+
+	</movable-area>
 </template>
 
 <script>
@@ -21,12 +26,12 @@
 		},
 		data() {
 			return {
-				// x: 0,
-				// y: 0,
-				// old: {
-				// 	x: 0,
-				// 	y: 0
-				// },
+				x: -40,
+				y: 0,
+				old: {
+					x: 0,
+					y: 0
+				},
 				title: 'uni-fab',
 				directionStr: '垂直',
 				horizontal: 'right',
@@ -73,18 +78,18 @@
 			return false
 		},
 		methods: {
-			// tap: function(e) {
-			//     this.x = this.old.x
-			//     this.y = this.old.y
-			//     this.$nextTick(function() {
-			//         this.x = 30
-			//         this.y = 30
-			//     })
-			// },
-			// onChange: function(e) {
-			//     this.old.x = e.detail.x
-			//     this.old.y = e.detail.y
-			// },
+			tap: function(e) {
+			    this.x = this.old.x
+			    this.y = this.old.y
+			    this.$nextTick(function() {
+			        this.x = 30
+			        this.y = 30
+			    })
+			},
+			onChange: function(e) {
+			    this.old.x = e.detail.x
+			    this.old.y = e.detail.y
+			},
 			trigger(e) {
 				console.log(e)
 				// this.content[e.index].active = !e.item.active
@@ -122,13 +127,25 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 150upx;
-		width: 150upx;
-		background-color: #007AFF;
+		height: 80upx;
+		width: 80upx;
+		border-radius: 50% 0 0 50%;
+		background-color: rgba(0, 0, 0, 0.7);
 		color: #fff;
+		z-index: 100;
 	}
 
+	.fab-bar .iconfont {
+		font-size: 50upx;
+		color: #FFFFFF;
+	}
 
+	movable-area {
+		/* position: relative; */
+
+		/* height: 500upx; */
+
+	}
 	view {
 		font-size: 14px;
 		line-height: inherit;
@@ -210,11 +227,16 @@
 		/* #endif */
 		flex-direction: row;
 		justify-content: center;
-/* 		position: absolute;
+		position: absolute;
 		top: 0;
 		bottom: 0;
-		left: 0;
-		right: 0; */
+		/* left: 0; */
+		right: 0;
+		z-index: 1;
+		background-color: red;
+		width: 80upx;
+		height: 100%;
+		/* overflow: hidden; */
 	}
 
 	.uni-padding-wrap {

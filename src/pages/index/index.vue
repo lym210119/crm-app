@@ -570,6 +570,8 @@
 		flex: 1;
 		flex-direction: column;
 		overflow: hidden;
+		position: absolute;
+		z-index: 2;
 	}
 
 	.header {
