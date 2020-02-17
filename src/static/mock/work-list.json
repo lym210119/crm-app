@@ -5,17 +5,17 @@
 		"id": 1,
 		"title": "总机中心",
 		"submenu": [{
-				"icon": "/static/c1.png",
+				"icon": "icon-zongjirexian",
 				"text": "总机热线",
 				"url": "/pages/zongjirexian/zongjirexian"
 			},
 			{
-				"icon": "/static/c2.png",
+				"icon": "icon-lurukehu",
 				"text": "录入客户",
 				"url": "/pages/lurukehu/lurukehu"
 			},
 			{
-				"icon": "/static/c3.png",
+				"icon": "icon-tonghuajilu",
 				"text": "通话记录",
 				"url": "/pages/tonghuajilu/tonghuajilu"
 			}
@@ -25,47 +25,47 @@
 		"title": "营销中心",
 		"submenu": [
 			{
-				"icon": "/static/c4.png",
+				"icon": "icon-wodekehu",
 				"text": "我的客户",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c5.png",
+				"icon": "icon-lurukehu",
 				"text": "录入客户",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c6.png",
+				"icon": "icon-youxiaoxinke",
 				"text": "有效新客",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c7.png",
+				"icon": "icon-kehuzongbiao",
 				"text": "客户总表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c8.png",
+				"icon": "icon-jixugenjin",
 				"text": "急需跟进",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-gonghaikehu",
 				"text": "公海客户",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c1.png",
+				"icon": "icon-zhongdianguanzhu",
 				"text": "重点关注",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c2.png",
+				"icon": "icon-yuyueshangmen",
 				"text": "预约上门",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c3.png",
+				"icon": "icon-qiandanliebiao",
 				"text": "签单列表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c4.png",
+				"icon": "icon-tonghuajilu",
 				"text": "通话记录",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c5.png",
+				"icon": "icon-lizhizhuanyi",
 				"text": "离职转移",
 				"url": "/pages/client/client"
 			}
@@ -74,23 +74,23 @@
 		"id": 3,
 		"title": "做单中心",
 		"submenu": [{
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodankanban",
 				"text": "做单看板",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodanguanli",
 				"text": "做单管理",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodanjihua",
 				"text": "做单计划",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodangenjin",
 				"text": "做单跟进",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-lizhifenpei",
 				"text": "离职分配",
 				"url": "/pages/client/client"
 			}
@@ -100,23 +100,23 @@
 		"title": "财务中心",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-dingjinliebiao",
 				"text": "定金列表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-jiesuanguanli",
 				"text": "结算管理",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodanbaoxiao",
 				"text": "做单报销",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-baoxiaoliebiao",
 				"text": "报销列表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-caiwuyeji",
 				"text": "财务业绩",
 				"url": "/pages/client/client"
 			}
@@ -126,19 +126,19 @@
 		"title": "贷后中心",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-huohouliebiao",
 				"text": "贷后列表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-huifangjilu",
 				"text": "回访记录",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-huifangtongji",
 				"text": "回访统计",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-manyidu",
 				"text": "满意度",
 				"url": "/pages/client/client"
 			}
@@ -148,43 +148,43 @@
 		"title": "人力中心",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-fabugonggao",
 				"text": "发布公告",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-guanligonggao",
 				"text": "管理公告",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-gonggaoliebiao",
 				"text": "公告列表",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-xinzengyuangong",
 				"text": "新增员工",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-yuangongdangan",
 				"text": "员工档案",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-renwufenpei",
 				"text": "任务分配",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tongguanshezhi",
 				"text": "通关设置",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tongguanshenpi",
 				"text": "通关审批",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tongguanjindu",
 				"text": "通关进度",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-yuangongchengchang",
 				"text": "员工成长",
 				"url": "/pages/client/client"
 			}
@@ -194,19 +194,19 @@
 		"title": "知识中心",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-qunhutongji",
 				"text": "资方配置",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-chanpindagang",
 				"text": "产品大纲",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zhishiguanli",
 				"text": "知识管理",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zhishichaxun",
 				"text": "知识查询",
 				"url": "/pages/client/client"
 			}
@@ -216,47 +216,47 @@
 		"title": "统计数据",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-qiandantongji",
 				"text": "签单统计",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zuodanyeji",
 				"text": "做单业绩",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-xiaoshouyeji",
 				"text": "营销业绩",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-zifangfangkuan",
 				"text": "资方放款",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-kehuleixing",
 				"text": "客户类型",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-kehubiaoqian",
 				"text": "客户标签",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-huoyuefenxi",
 				"text": "活跃分析",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-gongzuoxiaoshuai",
 				"text": "工作效率",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tonghuashuju",
 				"text": "通话数据",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tonghuafenxi",
 				"text": "通话分析",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-tonghuapaiming",
 				"text": "通话排名",
 				"url": "/pages/client/client"
 			}
@@ -266,7 +266,7 @@
 		"title": "导入数据",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-piliangdaoru",
 				"text": "批量导入",
 				"url": "/pages/client/client"
 			}
@@ -276,11 +276,11 @@
 		"title": "维护数据",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-wuxiaoshenhe",
 				"text": "无效审核",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-wuxiaoliebiao",
 				"text": "无效列表",
 				"url": "/pages/client/client"
 			}
@@ -290,27 +290,27 @@
 		"title": "系统设置",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-bumenguanli",
 				"text": "部门管理",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-jiaosepeizhi",
 				"text": "角色配置",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-quyuguanlu",
 				"text": "区域管理",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-pingjipeizhi",
 				"text": "评级配置",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-canshupeizhi",
 				"text": "参数配置",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-gexingpeizhi",
 				"text": "个性配置",
 				"url": "/pages/client/client"
 			}
@@ -320,19 +320,19 @@
 		"title": "智能群呼",
 		"submenu": [
 			{
-				"icon": "/static/c9.png",
+				"icon": "icon-qunhurenyuan",
 				"text": "群呼人员",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-renwufenpei1",
 				"text": "任务分配",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-qunhujieguo",
 				"text": "群呼结果",
 				"url": "/pages/client/client"
 			}, {
-				"icon": "/static/c9.png",
+				"icon": "icon-qunhutongji",
 				"text": "群呼统计",
 				"url": "/pages/client/client"
 			}

@@ -11,7 +11,12 @@
     {
       "path": "pages/client/client",
       "style": {
-        "navigationBarTitleText": "客户"
+        "navigationBarTitleText": "客户",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
       }
     },
     {

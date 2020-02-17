@@ -1,6 +1,28 @@
 <template>
 	<view class="client-page">
-		<global-fab></global-fab>
+		<!-- <global-fab></global-fab> -->
+		<uni-nav-bar statusBar="true" backgroundColor="#19aa8d">
+			<!-- 左边 -->
+			<block slot="left">
+				<view class="nav-left">
+					<view class="iconfont icon--search1"></view>
+				</view>
+			</block>
+			<!-- 中间 -->
+			<view class="tab-content">
+				<view class="tab-item">我的</view>
+				<view class="tab-item">团队</view>
+				<view class="tab-item">线索</view>
+				<view class="tab-item">来电</view>
+			</view>
+			<!-- 右边 -->
+			<block slot="right">
+				<view class="nav-right">
+					<view class="iconfont icon-add"></view>
+				</view>
+			</block>
+		</uni-nav-bar>
+
 		<view class="header">
 			<view class="sort" :class="{'active': isSort && mask}"  @tap="handleSortOrFilter('sort')">
 				排序
@@ -83,19 +105,19 @@
 				<view v-for="(item,i) in listData" :key="i">
 					<view class="client-item">
 						<view class="title">
-							<view class="username">客户名称</view>
-							<view class="tag">初访</view>
+							<view class="username">客户名称 （9527）</view>
+							<view class="tag">到店</view>
 						</view>
 						<view class="info">
 							<view class="info-left">
 								<view class="">
-									联系人：<text>谁谁谁</text>
-								</view>
-								<view class="">
 									电话： <text>13888889999</text>
 								</view>
 								<view class="">
-									备注： <text>客户备注客户备注</text>
+									来源：<text>B 申贷网 （2020-02-17）</text>
+								</view>
+								<view class="">
+									情况： <text>客户备注客户备注</text>
 								</view>
 								
 							</view>
@@ -109,14 +131,23 @@
 								
 							</view>
 						</view>
-						<view class="bottom">
+						<view class="tag-container">
+							<view class="tag-item">标签</view>
+							<view class="tag-item">标签</view>
+							<view class="tag-item">标签</view>
+							<view class="tag-item">标签</view>
+							<view class="tag-item">标签</view>
+				
+						</view>
+						<view class="item-bottom">
 							<view class="follow-time">
-								1月14日 14:22
-								<text class="tag">电话未接</text>
+								1月14日 14:22 /
+								<text class="call-status">电话未接</text>
 							</view>
 							<view class="icon-group">
-								<text class="icon-font"></text>
-								<text class="icon-font"></text>
+								<text class="iconfont icon-tixing"></text>
+								<text class="iconfont icon-tianjiakehu"></text>
+								<text class="iconfont icon-gengduo"></text>
 							</view>
 						</view>
 					</view>
@@ -132,7 +163,11 @@
 </template>
 
 <script>
+import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 	export default {
+		components: {
+			uniNavBar
+		},
 		data() {
 			return {
 				mask: false,
@@ -258,6 +293,30 @@
 </script>
 
 <style>
+	.nav-left {
+		margin-left: 16upx;
+	}
+	.nav-right {
+		width: 100%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-right: 16upx;
+	}
+	.nav-left>view, .nav-right>view {
+		font-size: 40upx;
+		color: #FFFFFF;
+	}
+	.tab-content {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-left: -20upx;
+		font-size: 32upx;
+		font-weight: 700;
+		color: #FFFFFF;
+	}
 	.client-page {
 		display: flex;
 		flex-direction: column;
@@ -282,7 +341,7 @@
 	}
 	.mask-wrap {
 		position: absolute;
-		top: 82upx;
+		top: calc(var(--status-bar-height) + 86px);
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -375,8 +434,7 @@
 		align-items: center;
 	}
 	.client-item> .info {
-		padding-bottom: 20upx;
-		border-bottom: 1px solid #F1F1F1;
+
 	}
 	.client-item>.title>.username {
 		font-size: 32upx;
@@ -401,13 +459,20 @@
 		color: #999;
 	}
 	.title>.tag {
+
 		padding: 0 30upx;
 		border-radius: 50upx;
-		font-weight: 700;
+		font-weight: 400;
 		background-color: #e6f0fc;
 		color: #3f69f2;
 	}
 
+	.info-left>view {
+		color: #666666;
+	}
+	.info-left>view>text {
+		color: #333333;
+	}
 	.info-right {
 		display: flex;
 		flex-direction: row;
@@ -425,5 +490,41 @@
 	.info-right .iconfont{
 		font-size: 40upx;
 		color: #fff;
+	}
+	.follow-time {
+		color: #666666;
+	}
+	.follow-time .call-status {
+		color: #fe6566;
+	}
+	.tag-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		padding-bottom: 20upx;
+		border-bottom: 1px solid #F1F1F1;
+	}
+	.tag-item {
+		border-radius: 10upx;
+		background-color: #e5f1fe;
+		color: #0ab69c;
+		margin-right: 10upx;
+		padding: 0 30upx;
+	}
+	.item-bottom {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 15upx;
+	}
+	.item-bottom .icon-group {
+
+	}
+	.item-bottom .icon-group .iconfont {
+		margin-left: 30upx; 
+		color: #0ab69c;
+		font-size: 40upx;
 	}
 </style>

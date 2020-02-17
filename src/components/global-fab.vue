@@ -8,10 +8,22 @@
 			<view class="word-btn" hover-class="word-btn--hover" :hover-start-time="20" :hover-stay-time="70" @click="switchBtn('right', 'top')"><text class="word-btn-white">右上角显示</text></view>
 		</view> -->
 
-			<movable-view :x="x" :y="y" direction="all" @change="onChange">
-				<view class="fab-bar">
-					<text class="iconfont icon-bohao"></text>
-				</view>
+			<movable-view :x="x" :y="y" direction="vertical" @change="onChange">
+					<view class="fab-bar">
+						<view class="fab-item" @tap="handleClose">
+							<text class="iconfont icon-hebingxingzhuang" v-show="isCloseBtn" @tap=""></text>
+							<text class="iconfont icon-bohao" v-show="!isCloseBtn" @tap="handleBoHao"></text>
+						</view>
+						<view class="fab-item" v-show="isShowShiXianOrCalling">
+							<text class="fab-item-text">示闲中</text>
+							<text class="fab-item-text">00:00:00</text>
+						</view>
+						<view class="fab-item" v-for="(item, i) in fabItem" :key="i" v-show="isShowOtherBtn">
+							<text class="icon iconfont" :class="item.icon"></text>
+							<text class="fab-item-text">{{item.title}}</text>
+						</view>
+					</view>
+
 				<!-- <uni-fab ref="fab" :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger" /> -->
 			</movable-view>
 
@@ -19,15 +31,32 @@
 </template>
 
 <script>
-	import uniFab from '@/components/uni-fab/uni-fab.vue'
+	// import uniFab from '@/components/uni-fab/uni-fab.vue'
 	export default {
 		components: {
-			uniFab
+			// uniFab
 		},
 		data() {
 			return {
-				x: -40,
-				y: 0,
+				isCloseBtn: false,
+				isShowShiXianOrCalling: false,
+				isShowOtherBtn: false,
+				fabItem: [
+					{
+						icon: 'icon-shimang',
+						title: '示忙'
+					},
+					{
+						icon: 'icon-bohao',
+						title: '拨号'
+					},
+					{
+						icon: 'icon-guaji',
+						title: '挂机'
+					}
+				],
+				x: -400,
+				y: 40,
 				old: {
 					x: 0,
 					y: 0
@@ -70,6 +99,10 @@
 				]
 			}
 		},
+		// onLoad() {
+		// 	this.x = uni.upx2px(-80) - uni.upx2px(-50)
+		// 	console.log(this.x)
+		// },
 		onBackPress() {
 			if (this.$refs.fab.isShow) {
 				this.$refs.fab.close()
@@ -78,16 +111,29 @@
 			return false
 		},
 		methods: {
-			tap: function(e) {
-			    this.x = this.old.x
-			    this.y = this.old.y
-			    this.$nextTick(function() {
-			        this.x = 30
-			        this.y = 30
-			    })
+			handleBoHao() {
+				this.isCloseBtn = true
+				this.isShowShiXianOrCalling = true
+				this.isShowOtherBtn = true
 			},
+			handleClose() {
+				this.x = this.old.x
+				// this.y = this.old.y
+				this.$nextTick(function() {
+						this.x = -100
+						// this.y = -100
+				})
+			},
+			// tap: function(e) {
+			//     this.x = this.old.x
+			//     this.y = this.old.y
+			//     this.$nextTick(function() {
+			//         this.x = 30
+			//         this.y = 30
+			//     })
+			// },
 			onChange: function(e) {
-			    this.old.x = e.detail.x
+			    // this.old.x = e.detail.x
 			    this.old.y = e.detail.y
 			},
 			trigger(e) {
@@ -127,17 +173,41 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 80upx;
-		width: 80upx;
-		border-radius: 50% 0 0 50%;
-		background-color: rgba(0, 0, 0, 0.7);
+		height: 100upx;
+		width: auto;
+
 		color: #fff;
 		z-index: 100;
 	}
 
-	.fab-bar .iconfont {
+	.fab-bar {
+		display: flex;
+		flex-direction: row;
+		/* width: 500upx; */
+		height: 100%;
+
+	}
+	.fab-item {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100upx;
+		background-color: rgba(0, 0, 0, 0.7);
+		border-right: 1upx solid #FFFFFF;
+	}
+	.fab-item:first-child {
+				border-radius: 50% 0 0 50%;
+	}
+	.fab-item>text {
+		font-size: 20upx;
+	}
+	.fab-item>text.iconfont {
 		font-size: 50upx;
 		color: #FFFFFF;
+	}
+	.fab-item>text.iconfont.icon {
+		font-size: 30upx;
 	}
 
 	movable-area {
@@ -234,7 +304,7 @@
 		right: 0;
 		z-index: 1;
 		background-color: red;
-		width: 80upx;
+		width: 0;
 		height: 100%;
 		/* overflow: hidden; */
 	}

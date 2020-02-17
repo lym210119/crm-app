@@ -8,7 +8,8 @@
 						<uni-grid :column="4" :highlight="true" :show-border="false" @change="change">
 							<uni-grid-item v-for="(item2, index2) in item.submenu" :index="index2" :key="index2">
 								<view class="grid-item-box">
-									<image :src="item2.icon" class="image" mode="aspectFill" />
+									<text class="iconfont" :class="item2.icon"></text>
+									<!-- <image :src="item2.icon" class="image" mode="aspectFill" /> -->
 									<text class="text">{{ item2.text }}</text>
 								</view>
 							</uni-grid-item>

@@ -22,7 +22,7 @@
 	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 	@import './common/uni.css';
 	/* 引入 iconfont 8*/
-	@import 'https://at.alicdn.com/t/font_1631979_g34ama2ndbc.css';
+	@import 'https://at.alicdn.com/t/font_1631979_jpeh73vj1y.css';
 	/* 引入动画库 */
 	@import './common/animate.css';
 
