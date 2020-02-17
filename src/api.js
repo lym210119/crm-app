@@ -4,7 +4,6 @@ const minRequest = new MinRequest()
 
 // 请求拦截器
 minRequest.interceptors.request((request) => {
-  console.log(uni.showLoading)
   uni.showLoading({
     title: "正在加载数据..."
   })
@@ -20,9 +19,9 @@ minRequest.interceptors.response((response) => {
 // 设置默认配置
 minRequest.setConfig((config) => {
   if (process.env.NODE_ENV === 'development') {
-    config.baseURL = 'http://192.168.1.10:8080/crm-app'
+    config.baseURL = 'http://192.168.1.10:8080/crm-app/'
   } else {
-    config.baseURL = 'https://65style.github.io/crm-app'
+    config.baseURL = 'https://65style.github.io/crm-app/'
   }
   return config
 })
