@@ -15,7 +15,7 @@
 			</block>
 			<!-- 中间 -->
 			<view class="input-view" v-show="isShowSearch">
-				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
+				<input confirm-type="search" focus class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 			</view>
 			<view class="tab-content" v-show="!isShowSearch">
 				<view class="tab-item">我的</view>

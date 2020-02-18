@@ -10,15 +10,15 @@
 
 			<movable-view :x="x" :y="y" direction="vertical" @change="onChange">
 					<view class="fab-bar">
-						<view class="fab-item">
+						<view class="fab-item" style="background-color: #1ab394;">
 							<text class="iconfont icon-hebingxingzhuang" v-show="isCloseBtn" @tap="handleClose"></text>
 							<text class="iconfont icon-bohao" v-show="!isCloseBtn" @tap="handleOpen"></text>
 						</view>
-						<view class="fab-item" v-show="isShowShiXianOrCalling">
+						<view class="fab-item" v-show="isShowShiXianOrCalling" style="background-color: #1c84c6;">
 							<text class="fab-item-text">示闲中</text>
 							<text class="fab-item-text">00:00:00</text>
 						</view>
-						<view class="fab-item" v-for="(item, i) in fabItem" :key="i" v-show="isShowOtherBtn">
+						<view class="fab-item fab-item-btn" :style="'background-color:' + item.bgColor" v-for="(item, i) in fabItem" :key="i" v-show="isShowOtherBtn">
 							<text class="icon iconfont" :class="item.icon"></text>
 							<text class="fab-item-text">{{item.title}}</text>
 						</view>
@@ -44,22 +44,25 @@
 				fabItem: [
 					{
 						icon: 'icon-shimang',
-						title: '示忙'
+						title: '示忙',
+						bgColor: '#f8ac59'
 					},
 					{
 						icon: 'icon-bohao',
-						title: '拨号'
+						title: '拨号',
+						bgColor: '#23c6c8'
 					},
 					{
 						icon: 'icon-guaji',
-						title: '挂机'
+						title: '挂机',
+						bgColor: '#ed5565'
 					}
 				],
 				x: -50,
 				y: 80,
 				old: {
-					x: 0,
-					y: 0
+					x: -50,
+					y: 80
 				},
 				title: 'uni-fab',
 				directionStr: '垂直',
@@ -119,7 +122,7 @@
 				this.y = this.old.y
 				this.$nextTick(function() {
 						this.x = -400
-						// this.y = -100
+						this.y = this.old.y
 				})
 			},
 			handleClose() {
@@ -131,7 +134,7 @@
 				console.log(-100)
 				this.$nextTick(function() {
 						this.x = -100
-						// this.y = -100
+						this.y = this.old.y
 				})
 			},
 			// tap: function(e) {
@@ -203,21 +206,28 @@
 		justify-content: center;
 		align-items: center;
 		width: 100upx;
-		background-color: rgba(0, 0, 0, 0.7);
+		background-color: #333333;
 		border-right: 1upx solid #FFFFFF;
+	}
+	.fab-item:nth-of-type(2) {
+		width: 150upx;
 	}
 	.fab-item:first-child {
 				border-radius: 50% 0 0 50%;
 	}
 	.fab-item>text {
-		font-size: 20upx;
+		font-size: 24upx;
+	
+	}
+	.fab-item-btn>text {
+		margin-top: -30upx;
 	}
 	.fab-item>text.iconfont {
 		font-size: 50upx;
 		color: #FFFFFF;
 	}
 	.fab-item>text.iconfont.icon {
-		font-size: 30upx;
+		font-size: 60upx;
 	}
 
 	movable-area {
@@ -312,8 +322,8 @@
 		bottom: 0;
 		/* left: 0; */
 		right: 0;
-		z-index: 1;
-		background-color: red;
+		z-index: 2;
+		background-color: transparent;
 		width: 0;
 		height: 100%;
 		/* overflow: hidden; */
