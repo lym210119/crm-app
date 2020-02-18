@@ -8,7 +8,9 @@
 						<uni-grid :column="4" :highlight="true" :show-border="false" @change="change">
 							<uni-grid-item v-for="(item2, index2) in item.submenu" :index="index2" :key="index2">
 								<view class="grid-item-box">
-									<text class="iconfont" :class="item2.icon"></text>
+									<view class="icon-box" :style="'background-color:' + item2.color">
+										<text class="iconfont" :class="item2.icon"></text>	
+									</view>
 									<!-- <image :src="item2.icon" class="image" mode="aspectFill" /> -->
 									<text class="text">{{ item2.text }}</text>
 								</view>
@@ -32,7 +34,8 @@
 		},
 		data() {
 			return {
-				workList: []
+				workList: [],
+				itemBgColor: ['#4681f6', '#ec7958', '#75cd8e', '#aed47a', '#f09943', '#f6d551', '#63bdb6']
 			}
 		},
 		onLoad() {
@@ -45,7 +48,15 @@
         // })
         this.$minApi.getWorkMenu().then(res => {
           // uni.hideLoading();
-          this.workList = res.data;
+					// this.workList = res.data;
+					
+					res.data.forEach(item => {
+						item.submenu.forEach(item2 => {
+							item2.color = this.itemBgColor[Math.floor(Math.random() * this.itemBgColor.length)]
+						})
+					});
+					console.log(res.data)
+					this.workList = res.data;
         }).catch(err => {
           this.tips = "网络错误，小程序端请检查合法域名";
         })
@@ -103,7 +114,19 @@
 		justify-content: center;
 		padding: 15px 0;
 	}
-
+	.icon-box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80upx;
+		height: 80upx;
+		background-color: #63bdb6;
+		border-radius: 50%;
+	}
+	.icon-box .iconfont {
+		color: #FFFFFF;
+		font-size: 40upx;
+	}
 	.image {
 		width: 50upx;
 		height: 50upx;

@@ -1,15 +1,23 @@
 <template>
 	<view class="client-page">
-		<!-- <global-fab></global-fab> -->
-		<uni-nav-bar statusBar="true" backgroundColor="#19aa8d">
+		<global-fab></global-fab>
+		<uni-nav-bar statusBar="true" backgroundColor="#19aa8d" @clickLeft="handleSearchClick">
 			<!-- 左边 -->
-			<block slot="left">
+			<block slot="left" v-if="!isShowSearch">
 				<view class="nav-left">
 					<view class="iconfont icon--search1"></view>
 				</view>
 			</block>
+			<block slot="left" v-else>
+				<view class="nav-left">
+					<view class="close-search" style="font-size: 30upx;">取消</view>
+				</view>
+			</block>
 			<!-- 中间 -->
-			<view class="tab-content">
+			<view class="input-view" v-show="isShowSearch">
+				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
+			</view>
+			<view class="tab-content" v-show="!isShowSearch">
 				<view class="tab-item">我的</view>
 				<view class="tab-item">团队</view>
 				<view class="tab-item">线索</view>
@@ -24,13 +32,19 @@
 		</uni-nav-bar>
 
 		<view class="header">
+			<view class="openSelected">
+				展开
+			</view>
+			<view class="type">
+				类型
+			</view>
 			<view class="sort" :class="{'active': isSort && mask}"  @tap="handleSortOrFilter('sort')">
 				排序
 				<text class="iconfont icon-arrow-right"></text>
 			</view>
 			<view class="filter" :class="{'active': !isSort && mask}" @tap="handleSortOrFilter('filter')">
 				<text class="iconfont icon-filter"></text>
-				高级筛选
+				筛选
 			</view>
 
 		</view>
@@ -170,6 +184,7 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 		},
 		data() {
 			return {
+				isShowSearch: false,
 				mask: false,
 				isSort: true,
 				listData: [{
@@ -215,6 +230,10 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 			})
 		},
 		methods: {
+			handleSearchClick() {
+				console.log(123)
+				this.isShowSearch = !this.isShowSearch
+			},
 			selectSort(sort) {
 				console.log('selectSort')
 				this.mask = false
@@ -293,6 +312,42 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 </script>
 
 <style>
+	.input-view {
+		/* #ifndef APP-PLUS-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		/* width: 500rpx;
+ */
+		flex: 1;
+		background-color: #f8f8f8;
+		height: 30px;
+		border-radius: 15px;
+		padding: 0 15px;
+		flex-wrap: nowrap;
+		margin: 7px 0;
+		line-height: 30px;
+	}
+	.input-uni-icon {
+		line-height: 30px;
+	}
+		.nav-bar-input {
+		height: 30px;
+		line-height: 30px;
+		/* #ifdef APP-PLUS-NVUE */
+		width: 370rpx;
+		/* #endif */
+		padding: 0 5px;
+		font-size: 28rpx;
+		background-color: #f8f8f8;
+	}
+.search-container {
+	width: 100%;
+}
+	.search-container>input{
+
+		background-color: #FFFFFF;
+	}
 	.nav-left {
 		margin-left: 16upx;
 	}

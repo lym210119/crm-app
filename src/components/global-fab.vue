@@ -10,9 +10,9 @@
 
 			<movable-view :x="x" :y="y" direction="vertical" @change="onChange">
 					<view class="fab-bar">
-						<view class="fab-item" @tap="handleClose">
-							<text class="iconfont icon-hebingxingzhuang" v-show="isCloseBtn" @tap=""></text>
-							<text class="iconfont icon-bohao" v-show="!isCloseBtn" @tap="handleBoHao"></text>
+						<view class="fab-item">
+							<text class="iconfont icon-hebingxingzhuang" v-show="isCloseBtn" @tap="handleClose"></text>
+							<text class="iconfont icon-bohao" v-show="!isCloseBtn" @tap="handleOpen"></text>
 						</view>
 						<view class="fab-item" v-show="isShowShiXianOrCalling">
 							<text class="fab-item-text">示闲中</text>
@@ -55,7 +55,7 @@
 						title: '挂机'
 					}
 				],
-				x: -400,
+				x: -50,
 				y: 40,
 				old: {
 					x: 0,
@@ -111,14 +111,24 @@
 			return false
 		},
 		methods: {
-			handleBoHao() {
+			handleOpen() {
 				this.isCloseBtn = true
 				this.isShowShiXianOrCalling = true
 				this.isShowOtherBtn = true
+				this.x = this.old.x
+				this.y = this.old.y
+				this.$nextTick(function() {
+						this.x = -400
+						// this.y = -100
+				})
 			},
 			handleClose() {
+				this.isCloseBtn = false
+				this.isShowShiXianOrCalling = false
+				this.isShowOtherBtn = false
 				this.x = this.old.x
-				// this.y = this.old.y
+				this.y = this.old.y
+				console.log(-100)
 				this.$nextTick(function() {
 						this.x = -100
 						// this.y = -100
@@ -133,7 +143,7 @@
 			//     })
 			// },
 			onChange: function(e) {
-			    // this.old.x = e.detail.x
+			    this.old.x = e.detail.x
 			    this.old.y = e.detail.y
 			},
 			trigger(e) {
