@@ -1,28 +1,111 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+      <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.documentElement.style.fontSize =
+          document.documentElement.clientWidth / 20 + "px";
+      });
+      var coverSupport =
+        "CSS" in window &&
+        typeof CSS.supports === "function" &&
+        (CSS.supports("top: env(a)") || CSS.supports("top: constant(a)"));
+      document.write(
+        '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+          (coverSupport ? ", viewport-fit=cover" : "") +
+          '" />'
+      );
+    </script>
+    <link
+      rel="stylesheet"
+      href="<%= BASE_URL %>static/index.<%= VUE_APP_INDEX_CSS_HASH %>.css"
+    />
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>
-            <%= htmlWebpackPlugin.options.title %>
-        </title>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                document.documentElement.style.fontSize = document.documentElement.clientWidth / 20 + 'px'
-            })
-            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
-            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')
-        </script>
-        <link rel="stylesheet" href="<%= BASE_URL %>static/index.<%= VUE_APP_INDEX_CSS_HASH %>.css" />
-    </head>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/hammer.js/2.0.8/hammer.js"></script>
+    <style>
+      #side-move-area {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        z-index: 9999;
+        /* background-color: red; */
+      }
+      #side-fab-bar {
+        position: absolute;
+        top: 80px;
+        left: -50px;
+        z-index: 99999;
+        width: 50px;
+        height: 50px;
+        background-color: green;
+      }
 
-    <body>
-        <noscript>
-            <strong>Please enable JavaScript to continue.</strong>
-        </noscript>
-        <div id="app"></div>
-        <!-- built files will be auto injected -->
-    </body>
+    </style>
+  </head>
 
+  <body>
+    <noscript>
+      <strong>Please enable JavaScript to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+
+    <div id="side-move-area">
+      <div id="side-fab-bar">
+        <i class="iconfont icon-bohao"></i>
+      </div>
+    </div>
+
+    
+    <script>
+      var div1 = document.querySelector("#side-fab-bar");
+      console.log(div1)
+      //限制最大宽高，不让滑块出去
+      var maxW = document.body.clientWidth - div1.offsetWidth;
+      var maxH = document.body.clientHeight - div1.offsetHeight;
+      //手指触摸开始，记录div的初始位置
+      div1.addEventListener("touchstart", function(e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        // oL = touch.clientX - div1.offsetLeft;
+        oT = touch.clientY - div1.offsetTop;
+        document.addEventListener("touchmove", defaultEvent, { passive: false });
+      });
+      //触摸中的，位置记录
+      div1.addEventListener("touchmove", function(e) {
+        var ev = e || window.event;
+        var touch = ev.targetTouches[0];
+        // var oLeft = touch.clientX - oL;
+        var oTop = touch.clientY - oT;
+        // if (oLeft < 0) {
+        //   oLeft = 0;
+        // } else if (oLeft >= maxW) {
+        //   oLeft = maxW;
+        // }
+        if (oTop < 0) {
+          oTop = 0;
+        } else if (oTop >= maxH) {
+          oTop = maxH;
+        }
+        // div1.style.left = oLeft + "px";
+        div1.style.top = oTop + "px";
+      });
+      //触摸结束时的处理
+      div1.addEventListener("touchend", function() {
+        document.removeEventListener("touchmove", defaultEvent);
+      });
+      //阻止默认事件
+      function defaultEvent(e) {
+        e.preventDefault();
+      }
+    </script>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

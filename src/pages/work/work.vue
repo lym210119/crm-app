@@ -35,7 +35,7 @@
 		data() {
 			return {
 				workList: [],
-				itemBgColor: ['#239a03', '#3479f7', '#d88ae0', '#ff0000', '#f16700']
+				itemBgColor: ['#4681f6', '#ec7958', '#75cd8e', '#aed47a', '#f09943', '#f6d551', '#63bdb6']
 			}
 		},
 		onLoad() {

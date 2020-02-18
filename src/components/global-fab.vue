@@ -14,11 +14,11 @@
 							<text class="iconfont icon-hebingxingzhuang" v-show="isCloseBtn" @tap="handleClose"></text>
 							<text class="iconfont icon-bohao" v-show="!isCloseBtn" @tap="handleOpen"></text>
 						</view>
-						<view class="fab-item" v-show="isShowShiXianOrCalling" style="background-color: #1c84c6;">
-							<text class="fab-item-text">示闲中</text>
+						<view class="fab-item" @tap="hideAfterBtn()" v-show="isShowShiXianOrCalling" :style="'background-color:' + activeStatusBgColor">
+							<text class="fab-item-text">{{activeStatusText}}</text>
 							<text class="fab-item-text">00:00:00</text>
 						</view>
-						<view class="fab-item fab-item-btn" :style="'background-color:' + item.bgColor" v-for="(item, i) in fabItem" :key="i" v-show="isShowOtherBtn">
+						<view class="fab-item fab-item-btn" @tap="handleCallStatus(item)" :style="'background-color:' + item.bgColor" v-for="(item, i) in fabItem" :key="i" v-show="isShowOtherBtn">
 							<text class="icon iconfont" :class="item.icon"></text>
 							<text class="fab-item-text">{{item.title}}</text>
 						</view>
@@ -41,65 +41,34 @@
 				isCloseBtn: false,
 				isShowShiXianOrCalling: false,
 				isShowOtherBtn: false,
+				activeStatusText: '示闲中',
+				activeStatusBgColor: '#1ab394',
 				fabItem: [
 					{
+						id: 1,
 						icon: 'icon-shimang',
 						title: '示忙',
 						bgColor: '#f8ac59'
 					},
 					{
+						id: 2,
 						icon: 'icon-bohao',
 						title: '拨号',
 						bgColor: '#23c6c8'
 					},
 					{
+						id: 3,
 						icon: 'icon-guaji',
 						title: '挂机',
-						bgColor: '#ed5565'
+						bgColor: '#666666'
 					}
 				],
-				x: -50,
+				x: -450,
 				y: 80,
 				old: {
-					x: -50,
+					x: -450,
 					y: 80
-				},
-				title: 'uni-fab',
-				directionStr: '垂直',
-				horizontal: 'right',
-				vertical: 'top',
-				direction: 'horizontal',
-				pattern: {
-					color: '#FFFFFF',
-					backgroundColor: 'rgba(0, 0, 0, 0.5)',
-					selectedColor: '#f09235',
-					buttonColor: 'rgba(0, 0, 0, 0.5)'
-				},
-				content: [{
-						iconPath: '/static/fabBar/shixian.png',
-						selectedIconPath: '/static/fabBar/shixian.png',
-						text: '示闲',
-						active: false
-					},
-					{
-						iconPath: '/static/fabBar/qunhu.png',
-						selectedIconPath: '/static/fabBar/qunhu.png',
-						text: '群呼',
-						active: false
-					},
-					{
-						iconPath: '/static/fabBar/bohao.png',
-						selectedIconPath: '/static/fabBar/bohao.png',
-						text: '拨号',
-						active: false
-					},
-					{
-						iconPath: '/static/fabBar/guaji.png',
-						selectedIconPath: '/static/fabBar/guaji.png',
-						text: '挂机',
-						active: false
-					}
-				]
+				}
 			}
 		},
 		// onLoad() {
@@ -114,14 +83,53 @@
 			return false
 		},
 		methods: {
+			handleCallStatus(item) {
+				switch (item.id) {
+					case 1:
+						uni.showToast({
+							title: '你点击了' + item.title,
+							icon: 'none'
+						})
+							item.title = item.title === '示忙' ? '示闲' : '示忙'
+							item.bgColor = item.bgColor === '#f8ac59' ? '#1ab394' : '#f8ac59'
+							item.icon = item.icon === 'icon-shimang' ? 'icon-shixian' : 'icon-shimang'
+							this.activeStatusText = this.activeStatusText === '示闲中' ? '示忙中' : '示闲中'
+							this.activeStatusBgColor = this.activeStatusBgColor === '#1ab394' ? '#f8ac59' : '#1ab394'
+
+						break;
+					case 2:
+						uni.showToast({
+							title: '你点击了' + item.title,
+							icon: 'none'
+						})
+						break;
+					case 3:
+						uni.showToast({
+							title: '你点击了' + item.title,
+							icon: 'none'
+						})
+						break;				
+					default:
+						break;
+				}
+			},
+			hideAfterBtn() {
+				this.isShowOtherBtn = !this.isShowOtherBtn
+				// this.x = this.old.x
+				this.y = this.old.y
+				this.$nextTick(function() {
+						// this.x = -300
+						this.y = this.old.y
+				})
+			},
 			handleOpen() {
 				this.isCloseBtn = true
 				this.isShowShiXianOrCalling = true
 				this.isShowOtherBtn = true
-				this.x = this.old.x
+				// this.x = this.old.x
 				this.y = this.old.y
 				this.$nextTick(function() {
-						this.x = -400
+						// this.x = -400
 						this.y = this.old.y
 				})
 			},
@@ -129,11 +137,11 @@
 				this.isCloseBtn = false
 				this.isShowShiXianOrCalling = false
 				this.isShowOtherBtn = false
-				this.x = this.old.x
+				// this.x = this.old.x
 				this.y = this.old.y
-				console.log(-100)
+				// console.log(-100)
 				this.$nextTick(function() {
-						this.x = -100
+						// this.x = -100
 						this.y = this.old.y
 				})
 			},
