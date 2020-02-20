@@ -155,7 +155,6 @@
 			
 			</view>
 
-			<global-fab></global-fab>
 	</view>
 </template>
 

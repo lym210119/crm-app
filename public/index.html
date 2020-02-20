@@ -26,8 +26,7 @@
       href="<%= BASE_URL %>static/index.<%= VUE_APP_INDEX_CSS_HASH %>.css"
     />
 
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/hammer.js/2.0.8/hammer.js"></script>
+    <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
     <style>
       #side-move-area {
         position: absolute;
@@ -43,11 +42,57 @@
         top: 80px;
         left: -50px;
         z-index: 99999;
-        width: 50px;
+        display: flex;
+        flex-direction: row;
+        width: 275px;
         height: 50px;
-        background-color: green;
       }
-
+      .fab-item {
+        position: relative;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+      }
+      .fab-item::after {
+        position: absolute;
+        content: "";
+        background-color: #e5e5e5;
+        display: block;
+        height: 100%;
+        width: 1px; /*no*/
+        transform: scale(0.5, 1);
+        top: 0;
+        right: 0;
+      }
+      .fab-item:nth-of-type(1) {
+        border-radius: 50% 0 0 50%;
+        background-color: #1ab394;
+      }
+      .fab-item:nth-of-type(2) {
+        background-color: #1ab394;
+      }
+      .fab-item:nth-of-type(3) {
+        background-color: #f8ac59;
+      }
+      .fab-item:nth-of-type(4) {
+        background-color: #23c6c8;
+      }
+      .fab-item:nth-of-type(5) {
+        background-color: #666666;
+      }
+      .fab-item .iconfont {
+        font-size: 26px;
+      }
+      .fab-item > span {
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .fab-item:nth-of-type(2) {
+        width: 75px;
+      }
     </style>
   </head>
 
@@ -59,52 +104,93 @@
 
     <div id="side-move-area">
       <div id="side-fab-bar">
-        <i class="iconfont icon-bohao"></i>
+        <div class="fab-item onOff">
+          <i class="iconfont icon-bohao"></i>
+        </div>
+        <div class="fab-item call-status">
+          <span class="">示闲中</span>
+          <span>00:00:00</span>
+        </div>
+        <div class="fab-item">
+          <i class="iconfont icon-shimang"></i>
+          <span>示忙</span>
+        </div>
+        <div class="fab-item">
+          <i class="iconfont icon-bohao"></i>
+          <span>拨号</span>
+        </div>
+        <div class="fab-item">
+          <i class="iconfont icon-guaji"></i>
+          <span>挂机</span>
+        </div>
       </div>
     </div>
 
-    
     <script>
-      var div1 = document.querySelector("#side-fab-bar");
-      console.log(div1)
-      //限制最大宽高，不让滑块出去
-      var maxW = document.body.clientWidth - div1.offsetWidth;
-      var maxH = document.body.clientHeight - div1.offsetHeight;
-      //手指触摸开始，记录div的初始位置
-      div1.addEventListener("touchstart", function(e) {
-        var ev = e || window.event;
-        var touch = ev.targetTouches[0];
-        // oL = touch.clientX - div1.offsetLeft;
-        oT = touch.clientY - div1.offsetTop;
-        document.addEventListener("touchmove", defaultEvent, { passive: false });
-      });
-      //触摸中的，位置记录
-      div1.addEventListener("touchmove", function(e) {
-        var ev = e || window.event;
-        var touch = ev.targetTouches[0];
-        // var oLeft = touch.clientX - oL;
-        var oTop = touch.clientY - oT;
-        // if (oLeft < 0) {
-        //   oLeft = 0;
-        // } else if (oLeft >= maxW) {
-        //   oLeft = maxW;
-        // }
-        if (oTop < 0) {
-          oTop = 0;
-        } else if (oTop >= maxH) {
-          oTop = maxH;
+      $(function() {
+        $('.call-status').on('click', function() {
+          var activeLeftVal = $('#side-fab-bar').css('left')
+          var left = activeLeftVal === '-275px' ? '-125px' : '-275px';
+          $('#side-fab-bar').css('left', left)
+        })
+        $('.onOff').on('click', function() {
+          var icon = $(this).find('.iconfont')
+          var isOpen = icon.hasClass('icon-bohao')
+          var left = isOpen ? '-275px' : '-50px'
+          var className = isOpen ? 'icon-hebingxingzhuang' : 'icon-bohao'
+
+          $('#side-fab-bar').css('left', left);
+          if (isOpen) {
+            icon.removeClass('icon-bohao').addClass(className)
+          } else {
+            icon.removeClass('icon-hebingxingzhuang').addClass(className)
+          }
+        })
+
+        // fab-bar 上下滑动
+        var div1 = document.querySelector("#side-fab-bar");
+        console.log(div1);
+        //限制最大宽高，不让滑块出去
+        var maxW = document.body.clientWidth - div1.offsetWidth;
+        var maxH = document.body.clientHeight - div1.offsetHeight;
+        //手指触摸开始，记录div的初始位置
+        div1.addEventListener("touchstart", function(e) {
+          var ev = e || window.event;
+          var touch = ev.targetTouches[0];
+          // oL = touch.clientX - div1.offsetLeft;
+          oT = touch.clientY - div1.offsetTop;
+          document.addEventListener("touchmove", defaultEvent, {
+            passive: false
+          });
+        });
+        //触摸中的，位置记录
+        div1.addEventListener("touchmove", function(e) {
+          var ev = e || window.event;
+          var touch = ev.targetTouches[0];
+          // var oLeft = touch.clientX - oL;
+          var oTop = touch.clientY - oT;
+          // if (oLeft < 0) {
+          //   oLeft = 0;
+          // } else if (oLeft >= maxW) {
+          //   oLeft = maxW;
+          // }
+          if (oTop < 0) {
+            oTop = 0;
+          } else if (oTop >= maxH) {
+            oTop = maxH;
+          }
+          // div1.style.left = oLeft + "px";
+          div1.style.top = oTop + "px";
+        });
+        //触摸结束时的处理
+        div1.addEventListener("touchend", function() {
+          document.removeEventListener("touchmove", defaultEvent);
+        });
+        //阻止默认事件
+        function defaultEvent(e) {
+          e.preventDefault();
         }
-        // div1.style.left = oLeft + "px";
-        div1.style.top = oTop + "px";
       });
-      //触摸结束时的处理
-      div1.addEventListener("touchend", function() {
-        document.removeEventListener("touchmove", defaultEvent);
-      });
-      //阻止默认事件
-      function defaultEvent(e) {
-        e.preventDefault();
-      }
     </script>
     <!-- built files will be auto injected -->
   </body>

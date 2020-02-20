@@ -1,6 +1,5 @@
 <template>
 	<view class="client-page">
-		<global-fab></global-fab>
 		<uni-nav-bar statusBar="true" backgroundColor="#19aa8d" @clickLeft="handleSearchClick">
 			<!-- 左边 -->
 			<block slot="left" v-if="!isShowSearch">
