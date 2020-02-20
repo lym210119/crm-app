@@ -39,6 +39,17 @@
       }
     },
     {
+      "path": "pages/clientDetail/clientDetail",
+      "style": {
+        "navigationBarTitleText": "客户详情",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
+      }
+    },
+    {
       "path": "pages/work/work",
       "style": {
         "navigationBarTitleText": "工作台"

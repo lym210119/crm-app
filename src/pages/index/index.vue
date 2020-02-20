@@ -207,33 +207,33 @@
 					bgColor: '#3479f7'
 				}, ],
 				statList: [{
-					iconClass: 'icon-xinzengkehu',
-					title: '新增客户',
+					iconClass: 'icon-xiansuo',
+					title: '新增线索',
 					num: '6'
 				}, {
-					iconClass: 'icon-xinzenglianxiren',
-					title: '新增联系人',
+					iconClass: 'icon-daodian',
+					title: '新增上门',
 					num: '8'
 				}, {
-					iconClass: 'icon-xinzengshangji',
-					title: '新增商机',
+					iconClass: 'icon-qiandan',
+					title: '新增签单',
 					num: '3'
 				}, {
 					iconClass: 'icon-xinzenghetong',
-					title: '新增合同',
+					title: '合同金额',
 					num: '6'
 				}, {
 					iconClass: 'icon-hetongjine',
-					title: '合同金额',
+					title: '放款金额',
 					num: '6000.00'
 				}, {
 					iconClass: 'icon-shangjijine',
-					title: '商机金额',
+					title: '回款金额',
 					num: '10000333.00'
 				}, {
 					iconClass: 'icon-huikuanjine',
-					title: '回款金额',
-					num: '1000333.00'
+					title: '新增通话时长',
+					num: '43'
 				}, {
 					iconClass: 'icon-genjinjilu',
 					title: '新增跟进记录',

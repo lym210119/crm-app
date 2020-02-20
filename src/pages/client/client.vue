@@ -17,10 +17,7 @@
 				<input confirm-type="search" focus class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="confirm">
 			</view>
 			<view class="tab-content" v-show="!isShowSearch">
-				<view class="tab-item">我的</view>
-				<view class="tab-item">团队</view>
-				<view class="tab-item">线索</view>
-				<view class="tab-item">来电</view>
+				<view class="tab-item" :class="{'active': tabIndex === i}" v-for="(item, i) in tabList" :key="item.id" @tap="changeTab(i)">{{item.title}}</view>
 			</view>
 			<!-- 右边 -->
 			<block slot="right">
@@ -115,7 +112,7 @@
 
 			<!-- #ifndef APP-NVUE -->
 			<scroll-view class="scroll-v list" enableBackToTop="true" scroll-y @scrolltolower="loadMore()" style="flex: 1">
-				<view v-for="(item,i) in listData" :key="i">
+				<view v-for="(item,i) in listData" :key="i" @tap="toDetail()">
 					<view class="client-item">
 						<view class="title">
 							<view class="username">客户名称 （9527）</view>
@@ -144,23 +141,26 @@
 								
 							</view>
 						</view>
-						<view class="tag-container">
-							<view class="tag-item">标签</view>
-							<view class="tag-item">标签</view>
-							<view class="tag-item">标签</view>
-							<view class="tag-item">标签</view>
-							<view class="tag-item">标签</view>
-				
-						</view>
+						<scroll-view class="tag-container" scroll-x="true" @scroll="scroll">
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+								<view class="tag-item">标签</view>
+							</scroll-view>
 						<view class="item-bottom">
 							<view class="follow-time">
 								1月14日 14:22 /
-								<text class="call-status">电话未接</text>
+								<text class="call-status">最新的 跟进记录的前部分，字不多就显示全</text>
 							</view>
 							<view class="icon-group">
-								<text class="iconfont icon-tixing"></text>
-								<text class="iconfont icon-tianjiakehu"></text>
-								<text class="iconfont icon-gengduo"></text>
+								<text class="iconfont icon-xiegenjin-"></text>
+								<text class="iconfont icon-gengduo" @tap.stop="actionSheetTap(id)"></text>
 							</view>
 						</view>
 					</view>
@@ -183,6 +183,20 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 		},
 		data() {
 			return {
+				tabIndex: 0,
+				tabList: [{
+					id: 1,
+					title: '我的',
+				}, {
+					id: 2,
+					title: '团队'
+				}, {
+					id: 3,
+					title: '线索'
+				}, {
+					id: 4,
+					title: '来电'
+				}],
 				isShowSearch: false,
 				mask: false,
 				isSort: true,
@@ -229,6 +243,27 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 			})
 		},
 		methods: {
+				toDetail() {
+					uni.navigateTo({
+						url: '/pages/clientDetail/clientDetail'
+					})
+				},
+				actionSheetTap() {
+				uni.showActionSheet({
+					// title:'标题',
+					itemList: ['添加电话', '扔公海', '关注', '预约', '标签', '计划', '写跟进'],
+					success: (e) => {
+						console.log(e.tapIndex);
+						uni.showToast({
+							title:"点击了第" + e.tapIndex + "个选项",
+							icon:"none"
+						})
+					}
+				})
+			},
+			changeTab(i) {
+				this.tabIndex = i
+			},
 			handleSearchClick() {
 				console.log(123)
 				this.isShowSearch = !this.isShowSearch
@@ -369,7 +404,10 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 		margin-left: -20upx;
 		font-size: 32upx;
 		font-weight: 700;
-		color: #FFFFFF;
+		color: #d5d5d6;
+	}
+	.tab-item.active {
+		color: #ffffff;
 	}
 	.client-page {
 		display: flex;
@@ -546,23 +584,31 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 		color: #fff;
 	}
 	.follow-time {
+		flex: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		color: #666666;
 	}
 	.follow-time .call-status {
+
 		color: #fe6566;
 	}
 	.tag-container {
-		display: flex;
+		/* display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		padding-bottom: 20upx;
-		border-bottom: 1px solid #F1F1F1;
+		border-bottom: 1px solid #F1F1F1; */
+		white-space: nowrap;	
+		width: 100%;
 	}
 	.tag-item {
+		display: inline-block;
 		border-radius: 10upx;
-		background-color: #e5f1fe;
-		color: #0ab69c;
+		background-color: #1ab394;
+		color: #ffffff;
 		margin-right: 10upx;
 		padding: 0 30upx;
 	}
