@@ -141,7 +141,7 @@
 								
 							</view>
 						</view>
-						<scroll-view class="tag-container" scroll-x="true" @scroll="scroll">
+						<scroll-view class="tag-container" scroll-x="true">
 								<view class="tag-item">标签</view>
 								<view class="tag-item">标签</view>
 								<view class="tag-item">标签</view>
@@ -610,7 +610,8 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 		background-color: #1ab394;
 		color: #ffffff;
 		margin-right: 10upx;
-		padding: 0 30upx;
+		padding: 0 20upx;
+		font-size: 24upx;
 	}
 	.item-bottom {
 		display: flex;

@@ -31,98 +31,114 @@
       :style="{ height: swiperHeight + 'px' }"
     >
       <swiper-item>
-        <view class="swiper-item info">
-          <view class="info-header">
-            <picker
-              class="info-header-left"
-              :value="cusIndex"
-              :range="cusType"
-              @change="changeType"
-            >
-              <view>{{ cusType[cusIndex] }}</view>
-              <text class="iconfont icon-bianji"></text>
-            </picker>
-            <view class="info-header-right">
-              <view class="info-name">
-                <input type="text" value="张三 先生" @blur="changeName"/>
-                （9320424） <text class="iconfont icon-bianji"></text
-              ></view>
-              <view class="info-desc">
-                <view class="desc-left">
-                  <view class="jinli">经理： 赵六（2-1）</view>
-                  <view class="star"
-                    ><text>星级：</text
-                    ><uni-rate
-                      size="14"
-                      margin="4"
-                      value="2"
-                      @change="changeStar"
-                    ></uni-rate
-                  ></view>
-                </view>
-                <view class="desc-right">
-                  <view class="laiyuan">来源：B 申贷网</view>
-                  <picker
-                    class="city"
-                    :value="cityIndex"
-                    :range="cityList"
-                    @change="changeCity"
-                  >
-                    <text>城市： {{ cityList[cityIndex] }}</text>
-                    <text class="iconfont icon-bianji"></text>
-                  </picker>
+        <scroll-view scroll-y="true" style="height: 100%">
+          <view class="swiper-item info">
+            <view class="info-header">
+              <picker
+                class="info-header-left"
+                :value="cusIndex"
+                :range="cusType"
+                @change="changeType"
+              >
+                <view>{{ cusType[cusIndex] }}</view>
+                <text class="iconfont icon-bianji"></text>
+              </picker>
+              <view class="info-header-right">
+                <view class="info-name">
+                  <input type="text" value="张三 先生" @blur="changeName"/>
+                  （9320424） <text class="iconfont icon-bianji"></text
+                ></view>
+                <view class="info-desc">
+                  <view class="desc-left">
+                    <view class="jinli">经理： 赵六（2-1）</view>
+                    <view class="star"
+                      ><text>星级：</text
+                      ><uni-rate
+                        size="14"
+                        margin="4"
+                        value="2"
+                        @change="changeStar"
+                      ></uni-rate
+                    ></view>
+                  </view>
+                  <view class="desc-right">
+                    <view class="laiyuan">来源：B 申贷网</view>
+                    <picker
+                      class="city"
+                      :value="cityIndex"
+                      :range="cityList"
+                      @change="changeCity"
+                    >
+                      <text>城市： {{ cityList[cityIndex] }}</text>
+                      <text class="iconfont icon-bianji"></text>
+                    </picker>
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
-          <view class="steps-container">
+            <view class="steps-container">
+              <view
+                class="step"
+                :class="{ completed: i < stepIndex, active: i === stepIndex }"
+                v-for="(item, i) in stepsList"
+                :key="i"
+              >
+                <text class="step-icon"></text>
+                <text class="step-label">{{ item }}</text>
+              </view>
+            </view>
             <view
-              class="step"
-              :class="{ completed: i < stepIndex, active: i === stepIndex }"
-              v-for="(item, i) in stepsList"
+              class="list-item phone-item"
+              v-for="(item, i) in phoneList"
               :key="i"
             >
-              <text class="step-icon"></text>
-              <text class="step-label">{{ item }}</text>
+              <view class="phone-num">{{ item }}</view>
+              <view class="contact-icon">
+                <text
+                  class="iconfont icon-0023"
+                  @tap="clickContact('wechat')"
+                ></text>
+                <text
+                  class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"
+                  @tap="clickContact('SMS')"
+                ></text>
+                <text
+                  class="iconfont icon-dianhua"
+                  @tap="clickContact('phone')"
+                ></text>
+              </view>
+            </view>
+            <view class="list-item qingkuang">
+              <text>情况：全款房；有预期；有社保；公积金；微粒贷；信用卡</text>
+            </view>
+            <view class="list-item tags-list">
+              <text>标签：</text>
+              <text
+                class="tag-item"
+                v-for="(item, i) in tagList"
+                :key="i"
+                @tap="clickTags(item)"
+                >{{ item }} <text class="iconfont icon-hebingxingzhuang"></text
+              ></text>
+            </view>
+            <view class="list-item yuyue">
+              预约：
+              <text class="text-green">预约上门时间：2020-02-20 下午</text>
+              <text class="text-orange">改约</text>
+            </view>
+            <view class="list-item jihua">
+              计划：
+              <text class="text-green"
+                >计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约</text
+              >
+              <text style="font-size: 24upx;">2020-02-21 15:00</text>
+            </view>
+            <view class="list-item cus-age">
+              <view> 客户年龄：<text class="text-green">18~55</text> </view>
+              <view> 期望金额： <text class="text-green">20~50万</text> </view>
             </view>
           </view>
-          <view class="phone-item" v-for="(item, i) in phoneList" :key="i">
-            <view class="phone-num">{{ item }}</view>
-            <view class="contact-icon">
-              <text
-                class="iconfont icon-0023"
-                @tap="clickContact('wechat')"
-              ></text>
-              <text
-                class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"
-                @tap="clickContact('SMS')"
-              ></text>
-              <text
-                class="iconfont icon-dianhua"
-                @tap="clickContact('phone')"
-              ></text>
-            </view>
-          </view>
-          <view class="qingkuang">
-            情况：全款房；有预期；有社保；公积金；微粒贷；信用卡
-          </view>
-          <view class="tags-list">
-            <text>标签：</text>
-            <text class="tag-item">标签</text>
-            <text class="tag-item">标签</text>
-            <text class="tag-item">标签</text>
-            <text class="tag-item">标签</text>
-          </view>
-          <view class="yuyue">
-            预约
-          </view>
-          <view class="jihua">
-            计划
-          </view>
-          <view class="cus-age">
-            年龄
-          </view>
-        </view>
+        </scroll-view>
       </swiper-item>
       <swiper-item>
         <view class="swiper-item uni-bg-green">B</view>
@@ -136,9 +152,14 @@
     </swiper>
 
     <view class="bottomb-btn-group">
-      <view class="operation-item" v-for="(item, i) in operationList" :key="i">
+      <view
+        class="operation-item"
+        v-for="(item, i) in operationList"
+        :key="i"
+        @tap="clickOperation(item.title)"
+      >
         <text class="iconfont" :class="item.icon"></text>
-        <text>{{item.title}}</text>
+        <text>{{ item.title }}</text>
       </view>
     </view>
   </view>
@@ -157,28 +178,37 @@ export default {
   },
   data() {
     return {
-      operationList: [{
-        icon: 'icon-bohao',
-        title: '添加电话'
-      }, {
-        icon: 'icon-bohao',
-        title: '扔公海'
-      },{
-        icon: 'icon-bohao',
-        title: '关注'
-      },{
-        icon: 'icon-bohao',
-        title: '预约'
-      },{
-        icon: 'icon-bohao',
-        title: '标签'
-      },{
-        icon: 'icon-bohao',
-        title: '计划'
-      },{
-        icon: 'icon-bohao',
-        title: '写跟进'
-      },],
+      tagList: ["开场白", "全款房", "有预期", "有社保", "公积金"],
+      operationList: [
+        {
+          icon: "icon-add",
+          title: "添加电话"
+        },
+        {
+          icon: "icon-gonghai",
+          title: "扔公海"
+        },
+        {
+          icon: "icon-pingjipeizhi1",
+          title: "关注"
+        },
+        {
+          icon: "icon-yuyue",
+          title: "预约"
+        },
+        {
+          icon: "icon-kehubiaoqian",
+          title: "标签"
+        },
+        {
+          icon: "icon-tixing",
+          title: "计划"
+        },
+        {
+          icon: "icon-xiegenjin-",
+          title: "写跟进"
+        }
+      ],
       phoneList: ["13888889999", "13999998888", "13777776666"],
       stepIndex: 5,
       stepsList: [
@@ -220,12 +250,24 @@ export default {
   onLoad() {
     uni.getSystemInfo({
       success: res => {
-        let height = res.windowHeight - uni.upx2px(100);
+        let height = res.windowHeight - uni.upx2px(204) - res.statusBarHeight;
         this.swiperHeight = height;
       }
     });
   },
   methods: {
+    clickTags(item) {
+      uni.showToast({
+        icon: "none",
+        title: "你点击了 " + item
+      });
+    },
+    clickOperation(type) {
+      uni.showToast({
+        icon: "none",
+        title: "你点击了 " + type
+      });
+    },
     clickContact(target) {
       uni.showToast({
         icon: "none",
@@ -276,7 +318,7 @@ export default {
 
 <style>
 .client-detail-page {
-  background-color:#ffffff;
+  background-color: #ffffff;
 }
 .tab-content {
   width: 100%;
@@ -467,7 +509,7 @@ export default {
     visibility: visible;
   }
 }
-.phone-item {
+.list-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -475,6 +517,7 @@ export default {
   padding: 0 30upx;
   border-bottom: 1upx solid #cccccc;
 }
+
 .phone-num::before {
   content: "";
   display: inline-block;
@@ -491,10 +534,28 @@ export default {
   color: #19aa8d;
 }
 .qingkuang,
-.tags-list {
+.tags-list,
+.yuyue,
+.jihua,
+.cus-age {
   /* line-height: 80upx; */
-  padding: 0 30upx;
+  padding: 10upx 30upx;
   border-bottom: 1upx solid #cccccc;
+}
+.list-item.yuyue,
+.list-item.jihua {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.list-item .text-green {
+  color: #19aa8d;
+}
+.list-item .text-orange {
+  margin-left: 20upx;
+  color: #ffa83a;
+}
+.tags-list {
+  flex-wrap: wrap;
 }
 .tag-item {
   display: inline-block;
@@ -502,7 +563,13 @@ export default {
   background-color: #1ab394;
   color: #ffffff;
   margin-right: 10upx;
-  padding: 0 30upx;
+  padding: 0 10upx;
+  font-size: 24upx;
+  white-space: nowrap;
+}
+.tag-item .iconfont {
+  margin-left: 10upx;
+  font-size: 24upx;
 }
 .bottomb-btn-group {
   position: absolute;
@@ -514,18 +581,20 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 20upx;
-  background-color: red;
+  background-color: #19aa8d;
 }
 .operation-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  color: #ffffff;
 }
-.operation-item>text {
-  flex: 1;
+.operation-item > text:nth-of-type(2) {
+  margin-top: -10upx;
+  font-size: 24upx;
 }
 .operation-item .iconfont {
-  font-size: 50upx;
+  font-size: 40upx;
 }
 </style>
