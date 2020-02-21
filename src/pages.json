@@ -28,7 +28,7 @@
       }
     },
     {
-      "path": "pages/client/client",
+      "path": "pages/client/list/list",
       "style": {
         "navigationBarTitleText": "客户",
         "app-plus": {
@@ -39,7 +39,7 @@
       }
     },
     {
-      "path": "pages/clientDetail/clientDetail",
+      "path": "pages/client/detail/detail",
       "style": {
         "navigationBarTitleText": "客户详情",
         "app-plus": {
@@ -47,6 +47,12 @@
           "bounce": "none",
           "scrollIndicator": "none"
         }
+      }
+    },
+    {
+      "path": "pages/client/record/record",
+      "style": {
+        "navigationBarTitleText": "通话录音"
       }
     },
     {
@@ -98,7 +104,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/client/client",
+        "pagePath": "pages/client/list/list",
         "iconPath": "static/tabBar/client.png",
         "selectedIconPath": "static/tabBar/client-selected.png",
         "text": "客户"

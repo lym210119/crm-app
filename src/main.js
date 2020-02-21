@@ -10,7 +10,11 @@ App.mpType = 'app'
 
 // 注册请求
 Vue.use(MinRequest)
-
+Vue.prototype.$backgroundAudioData = {
+	playing: false,
+	playTime: 0,
+	formatedPlayTime: '00:00:00'
+}
 
 const app = new Vue({
   ...App,
