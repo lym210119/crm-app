@@ -147,11 +147,11 @@
                 <view class=""> 情况： <text>客户备注客户备注</text> </view>
               </view>
               <view class="info-right">
-                <view class="sms">
+                <!-- <view class="sms">
                   <text
                     class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"
                   ></text>
-                </view>
+                </view> -->
                 <view class="phone">
                   <text class="iconfont icon-dianhua"></text>
                 </view>
@@ -653,8 +653,8 @@ export default {
 .client-item > .info {
 }
 .client-item > .title > .username {
-  font-size: 32upx;
-  font-weight: 700;
+  font-size: 28upx;
+  /* font-weight: 700; */
   color: #333333;
 }
 
@@ -680,12 +680,14 @@ export default {
   font-weight: 400;
   /* background-color: #e6f0fc; */
 	color: #9aa6c7;
-	border: 1upx solid #9aa6c7;
+	border: 2upx solid #9aa6c7;
+	font-size: 24upx;
 	
 }
 
 .info-left > view {
-  color: #666666;
+	color: #626262;
+	font-size: 24upx;
 }
 .info-left > view > text {
   color: #333333;
@@ -713,7 +715,8 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #666666;
+	color: #666666;
+	font-size: 24upx;
 }
 .follow-time .call-status {
   color: #8c8c8c;
@@ -731,8 +734,8 @@ export default {
 .tag-item {
   display: inline-block;
   border-radius: 10upx;
-  background-color: #f8ac59;
-  color: #ffffff;
+	background-color: #f8f8f8;
+	color: #959595;
   margin-right: 10upx;
   padding: 0 20upx;
   font-size: 24upx;
@@ -742,13 +745,14 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15upx;
+	margin-top: 15upx;
+
 }
 .item-bottom .icon-group {
 }
 .item-bottom .icon-group .iconfont {
   margin-left: 30upx;
-  color: #718df6;
+  color: #18a98c;
   font-size: 40upx;
 }
 </style>

@@ -27,6 +27,7 @@
 	@import './common/animate.css';
 
 	page {
+		overflow: hidden;
 		background-color: #F3F5F9;
 		height: 100%;
 		font-size: 28upx;

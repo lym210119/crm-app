@@ -5,7 +5,6 @@
       backgroundColor="#19aa8d"
       color="#ffffff"
       left-icon="arrowleft"
-      right-icon="checkmarkempty"
       @clickLeft="tapBack"
     >
       <!-- <block slot="left">
@@ -108,8 +107,12 @@
                 ></text>
               </view>
             </view>
+            <view class="list-item cus-age">
+              <view> 客户年龄：<text class="text-green">18~55</text> </view>
+              <view> 期望金额： <text class="text-green">20~50万</text> </view>
+            </view>
             <view class="list-item qingkuang">
-              <text>情况：全款房；有预期；有社保；公积金；微粒贷；信用卡</text>
+              <view>客户情况：<text style="color: #959595;">全款房；有预期；有社保；公积金；微粒贷；信用卡</text></view>
             </view>
             <view class="list-item tags-list">
               <text>标签：</text>
@@ -122,21 +125,22 @@
               ></text>
             </view>
             <view class="list-item yuyue">
-              预约：
-              <text class="text-green">预约上门时间：2020-02-20 下午</text>
+              预约上门：
+              <text class="text-green">上门时间：2020-02-20 下午</text>
               <text class="text-orange">改约</text>
             </view>
             <view class="list-item jihua">
-              计划：
-              <text class="text-green"
-                >计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约</text
+              <view class="jihua-title">
+                <text>计划内容：</text>
+                <text style="font-size: 24upx;">2020-02-21 15:00</text>
+              </view>
+              
+              <view class="text-green"
+                >计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约</view
               >
-              <text style="font-size: 24upx;">2020-02-21 15:00</text>
+              
             </view>
-            <view class="list-item cus-age">
-              <view> 客户年龄：<text class="text-green">18~55</text> </view>
-              <view> 期望金额： <text class="text-green">20~50万</text> </view>
-            </view>
+
           </view>
         </scroll-view>
       </swiper-item>
@@ -251,7 +255,7 @@ export default {
       operationList: [
         {
           icon: "icon-add",
-          title: "添加电话"
+          title: "加电话"
         },
         {
           icon: "icon-gonghai",
@@ -259,7 +263,7 @@ export default {
         },
         {
           icon: "icon-pingjipeizhi1",
-          title: "关注"
+          title: "取消关注"
         },
         {
           icon: "icon-yuyue",
@@ -415,18 +419,19 @@ export default {
   margin-left: -20upx;
   font-size: 32upx;
   font-weight: 700;
-  color: #d5d5d6;
+  color: #333333;
 }
 .tab-item.active {
   color: #ffffff;
+  font-size: 32upx;
 }
 .info > .info-header {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 20upx;
-  background-color: #19aa8d;
-  color: #ffffff;
+  background-color: #ffffff;
+  border-bottom: 1upx solid #cccccc;
 }
 .info-header-left {
   display: flex;
@@ -462,6 +467,9 @@ export default {
   flex-direction: row;
   justify-content: flex-start;
 }
+.info-header-right .info-name .iconfont {
+  font-size: 28upx;
+}
 .info-header-right .info-name > input {
   width: 150upx;
 }
@@ -471,7 +479,7 @@ export default {
 }
 .info-desc view {
   font-size: 24upx;
-  color: #c4d5d1;
+  color: #333333;
 }
 .desc-left,
 .desc-right {
@@ -485,7 +493,7 @@ export default {
 .city .iconfont {
   font-size: 24upx;
   margin-left: 10upx;
-  color: #ffffff;
+  color: #333333;
 }
 .steps-container {
   display: flex;
@@ -512,7 +520,7 @@ export default {
   top: 50%;
   -webkit-transform: translateY(-1px);
   transform: translateY(-1px);
-  border-bottom: 2px solid #afb3b9;
+  border-bottom: 2upx solid #afb3b9;
   z-index: -1;
 }
 .steps-container .step:before {
@@ -547,16 +555,16 @@ export default {
   bottom: 0;
   -webkit-transform: scale(0.66666667);
   transform: scale(0.66666667);
-  background: #1bb394;
+  background: #fda228;
   border-radius: 50%;
 }
 .steps-container .step.completed:after,
 .steps-container .step.completed + .step:before {
-  border-color: #1bb394;
+  border-color: #afb3b9;
 }
 .steps-container .step.completed .step-icon {
-  background: #1bb394;
-  border-color: #1bb394;
+  /* background: #ffca3e; */
+  border-color: #afb3b9;
 }
 .steps-container .step.completed .step-icon:after {
   position: absolute;
@@ -567,8 +575,8 @@ export default {
   -webkit-transform: translate(-50%, -50%) rotate(-45deg);
   transform: translate(-50%, -50%) rotate(-45deg);
   background: transparent;
-  border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-left: 2px solid #afb3b9;
+  border-bottom: 2px solid #afb3b9;
 }
 .steps-container .step-label {
   position: absolute;
@@ -618,7 +626,7 @@ export default {
   margin-left: 20upx;
   vertical-align: middle;
   font-size: 40upx;
-  color: #19aa8d;
+  color: #718df6;
 }
 .qingkuang,
 .tags-list,
@@ -635,7 +643,7 @@ export default {
   flex-wrap: wrap;
 }
 .list-item .text-green {
-  color: #19aa8d;
+  color: #959595;
 }
 .list-item .text-orange {
   margin-left: 20upx;
@@ -647,8 +655,8 @@ export default {
 .tag-item {
   display: inline-block;
   border-radius: 10upx;
-  background-color: #1ab394;
-  color: #ffffff;
+  background-color: #f8f8f8;
+  color: #959595;
   margin-right: 10upx;
   padding: 0 10upx;
   font-size: 24upx;
@@ -668,21 +676,23 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 20upx;
-  background-color: #19aa8d;
+  background-color: #ffffff;
 }
 .operation-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color:#b5b8c2;
 }
 .operation-item > text:nth-of-type(2) {
   margin-top: -10upx;
   font-size: 24upx;
+  
 }
 .operation-item .iconfont {
   font-size: 40upx;
+  color:#b5b8c2;
 }
 
 /* 跟进 */
@@ -753,5 +763,14 @@ export default {
   font-size: 50upx;
   color: #19aa8d;
 }
-
+.jihua-title {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center
+}
+.icon-pingjipeizhi1.active {
+  color: #ffca3e;
+}
 </style>
