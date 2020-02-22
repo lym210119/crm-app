@@ -50,6 +50,12 @@
       }
     },
     {
+      "path": "pages/client/addPhone/addPhone",
+      "style": {
+        "navigationBarTitleText": "添加电话"
+      }
+    },
+    {
       "path": "pages/client/record/record",
       "style": {
         "navigationBarTitleText": "通话录音"

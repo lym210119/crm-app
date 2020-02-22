@@ -96,10 +96,12 @@
                 <text
                   class="iconfont icon-0023"
                   @tap="clickContact('wechat')"
+                  style="color:#19aa8d;"
                 ></text>
                 <text
                   class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"
                   @tap="clickContact('SMS')"
+                  style="color: #b5b8c2"
                 ></text>
                 <text
                   class="iconfont icon-dianhua"
@@ -108,69 +110,108 @@
               </view>
             </view>
             <view class="list-item cus-age">
-              <view> 客户年龄：<text class="text-green">18~55</text> </view>
-              <view> 期望金额： <text class="text-green">20~50万</text> </view>
+              <view>
+                客户年龄：<text class="text-green">18~55</text
+                ><text class="iconfont icon-bianji"></text>
+              </view>
+              <view>
+                期望金额： <text class="text-green">20~50万</text
+                ><text class="iconfont icon-bianji"></text>
+              </view>
             </view>
             <view class="list-item qingkuang">
-              <view>客户情况：<text style="color: #959595;">全款房；有预期；有社保；公积金；微粒贷；信用卡</text></view>
+              <view class="qingkuang-title">
+                <text>客户情况：</text>
+                <text
+                  class="iconfont icon-bianji"
+                  style="margin-left: 0;"
+                ></text>
+              </view>
+              <textarea
+                style="font-size: 28upx;color: #959595;flex: 1;height:200upx;width: auto;"
+                :autoHeight="false"
+                :fixed="true"
+                :value="kehuqingkuang"
+                @blur="textareaBlur"
+              ></textarea>
             </view>
             <view class="list-item tags-list">
-              <text>标签：</text>
-              <text
-                class="tag-item"
-                v-for="(item, i) in tagList"
-                :key="i"
-                @tap="clickTags(item)"
-                >{{ item }} <text class="iconfont icon-hebingxingzhuang"></text
-              ></text>
+              <text>客户标签：</text>
+              <view class="tag-box">
+                <text
+                  class="tag-item"
+                  v-for="(item, i) in tagList"
+                  :key="i"
+                  @tap="clickTags(item)"
+                  >{{ item }}
+                  <text class="iconfont icon-hebingxingzhuang"></text
+                ></text>
+              </view>
             </view>
             <view class="list-item yuyue">
               预约上门：
-              <text class="text-green">上门时间：2020-02-20 下午</text>
-              <text class="text-orange">改约</text>
+              <text class="text-green"
+                >上门时间：<text style="color: #19aa8d;"
+                  >2020-02-20 下午</text
+                ></text
+              >
+              <text class="text-orange" @tap="$refs.dateTime.show()">改约</text>
+            </view>
+            <view class="list-item yuyue">
+              预约上门：
+              <text class="text-green">到店时间：2020-02-20 下午</text>
+              <text class="text-orange" style="color: #19aa8d;">第8次到店</text>
             </view>
             <view class="list-item jihua">
               <view class="jihua-title">
                 <text>计划内容：</text>
                 <text style="font-size: 24upx;">2020-02-21 15:00</text>
               </view>
-              
+
               <view class="text-green"
                 >计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约计划明天下午三点约客户签约</view
               >
-              
             </view>
-
           </view>
         </scroll-view>
       </swiper-item>
       <swiper-item>
         <scroll-view scroll-y style="height:100%">
-          <view class="swiper-item follow-steps" v-for="(item, i) in followList" :key="item.id">
+          <view
+            class="swiper-item follow-steps"
+            v-for="(item, i) in followList"
+            :key="item.id"
+          >
             <view class="follow-steps-left">
-                <view class="steps-left-line"></view>
+              <view class="steps-left-line"></view>
             </view>
             <view class="follow-steps-right">
-                <view class="steps-right-head">
-                  <view class="right-date">{{item.date}}</view>
-                  <view class="iconfont icon-shanchu" @tap="followRemove(item.id)"></view>
+              <view class="steps-right-head">
+                <view class="right-date">{{ item.date }}</view>
+                <view
+                  class="iconfont icon-shanchu"
+                  @tap="followRemove(item.id)"
+                ></view>
+              </view>
+              <view class="steps-right-content">
+                <view class="right-content-item">
+                  <view>营销经理：{{ item.handles }}</view>
+                  <view>{{ item.time }}</view>
                 </view>
-                <view class="steps-right-content">
-                  <view class="right-content-item">
-                    <view>营销经理：{{item.handles}}</view>
-                    <view>{{item.time}}</view>
-                  </view>
-                  <view class="right-content-item">
-                    <view class="call-time">通话时长：{{item.duration}}</view>
-                    <view class="iconfont icon-play" @tap="toRecordPage(item.callSrc)">
-                    </view>
-                  </view>
-                  <view class="right-content-item">
-                    <view class="genjin">
-                      跟进内容：有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；
-                    </view>
+                <view class="right-content-item">
+                  <view class="call-time">通话时长：{{ item.duration }}</view>
+                  <view
+                    class="iconfont icon-play"
+                    @tap="toRecordPage(item.callSrc)"
+                  >
                   </view>
                 </view>
+                <view class="right-content-item">
+                  <view class="genjin">
+                    跟进内容：有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；
+                  </view>
+                </view>
+              </view>
             </view>
           </view>
         </scroll-view>
@@ -186,14 +227,31 @@
     <view class="bottomb-btn-group">
       <view
         class="operation-item"
+        :class="{ follow: item.title === '取消关注' }"
         v-for="(item, i) in operationList"
         :key="i"
-        @tap="clickOperation(item.title)"
+        @tap="clickOperation(item)"
       >
+        <!-- <w-picker v-if="item.icon === 'icon-yuyue'" mode="dateTime" @confirm="bindDateChange">
+          <view class="operation-item" >
+            <text class="iconfont" :class="item.icon"></text>
+            <text>{{ item.title }}</text>
+          </view>
+        </w-picker> -->
+        <!-- <block v-else> -->
         <text class="iconfont" :class="item.icon"></text>
         <text>{{ item.title }}</text>
+        <!-- </block> -->
       </view>
     </view>
+
+    <w-picker
+      mode="dateTime"
+      step="1"
+      @confirm="onConfirm"
+      ref="dateTime"
+      themeColor="#f00"
+    ></w-picker>
   </view>
 </template>
 
@@ -201,56 +259,70 @@
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 import uniRate from "@/components/uni-rate/uni-rate.vue";
 import uniSteps from "@/components/uni-steps/uni-steps.vue";
+import wPicker from "@/components/w-picker/w-picker.vue";
 
 export default {
   components: {
     uniNavBar,
     uniRate,
-    uniSteps
+    uniSteps,
+    wPicker
   },
   data() {
     return {
-      followList: [{
-        id: 10001,
-        handles: '张山',
-        date: '2020-02-21 星期天',
-        time: '下午 2:00',
-        duration: '00:23:24',
-        callSrc: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-        followContent: '有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；'
-      }, {
-        id: 10002,
-        handles: '张山',
-        date: '2020-02-21 星期天',
-        time: '下午 2:00',
-        duration: '00:23:24',
-        callSrc: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-        followContent: '有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；'
-      }, {
-        id: 10003,
-        handles: '张山',
-        date: '2020-02-21 星期天',
-        time: '下午 2:00',
-        duration: '00:23:24',
-        callSrc: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-        followContent: '有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；'
-      }, {
-        id: 10004,
-        handles: '张山',
-        date: '2020-02-21 星期天',
-        time: '下午 2:00',
-        duration: '00:23:24',
-        callSrc: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-        followContent: '有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；'
-      }, {
-        id: 10005,
-        handles: '张山',
-        date: '2020-02-21 星期天',
-        time: '下午 2:00',
-        duration: '00:23:24',
-        callSrc: 'https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3',
-        followContent: '有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；'
-      }, ],
+      kehuqingkuang: "全款房；有预期；有社保；公积金；微粒贷；信用卡",
+      followList: [
+        {
+          id: 10001,
+          handles: "张山",
+          date: "2020-02-21 星期天",
+          time: "下午 2:00",
+          duration: "00:23:24",
+          callSrc: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3",
+          followContent:
+            "有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；"
+        },
+        {
+          id: 10002,
+          handles: "张山",
+          date: "2020-02-21 星期天",
+          time: "下午 2:00",
+          duration: "00:23:24",
+          callSrc: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3",
+          followContent:
+            "有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；"
+        },
+        {
+          id: 10003,
+          handles: "张山",
+          date: "2020-02-21 星期天",
+          time: "下午 2:00",
+          duration: "00:23:24",
+          callSrc: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3",
+          followContent:
+            "有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；"
+        },
+        {
+          id: 10004,
+          handles: "张山",
+          date: "2020-02-21 星期天",
+          time: "下午 2:00",
+          duration: "00:23:24",
+          callSrc: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3",
+          followContent:
+            "有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；"
+        },
+        {
+          id: 10005,
+          handles: "张山",
+          date: "2020-02-21 星期天",
+          time: "下午 2:00",
+          duration: "00:23:24",
+          callSrc: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3",
+          followContent:
+            "有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；有保单；有社保；"
+        }
+      ],
       tagList: ["开场白", "全款房", "有预期", "有社保", "公积金"],
       operationList: [
         {
@@ -263,7 +335,7 @@ export default {
         },
         {
           icon: "icon-pingjipeizhi1",
-          title: "取消关注"
+          title: "关注"
         },
         {
           icon: "icon-yuyue",
@@ -329,23 +401,41 @@ export default {
     });
   },
   methods: {
+    // 客户情况编辑 blur
+    textareaBlur(e) {
+      console.log(e);
+      if (this.kehuqingkuang !== e.detail.value) {
+        uni.showModal({
+          title: "提示",
+          content: "你修改了客户情况，是否保存？",
+          success: res => {
+            if (res.confirm) {
+            }
+          }
+        });
+      }
+    },
+    // 预约时间确认
+    onConfirm(e) {
+      console.log(e);
+    },
     followRemove(id) {
       uni.showModal({
-        title: '提示',
-        content: '是否确定删除该条跟进记录 ' + id,
+        title: "提示",
+        content: "是否确定删除该条跟进记录 " + id,
         success: res => {
           if (res.confirm) {
-              console.log('用户点击确定');
+            console.log("用户点击确定");
           } else if (res.cancel) {
-              console.log('用户点击取消');
+            console.log("用户点击取消");
           }
         }
-      })
+      });
     },
     toRecordPage(src) {
       uni.navigateTo({
-        url: '/pages/client/record/record?src=' + src
-      })
+        url: "/pages/client/record/record?src=" + src
+      });
     },
     clickTags(item) {
       uni.showToast({
@@ -353,11 +443,37 @@ export default {
         title: "你点击了 " + item
       });
     },
-    clickOperation(type) {
+    clickOperation(item) {
       uni.showToast({
         icon: "none",
-        title: "你点击了 " + type
+        title: "你点击了 " + item.title
       });
+      switch (item.icon) {
+        case "icon-add":
+          uni.navigateTo({
+            url: "/pages/client/addPhone/addPhone"
+          });
+          break;
+        case "icon-gonghai":
+          uni.showModal({
+            title: "提示",
+            content: "确定要将该客户扔到公海吗？",
+            success: res => {
+              if (res.confirm) {
+              }
+            }
+          });
+          break;
+        case "icon-pingjipeizhi1":
+          item.title = item.title === "关注" ? "取消关注" : "关注";
+
+          break;
+        case "icon-yuyue":
+          this.$refs.dateTime.show();
+          break;
+        default:
+          break;
+      }
     },
     clickContact(target) {
       uni.showToast({
@@ -409,6 +525,8 @@ export default {
 
 <style>
 .client-detail-page {
+  width: 100%;
+  overflow: hidden;
   background-color: #ffffff;
 }
 .tab-content {
@@ -420,6 +538,7 @@ export default {
   font-size: 32upx;
   font-weight: 700;
   color: #333333;
+  align-items: flex-end;
 }
 .tab-item.active {
   color: #ffffff;
@@ -441,23 +560,24 @@ export default {
   height: 100upx;
   margin-right: 20upx;
   border-radius: 50%;
-  background-color: #ffffff;
-  border: 10upx solid #78d7c9;
+  background-color: #f16801;
+  border: 10upx solid #f16801;
   position: relative;
-  color: #19aa8d;
+  color: #ffffff;
   text-align: center;
 }
 .info-header-left > view {
-  color: #19aa8d;
+  color: #ffffff;
+  font-size: 32upx;
   text-align: center;
 }
 .info-header-left .iconfont {
   position: absolute;
-  bottom: 0;
+  bottom: -8upx;
   left: 50%;
   transform: translateX(-50%);
   font-size: 24upx;
-  color: #19aa8d;
+  color: #ffffff;
 }
 .info-header-right {
   flex: 1;
@@ -468,7 +588,7 @@ export default {
   justify-content: flex-start;
 }
 .info-header-right .info-name .iconfont {
-  font-size: 28upx;
+  font-size: 24upx;
 }
 .info-header-right .info-name > input {
   width: 150upx;
@@ -637,6 +757,10 @@ export default {
   padding: 10upx 30upx;
   border-bottom: 1upx solid #cccccc;
 }
+.qingkuang {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 .list-item.yuyue,
 .list-item.jihua {
   justify-content: flex-start;
@@ -650,6 +774,13 @@ export default {
   color: #ffa83a;
 }
 .tags-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.tag-box {
+  flex: 1;
   flex-wrap: wrap;
 }
 .tag-item {
@@ -683,16 +814,18 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color:#b5b8c2;
+  color: #b5b8c2;
+}
+.operation-item.follow {
+  color: #ffca3e;
 }
 .operation-item > text:nth-of-type(2) {
   margin-top: -10upx;
   font-size: 24upx;
-  
 }
 .operation-item .iconfont {
   font-size: 40upx;
-  color:#b5b8c2;
+  /* color:#b5b8c2; */
 }
 
 /* 跟进 */
@@ -711,7 +844,7 @@ export default {
   background-color: #cccccc;
 }
 .steps-left-line::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 20upx;
   left: 50%;
@@ -752,9 +885,8 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
 }
-.right-content-item>view {
+.right-content-item > view {
   font-size: 24upx;
 }
 .right-content-item .icon-play {
@@ -768,9 +900,17 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
 }
-.icon-pingjipeizhi1.active {
-  color: #ffca3e;
+.qingkuang-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.list-item .icon-bianji {
+  margin-left: 20upx;
+  color: #333333;
+  font-size: 24upx;
 }
 </style>
