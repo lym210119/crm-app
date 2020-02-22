@@ -62,15 +62,15 @@
         展开
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="type" :class="{ 'active': mask === 1 }" @tap="mask = 1">
+      <view class="type" :class="{ 'active': mask === 1 }" @tap="mask = 1;isOpenOperationBtn= false;">
         类型
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="sort" :class="{ 'active': mask === 2 }" @tap="mask = 2">
+      <view class="sort" :class="{ 'active': mask === 2 }" @tap="mask = 2;isOpenOperationBtn= false;">
         排序
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="filter" :class="{ 'active': mask === 3 }" @tap="mask = 3">
+      <view class="filter" :class="{ 'active': mask === 3 }" @tap="mask = 3;isOpenOperationBtn= false;">
         <text class="iconfont icon-filter"></text>
         筛选
       </view>
@@ -307,6 +307,8 @@ export default {
 			this.listData.forEach(item => {
 				this.$set(item,'checked',this.isSelect)
 			});
+			this.selectArr = this.listData.map(item => item.id)
+			console.log(this.selectArr)
 		},
 		changeCheckbox(e) {
 			console.log(e)
@@ -439,8 +441,19 @@ export default {
   border: 1px solid #f2f2f2;
 }
 .header-group-btn > button {
-  background-color: #1ab394;
   color: #ffffff;
+}
+.header-group-btn > button:nth-of-type(1) {
+  background-color: #718df6;
+}
+.header-group-btn > button:nth-of-type(2) {
+  background-color: #f8ac59;
+}
+.header-group-btn > button:nth-of-type(3) {
+  background-color: #e77744;
+}
+.header-group-btn > button:nth-of-type(4) {
+  background-color: #62d199;
 }
 .input-view {
   /* #ifndef APP-PLUS-NVUE */
@@ -500,10 +513,11 @@ export default {
   margin-left: -20upx;
   font-size: 32upx;
   font-weight: 700;
-  color: #d5d5d6;
+  color: #333333;
 }
 .tab-item.active {
-  color: #ffffff;
+	color: #ffffff;
+	font-size: 32upx;
 }
 .client-page {
   display: flex;
@@ -664,8 +678,10 @@ export default {
   padding: 0 30upx;
   border-radius: 50upx;
   font-weight: 400;
-  background-color: #e6f0fc;
-  color: #3f69f2;
+  /* background-color: #e6f0fc; */
+	color: #9aa6c7;
+	border: 1upx solid #9aa6c7;
+	
 }
 
 .info-left > view {
@@ -684,7 +700,7 @@ export default {
   height: 80upx;
   line-height: 80upx;
   border-radius: 50%;
-  background-color: #007aff;
+  background-color: #718df6;
   margin: 0 10upx;
   text-align: center;
 }
@@ -700,7 +716,7 @@ export default {
   color: #666666;
 }
 .follow-time .call-status {
-  color: #fe6566;
+  color: #8c8c8c;
 }
 .tag-container {
   /* display: flex;
@@ -715,7 +731,7 @@ export default {
 .tag-item {
   display: inline-block;
   border-radius: 10upx;
-  background-color: #1ab394;
+  background-color: #f8ac59;
   color: #ffffff;
   margin-right: 10upx;
   padding: 0 20upx;
@@ -732,7 +748,7 @@ export default {
 }
 .item-bottom .icon-group .iconfont {
   margin-left: 30upx;
-  color: #0ab69c;
+  color: #718df6;
   font-size: 40upx;
 }
 </style>
