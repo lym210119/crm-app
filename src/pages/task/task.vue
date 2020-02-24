@@ -1,35 +1,71 @@
 <template>
   <view class="task-page">
-    <scroll-view scroll-y="true" style="height: 100%" class="content">
-
-      <!-- 文字滚动 -->
-      <uni-notice-bar
-				showIcon="true"
-        scrollable="true"
-        single="true"
-        text="这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏"
-      ></uni-notice-bar>
-      <view class="list" v-for="(item, i) in dataList" :key="i">
-        <view class="list-left">
-          <text class="iconfont" :class="item.icon"></text>
-        </view>
-        <view class="list-right">
-          <view class="title">{{ item.title }}</view>
-          <view class="title-small">{{ item.desc }}</view>
-        </view>
+    <uni-nav-bar statusBar="true" backgroundColor="#19aa8d" color="#ffffff">
+      <view class="tab-content">
+        <view
+          class="tab-item"
+          :class="{ active: tabIndex === i }"
+          v-for="(item, i) in tabList"
+          :key="item.id"
+          @tap="changeTab(i)"
+          >{{ item.title }}</view
+        >
       </view>
-    </scroll-view>
+    </uni-nav-bar>
+    <!-- 文字滚动 -->
+    <uni-notice-bar
+      style="margin-bottom: 0;"
+      showIcon="true"
+      scrollable="true"
+      single="true"
+      text="这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏"
+    ></uni-notice-bar>
+
+    <swiper
+      :current="tabIndex"
+      @change="changeSwiper"
+      :style="{ height: swiperHeight + 'px' }"
+    >
+      <swiper-item>
+        <scroll-view scroll-y="true" style="height: 100%" class="content">
+          <view class="list" v-for="(item, i) in dataList" :key="i">
+            <view class="list-left">
+              <text class="iconfont" :class="item.icon"></text>
+            </view>
+            <view class="list-right">
+              <view class="title">{{ item.title }}</view>
+              <view class="title-small">{{ item.desc }}</view>
+            </view>
+          </view>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item></swiper-item>
+    </swiper>
   </view>
 </template>
 
 <script>
 import uniNoticeBar from "@/components/uni-notice-bar/uni-notice-bar.vue";
+import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 export default {
   components: {
-    uniNoticeBar
+    uniNoticeBar,
+    uniNavBar
   },
   data() {
     return {
+      tabIndex: 0,
+      tabList: [
+        {
+          id: 1,
+          title: "待办"
+        },
+        {
+          id: 2,
+          title: "任务"
+        }
+      ],
+      swiperHeight: 500,
       dataList: [
         {
           icon: "icon-jinrilianxikehu",
@@ -70,15 +106,55 @@ export default {
           icon: "icon-kefu1",
           title: "即将过生日的客户",
           desc: "暂无即将过生日的客户"
+        },
+        {
+          icon: "icon-kefu1",
+          title: "即将过生日的客户",
+          desc: "暂无即将过生日的客户"
+        },
+        {
+          icon: "icon-kefu1",
+          title: "即将过生日的客户",
+          desc: "暂无即将过生日的客户"
         }
       ]
     };
   },
-  methods: {}
+  onLoad() {
+    uni.getSystemInfo({
+      success: res => {
+        let height = res.windowHeight - uni.upx2px(164) - res.statusBarHeight;
+        this.swiperHeight = height;
+      }
+    });
+  },
+  methods: {
+    changeTab(i) {
+      this.tabIndex = i;
+    },
+    changeSwiper(e) {
+      this.tabIndex = e.detail.current;
+    }
+  }
 };
 </script>
 
 <style>
+.tab-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: -20upx;
+  font-size: 32upx;
+  font-weight: 700;
+  color: #333333;
+  align-items: flex-end;
+}
+.tab-item.active {
+  color: #ffffff;
+  font-size: 32upx;
+}
 .task-page {
   display: flex;
   height: 100%;

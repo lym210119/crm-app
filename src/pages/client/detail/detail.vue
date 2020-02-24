@@ -444,10 +444,7 @@ export default {
       });
     },
     clickOperation(item) {
-      uni.showToast({
-        icon: "none",
-        title: "你点击了 " + item.title
-      });
+
       switch (item.icon) {
         case "icon-add":
           uni.navigateTo({
@@ -470,6 +467,16 @@ export default {
           break;
         case "icon-yuyue":
           this.$refs.dateTime.show();
+          break;
+        case 'icon-tixing':
+          uni.navigateTo({
+            url: '/pages/client/plan/plan'
+          })
+          break;
+        case "icon-xiegenjin-":
+          uni.navigateTo({
+            url: '/pages/client/follow/follow'
+          })
           break;
         default:
           break;

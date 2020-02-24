@@ -16,30 +16,30 @@
             style="height: 300upx;padding-bottom: 30upx;"
           >
             <view class="company-info">
-              <view class="company-info-item">
+              <text class="notice primary">
                 上门公告：谁谁谁 的客户上门了
-              </view>
-              <view class="company-info-item">
-                上门公告：谁谁谁 的客户上门了 </view
-              ><view class="company-info-item">
+              </text>
+              <text class="notice success">
+                上门公告：谁谁谁 的客户上门了 </text
+              ><text class="notice danger">
                 上门公告：谁谁谁 的客户上门了
-              </view>
-              <view class="company-info-item">
+              </text>
+              <text class="notice warning">
                 上门公告：谁谁谁 的客户上门了
-              </view>
-              <view class="company-info-item">
-                上门公告：谁谁谁 的客户上门了 </view
-              ><view class="company-info-item">
+              </text>
+              <text class="notice primary">
+                上门公告：谁谁谁 的客户上门了 </text
+              ><text class="notice success">
                 上门公告：谁谁谁 的客户上门了
-              </view>
-              <view class="company-info-item">
+              </text>
+              <text class="notice danger">
                 上门公告：谁谁谁 的客户上门了
-              </view>
-              <view class="company-info-item">
-                上门公告：谁谁谁 的客户上门了 </view
-              ><view class="company-info-item">
+              </text>
+              <text class="notice warning">
+                上门公告：谁谁谁 的客户上门了 </text
+              ><text class="notice primary">
                 上门公告：谁谁谁 的客户上门了
-              </view>
+              </text>
             </view>
           </scroll-view>
         </view>
@@ -289,7 +289,7 @@ export default {
           num: "8"
         },
         {
-          iconClass: "icon-qiandan",
+          iconClass: "icon-qiandan1",
           title: "新增签单",
           num: "3"
         },
@@ -715,7 +715,10 @@ export default {
 }
 
 .company-info {
-  padding: 0 30upx;
+	display: flex;
+	flex-direction: column;
+	padding: 0 30upx;
+	color: #ffffff;
 }
 
 .stat-list {
@@ -944,5 +947,21 @@ export default {
 .top-item > view {
   flex: 1;
   text-align: center;
+}
+.notice {
+	height: 40upx;
+	line-height: 40upx;
+}
+.notice.primary {
+	color: #1ab394;
+}
+.notice.success {
+	color: #1c84c6;
+}
+.notice.danger {
+	color: #ed5565;
+}
+.notice.warning {
+	color: #f8ac59;
 }
 </style>
