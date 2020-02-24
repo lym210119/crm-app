@@ -64,7 +64,20 @@
     {
       "path": "pages/client/follow/follow",
       "style": {
-        "navigationBarTitleText": "写跟进"
+        "navigationBarTitleText": "写跟进",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
       }
     },
     {

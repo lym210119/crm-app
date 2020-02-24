@@ -111,12 +111,28 @@
             </view>
             <view class="list-item cus-age">
               <view>
-                客户年龄：<text class="text-green">18~55</text
-                ><text class="iconfont icon-bianji"></text>
+                客户年龄：
+                <picker
+                  class="picker-cusage"
+                  :value="ageIndex"
+                  :range="ageList"
+                  @change="changeAge"
+                >
+                  <text class="text-green">{{ ageList[ageIndex] }}</text
+                  ><text class="iconfont icon-bianji"></text>
+                </picker>
               </view>
               <view>
-                期望金额： <text class="text-green">20~50万</text
-                ><text class="iconfont icon-bianji"></text>
+                期望金额：
+                <picker
+                  class="picker-money"
+                  :value="moneyIndex"
+                  :range="moneyList"
+                  @change="changeMoney"
+                >
+                  <text class="text-green">{{ moneyList[moneyIndex] }}</text
+                  ><text class="iconfont icon-bianji"></text>
+                </picker>
               </view>
             </view>
             <view class="list-item qingkuang">
@@ -220,7 +236,9 @@
         <view class="swiper-item uni-bg-blue">C</view>
       </swiper-item>
       <swiper-item>
-        <view class="swiper-item uni-bg-red">d</view>
+        <view class="swiper-item">
+          <file></file>
+        </view>
       </swiper-item>
     </swiper>
 
@@ -250,7 +268,7 @@
       step="1"
       @confirm="onConfirm"
       ref="dateTime"
-      themeColor="#f00"
+      themeColor="#007aff"
     ></w-picker>
   </view>
 </template>
@@ -260,13 +278,14 @@ import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 import uniRate from "@/components/uni-rate/uni-rate.vue";
 import uniSteps from "@/components/uni-steps/uni-steps.vue";
 import wPicker from "@/components/w-picker/w-picker.vue";
-
+import file from './file.vue'
 export default {
   components: {
     uniNavBar,
     uniRate,
     uniSteps,
-    wPicker
+    wPicker,
+    file
   },
   data() {
     return {
@@ -370,6 +389,22 @@ export default {
       cusType: ["潜在", "意向", "需求"],
       cityIndex: 0,
       cityList: ["武汉", "北京", "上海", "广州"],
+      ageIndex: 0,
+      ageList: ["18~22", "23~32", "33~42", "43~55"],
+      moneyIndex: 0,
+      moneyList: [
+        "暂不确定",
+        "2万元以下",
+        "2~5万元",
+        "5~10万元",
+        "10~30万元",
+        "30~50万元",
+        "50~100万元",
+        "100~300万",
+        "300~500万元",
+        "500~1000万元",
+        "1000万元以上"
+      ],
       swiperHeight: 500,
       tabIndex: 0,
       tabList: [
@@ -438,13 +473,19 @@ export default {
       });
     },
     clickTags(item) {
-      uni.showToast({
-        icon: "none",
-        title: "你点击了 " + item
+      uni.showModal({
+        title: "提示",
+        content: "是否删除该客户身上的 “" + item + "” 标签？",
+        success: res => {
+          if (res.confirm) {
+            if (this.tagList.indexOf(item) > -1) {
+              this.tagList.splice(item, 1)
+            }
+          }
+        }
       });
     },
     clickOperation(item) {
-
       switch (item.icon) {
         case "icon-add":
           uni.navigateTo({
@@ -468,15 +509,15 @@ export default {
         case "icon-yuyue":
           this.$refs.dateTime.show();
           break;
-        case 'icon-tixing':
+        case "icon-tixing":
           uni.navigateTo({
-            url: '/pages/client/plan/plan'
-          })
+            url: "/pages/client/plan/plan"
+          });
           break;
         case "icon-xiegenjin-":
           uni.navigateTo({
-            url: '/pages/client/follow/follow'
-          })
+            url: "/pages/client/follow/follow"
+          });
           break;
         default:
           break;
@@ -508,6 +549,14 @@ export default {
     changeType(e) {
       console.log("picker发送选择改变，携带值为", e.target.value);
       this.cusIndex = e.target.value;
+    },
+    changeMoney(e) {
+      console.log("picker发送选择改变，携带值为", e.target.value);
+      this.moneyIndex = e.target.value;
+    },
+    changeAge(e) {
+      console.log("picker发送选择改变，携带值为", e.target.value);
+      this.ageIndex = e.target.value;
     },
     changeCity(e) {
       console.log("picker发送选择改变，携带值为", e.target.value);
@@ -919,5 +968,9 @@ export default {
   margin-left: 20upx;
   color: #333333;
   font-size: 24upx;
+}
+.picker-cusage,
+.picker-money {
+  display: inline-block;
 }
 </style>
