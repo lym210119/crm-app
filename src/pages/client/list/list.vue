@@ -4,16 +4,15 @@
       statusBar="true"
       backgroundColor="#19aa8d"
       @clickLeft="handleSearchClick"
+      @clickRight="handleAdd"
     >
       <!-- 左边 -->
-      <block slot="left" v-if="!isShowSearch">
+      <block slot="left">
         <view class="nav-left">
-          <view class="iconfont icon--search1"></view>
-        </view>
-      </block>
-      <block slot="left" v-else>
-        <view class="nav-left">
-          <view class="close-search" style="font-size: 30upx;">取消</view>
+          <view class="iconfont icon--search1" v-if="!isShowSearch"></view>
+          <view class="close-search" v-else style="font-size: 30upx;"
+            >取消</view
+          >
         </view>
       </block>
       <!-- 中间 -->
@@ -46,36 +45,44 @@
     </uni-nav-bar>
 
     <view class="header-group-btn" v-show="isOpenOperationBtn">
-      <button size="mini" @tap="allSelected">{{isSelect ? '取消' : '全选'}}</button>
+      <button size="mini" @tap="allSelected">
+        {{ isSelect ? "取消" : "全选" }}
+      </button>
       <button size="mini" @tap="handleSelected('throw')">扔公海</button>
       <button size="mini" @tap="handleSelected('allot')">重分配</button>
       <button size="mini">轮呼</button>
     </view>
     <view class="header">
-      <view
-        class="openSelected"
-        @tap="
-          isOpenOperationBtn = !isOpenOperationBtn;
-          mask = 0;
-        "
-      >
+      <view class="openSelected" @tap="handleOperation(0)">
         展开
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="type" :class="{ 'active': mask === 1 }" @tap="mask = 1;isOpenOperationBtn= false;">
+      <view
+        class="type"
+        :class="{ active: mask === 1 }"
+        @tap="handleOperation(1)"
+      >
         类型
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="sort" :class="{ 'active': mask === 2 }" @tap="mask = 2;isOpenOperationBtn= false;">
+      <view
+        class="sort"
+        :class="{ active: mask === 2 }"
+        @tap="handleOperation(2)"
+      >
         排序
         <text class="iconfont icon-arrow-right"></text>
       </view>
-      <view class="filter" :class="{ 'active': mask === 3 }" @tap="mask = 3;isOpenOperationBtn= false;">
+      <view
+        class="filter"
+        :class="{ active: mask === 3 }"
+        @tap="handleOperation(3)"
+      >
         <text class="iconfont icon-filter"></text>
         筛选
       </view>
     </view>
-    <view class="mask-wrap" v-show="mask" @tap="mask = false">
+    <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="type-container" v-show="mask === 1">
         <view>潜在</view>
         <view>意向</view>
@@ -118,8 +125,6 @@
       </view>
     </view>
     <view class="client-list">
-
-
       <!-- #ifndef APP-NVUE -->
       <scroll-view
         class="scroll-v list"
@@ -128,65 +133,66 @@
         @scrolltolower="loadMore()"
         style="flex: 1"
       >
-			<checkbox-group @change="changeCheckbox">
-        <view v-for="(item, i) in listData" :key="i" @tap="toDetail(item)">
-          <view class="client-item" :class="{'show-select': isSelect}">
-						
-							<label class="client-item-radio" v-show="isSelect" @tap.stop=""><checkbox :value="item.id" :checked="item.checked"/></label>
-						
-            <view class="title">
-              <view class="username">客户名称 （9527）</view>
-              <view class="tag">到店</view>
-            </view>
-            <view class="info">
-              <view class="info-left">
-                <view class=""> 电话： <text>13888889999</text> </view>
-                <view class="">
-                  来源：<text>B 申贷网 （2020-02-17）</text>
-                </view>
-                <view class=""> 情况： <text>客户备注客户备注</text> </view>
+        <checkbox-group @change="changeCheckbox">
+          <view v-for="(item, i) in listData" :key="i" @tap="toDetail(item)">
+            <view class="client-item" :class="{ 'show-select': isSelect }">
+              <label class="client-item-radio" v-show="isSelect" @tap.stop="handleNone()"
+                ><checkbox :value="item.id" :checked="item.checked"
+              /></label>
+
+              <view class="title">
+                <view class="username">客户名称 （9527）</view>
+                <view class="tag">到店</view>
               </view>
-              <view class="info-right">
-                <!-- <view class="sms">
+              <view class="info">
+                <view class="info-left">
+                  <view class=""> 电话： <text>13888889999</text> </view>
+                  <view class="">
+                    来源：<text>B 申贷网 （2020-02-17）</text>
+                  </view>
+                  <view class=""> 情况： <text>客户备注客户备注</text> </view>
+                </view>
+                <view class="info-right">
+                  <!-- <view class="sms">
                   <text
                     class="iconfont icon-xinxiduanxinxiaoxitixingyoujiansixinyouxiang"
                   ></text>
                 </view> -->
-                <view class="phone">
-                  <text class="iconfont icon-dianhua"></text>
+                  <view class="phone">
+                    <text class="iconfont icon-dianhua"></text>
+                  </view>
+                </view>
+              </view>
+              <scroll-view class="tag-container" scroll-x="true">
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+                <view class="tag-item">标签</view>
+              </scroll-view>
+              <view class="item-bottom">
+                <view class="follow-time">
+                  1月14日 14:22 /
+                  <text class="call-status"
+                    >最新的 跟进记录的前部分，字不多就显示全</text
+                  >
+                </view>
+                <view class="icon-group">
+                  <text class="iconfont icon-xiegenjin-"></text>
+                  <text
+                    class="iconfont icon-gengduo"
+                    @tap.stop="actionSheetTap(item.id)"
+                  ></text>
                 </view>
               </view>
             </view>
-            <scroll-view class="tag-container" scroll-x="true">
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-              <view class="tag-item">标签</view>
-            </scroll-view>
-            <view class="item-bottom">
-              <view class="follow-time">
-                1月14日 14:22 /
-                <text class="call-status"
-                  >最新的 跟进记录的前部分，字不多就显示全</text
-                >
-              </view>
-              <view class="icon-group">
-                <text class="iconfont icon-xiegenjin-"></text>
-                <text
-                  class="iconfont icon-gengduo"
-                  @tap.stop="actionSheetTap(item.id)"
-                ></text>
-              </view>
-            </view>
           </view>
-        </view>
-				</checkbox-group>
+        </checkbox-group>
         <view class="loading-more" v-if="isLoading || listData.length > 7">
           <text class="loading-more-text">{{ loadingText }}</text>
         </view>
@@ -275,13 +281,33 @@ export default {
   onLoad() {
     // this.getList(0);
   },
-  onNavigationBarButtonTap(e) {
-    uni.showToast({
-      title: "你点击了搜索",
-      icon: "none"
-    });
-  },
+
   methods: {
+    // 添加客户
+    handleAdd() {
+      uni.navigateTo({
+        url: '/pages/client/addCustomer/addCustomer'
+      })
+    },
+    handleNone(){},
+    confirm() {
+
+    },
+    clickMask() {
+      this.mask =false
+    },
+    handleOperation(flag) {
+      
+      console.log(this.mask)
+      if (flag === 0) {
+        this.isOpenOperationBtn = !this.isOpenOperationBtn;
+        this.mask = 0;
+      } else {
+        this.mask = flag;
+        this.isOpenOperationBtn= false;
+      }
+
+    },
 		// 扔公海 或 重分配
 		handleSelected(type) {
 			if (!this.isSelect) {
@@ -344,8 +370,8 @@ export default {
       this.tabIndex = i;
     },
     handleSearchClick() {
-      console.log(123);
       this.isShowSearch = !this.isShowSearch;
+      
     },
     selectSort(sort) {
       console.log("selectSort");
@@ -373,6 +399,7 @@ export default {
     // 	}
     // },
     getList(index) {
+      console.log('getList')
       // let activeTab = this.newsList[index];
       // let list = [];
       // for (let i = 1; i <= 10; i++) {
@@ -427,9 +454,9 @@ export default {
 
 <style>
 .client-container {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .header-group-btn {
   display: flex;
@@ -509,16 +536,16 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: row;
-	justify-content: space-between;
-	align-items: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-left: -20upx;
   font-size: 32upx;
   font-weight: 700;
   color: #333333;
 }
 .tab-item.active {
-	color: #ffffff;
-	font-size: 32upx;
+  color: #ffffff;
+  font-size: 32upx;
 }
 .client-page {
   display: flex;
@@ -632,17 +659,17 @@ export default {
   flex-direction: column;
   background-color: #ffffff;
   margin: 20upx;
-	padding: 20upx;
-	position: relative;
+  padding: 20upx;
+  position: relative;
 }
 .client-item.show-select {
-	left: 60upx;
+  left: 60upx;
 }
 .client-item-radio {
-	position: absolute;
-	left: -60upx;
-	top: 50%;
-	transform: translateY(-50%);
+  position: absolute;
+  left: -60upx;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .client-item > .title,
 .client-item > .info {
@@ -680,15 +707,14 @@ export default {
   border-radius: 50upx;
   font-weight: 400;
   /* background-color: #e6f0fc; */
-	color: #9aa6c7;
-	border: 2upx solid #9aa6c7;
-	font-size: 24upx;
-	
+  color: #9aa6c7;
+  border: 2upx solid #9aa6c7;
+  font-size: 24upx;
 }
 
 .info-left > view {
-	color: #626262;
-	font-size: 24upx;
+  color: #626262;
+  font-size: 24upx;
 }
 .info-left > view > text {
   color: #333333;
@@ -716,8 +742,8 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-	color: #666666;
-	font-size: 24upx;
+  color: #666666;
+  font-size: 24upx;
 }
 .follow-time .call-status {
   color: #8c8c8c;
@@ -735,8 +761,8 @@ export default {
 .tag-item {
   display: inline-block;
   border-radius: 10upx;
-	background-color: #f8f8f8;
-	color: #959595;
+  background-color: #f8f8f8;
+  color: #959595;
   margin-right: 10upx;
   padding: 0 20upx;
   font-size: 24upx;
@@ -746,8 +772,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-	margin-top: 15upx;
-
+  margin-top: 15upx;
 }
 .item-bottom .icon-group {
 }

@@ -14,6 +14,7 @@
 									<block v-for="(image,index) in imageList" :key="index">
 										<view class="uni-uploader__file">
 											<image class="uni-uploader__img" :src="image" :data-src="image" @tap="previewImage"></image>
+											<text class="iconfont icon-gary" @tap.stop="removeImage"></text>
 										</view>
 									</block>
 									<view class="uni-uploader__input-box">
@@ -62,6 +63,17 @@
 				this.countIndex = 8;
 		},
 		methods: {
+			removeImage() {
+				uni.showModal({
+					title: '提示',
+					content: '是否删除该图片？',
+					success: res => {
+						if (res.confirm) {
+							
+						}
+					}
+				})
+			},
 			sourceTypeChange: function(e) {
 				this.sourceTypeIndex = parseInt(e.target.value)
 			},
@@ -194,5 +206,22 @@
 
 	.list-pd {
 		margin-top: 50upx;
+	}
+	.uni-uploader__input-box {
+		border: 1upx dashed #D9D9D9;
+	}
+	.uni-uploader__file {
+		position: relative;
+		border: 1upx dashed #D9D9D9;
+	}
+	.icon-gary {
+		position: absolute;
+		top: -5upx;
+		right: -5upx;
+		color: #cccccc;
+		width: 50upx;
+		height: 50upx;
+		line-height: 50upx;
+		font-size: 50upx;
 	}
 </style>

@@ -30,11 +30,15 @@ export default {
   flex-direction: column;
   align-items: flex-start;
 }
+.list-textarea>.item-value {
+  width: 100%;
+}
 .list-textarea .item-label {
   height: 94upx;
   line-height: 94upx;
 }
 .list-textarea textarea {
-  font-size: 28upx;
+  font-size: 32upx;
+  width: 100%;
 }
 </style>

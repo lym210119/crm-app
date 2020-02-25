@@ -39,6 +39,25 @@
       }
     },
     {
+      "path": "pages/client/addCustomer/addCustomer",
+      "style": {
+        "navigationBarTitleText": "添加客户",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/client/detail/detail",
       "style": {
         "navigationBarTitleText": "客户详情",
@@ -62,7 +81,7 @@
       }
     },
     {
-      "path": "pages/client/follow/follow",
+      "path": "pages/client/writeFollow/writeFollow",
       "style": {
         "navigationBarTitleText": "写跟进",
         "app-plus": {
@@ -81,7 +100,7 @@
       }
     },
     {
-      "path": "pages/client/plan/plan",
+      "path": "pages/client/writePlan/writePlan",
       "style": {
         "navigationBarTitleText": "计划",
         "app-plus": {
