@@ -28,7 +28,7 @@
       }
     },
     {
-      "path": "pages/client/list/list",
+      "path": "pages/client/index/index",
       "style": {
         "navigationBarTitleText": "客户",
         "app-plus": {
@@ -119,9 +119,143 @@
       }
     },
     {
-      "path": "pages/work/work",
+      "path": "pages/workBench/index/index",
       "style": {
         "navigationBarTitleText": "工作台"
+      }
+    },
+    {
+      "path": "pages/workBench/system/dep/centerList/centerList",
+      "style": {
+        "navigationBarTitleText": "部门管理",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增中心",
+                "fontSize": "12",
+                "width": "66px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/dep/add/add",
+      "style": {
+        "navigationBarTitleText": "新增",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/roles/index/index",
+      "style": {
+        "navigationBarTitleText": "角色配置",
+        "app-plus": {
+          "bounce":"none",
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增角色",
+                "fontSize": "12",
+                "width": "66px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/roles/add/add",
+      "style": {
+        "navigationBarTitleText": "角色配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/dep/depList/depList",
+      "style": {
+        "navigationBarTitleText": "中心",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增部门",
+                "fontSize": "12",
+                "width": "66px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/area/index/index",
+      "style": {
+        "navigationBarTitleText": "区域管理",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/level/index/index",
+      "style": {
+        "navigationBarTitleText": "评级配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
       }
     },
     {
@@ -172,13 +306,13 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/client/list/list",
+        "pagePath": "pages/client/index/index",
         "iconPath": "static/tabBar/client.png",
         "selectedIconPath": "static/tabBar/client-selected.png",
         "text": "客户"
       },
       {
-        "pagePath": "pages/work/work",
+        "pagePath": "pages/workBench/index/index",
         "iconPath": "static/tabBar/work.png",
         "selectedIconPath": "static/tabBar/work-selected.png",
         "text": "工作台"

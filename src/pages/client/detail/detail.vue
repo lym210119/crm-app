@@ -4,6 +4,7 @@
       statusBar="true"
       backgroundColor="#19aa8d"
       color="#ffffff"
+      :fixed="ture"
       left-icon="arrowleft"
       @clickLeft="tapBack"
     >

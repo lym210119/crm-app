@@ -5,15 +5,15 @@
 				<view class="section-item" v-for="(item, i) in workList" :key="item.id">
 					<view class="section-title">{{item.title}}</view>
 					<view class="gird-item-box">
-						<uni-grid :column="4" :highlight="true" :show-border="false" @change="change">
+						<uni-grid :column="4" :highlight="true" :show-border="false">
 							<uni-grid-item v-for="(item2, index2) in item.submenu" :index="index2" :key="index2">
-								<view class="grid-item-box">
+								<navigator :url="item2.url" class="grid-item-box">
 									<view class="icon-box" :style="'background-color:' + item2.color">
 										<text class="iconfont" :class="item2.icon"></text>	
 									</view>
 									<!-- <image :src="item2.icon" class="image" mode="aspectFill" /> -->
 									<text class="text">{{ item2.text }}</text>
-								</view>
+								</navigator>
 							</uni-grid-item>
 						</uni-grid>
 					</view>

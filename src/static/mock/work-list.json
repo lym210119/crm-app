@@ -2,336 +2,402 @@
 	"code": 10000,
 	"message": "success",
 	"data": [{
-		"id": 1,
+		"id": "1000",
 		"title": "总机中心",
 		"submenu": [{
+				"id": "1001",
 				"icon": "icon-zongjirexian1",
 				"text": "总机热线",
 				"url": "/pages/zongjirexian/zongjirexian"
 			},
 			{
+				"id": "1002",
 				"icon": "icon-lurukehu1",
 				"text": "录入客户",
 				"url": "/pages/lurukehu/lurukehu"
 			},
 			{
+				"id": "1003",
 				"icon": "icon-tonghuajilu1",
 				"text": "通话记录",
 				"url": "/pages/tonghuajilu/tonghuajilu"
 			}
 		]
 	}, {
-		"id": 2,
+		"id": "2000",
 		"title": "营销中心",
 		"submenu": [
 			{
+				"id": "2001",
 				"icon": "icon-wodekehu1",
 				"text": "我的客户",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2002",
 				"icon": "icon-lurukehu2",
 				"text": "录入客户",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2003",
 				"icon": "icon-youxiaoxinke1",
 				"text": "有效新客",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2004",
 				"icon": "icon-kehuzongbiao1",
 				"text": "客户总表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2005",
 				"icon": "icon-jixugenjin1",
 				"text": "急需跟进",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2006",
 				"icon": "icon-gonghaikehu",
 				"text": "公海客户",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2007",
 				"icon": "icon-zhongdianguanzhu",
 				"text": "重点关注",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2008",
 				"icon": "icon-yuyueshangmen1",
 				"text": "预约上门",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2009",
 				"icon": "icon-qiandanliebiao1",
 				"text": "签单列表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2010",
 				"icon": "icon-tonghuajilu1",
 				"text": "通话记录",
 				"url": "/pages/client/client"
 			}, {
+				"id": "2011",
 				"icon": "icon-lizhizhuanyi1",
 				"text": "离职转移",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 3,
+		"id": "3000",
 		"title": "做单中心",
 		"submenu": [{
+				"id": "3001",
 				"icon": "icon-zuodankanban",
 				"text": "做单看板",
 				"url": "/pages/client/client"
 			}, {
+				"id": "3002",
 				"icon": "icon-zuodanguanli",
 				"text": "做单管理",
 				"url": "/pages/client/client"
 			}, {
+				"id": "3003",
 				"icon": "icon-zuodanjihua",
 				"text": "做单计划",
 				"url": "/pages/client/client"
 			}, {
+				"id": "3004",
 				"icon": "icon-zuodangenjin",
 				"text": "做单跟进",
 				"url": "/pages/client/client"
 			}, {
+				"id": "3005",
 				"icon": "icon-lizhifenpei1",
 				"text": "离职分配",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 4,
+		"id": "4000",
 		"title": "财务中心",
 		"submenu": [
 			{
+				"id": "4001",
 				"icon": "icon-dingjinliebiao1",
 				"text": "定金列表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "4002",
 				"icon": "icon-jiesuanguanli",
 				"text": "结算管理",
 				"url": "/pages/client/client"
 			}, {
+				"id": "4003",
 				"icon": "icon-zuodanbaoxiao",
 				"text": "做单报销",
 				"url": "/pages/client/client"
 			}, {
+				"id": "4004",
 				"icon": "icon-baoxiaoliebiao",
 				"text": "报销列表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "4005",
 				"icon": "icon-caiwuyeji",
 				"text": "财务业绩",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 5,
+		"id": "5000",
 		"title": "贷后中心",
 		"submenu": [
 			{
+				"id": "5001",
 				"icon": "icon-huohouliebiao",
 				"text": "贷后列表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "5002",
 				"icon": "icon-huifangjilu1",
 				"text": "回访记录",
 				"url": "/pages/client/client"
 			}, {
+				"id": "5003",
 				"icon": "icon-huifangtongji",
 				"text": "回访统计",
 				"url": "/pages/client/client"
 			}, {
+				"id": "5004",
 				"icon": "icon-manyidu",
 				"text": "满意度",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 6,
+		"id": "6000",
 		"title": "人力中心",
 		"submenu": [
 			{
+				"id": "6001",
 				"icon": "icon-fabugonggao1",
 				"text": "发布公告",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6002",
 				"icon": "icon-guanligonggao1",
 				"text": "管理公告",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6003",
 				"icon": "icon-gonggaoliebiao",
 				"text": "公告列表",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6004",
 				"icon": "icon-xinzengyuangong",
 				"text": "新增员工",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6005",
 				"icon": "icon-yuangongdangan",
 				"text": "员工档案",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6006",
 				"icon": "icon-renwufenpei",
 				"text": "任务分配",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6007",
 				"icon": "icon-tongguanshezhi",
 				"text": "通关设置",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6008",
 				"icon": "icon-tongguanshenpi",
 				"text": "通关审批",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6009",
 				"icon": "icon-tongguanjindu",
 				"text": "通关进度",
 				"url": "/pages/client/client"
 			}, {
+				"id": "6010",
 				"icon": "icon-yuangongchengchang",
 				"text": "员工成长",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 7,
+		"id": "7000",
 		"title": "知识中心",
 		"submenu": [
 			{
+				"id": "7001",
 				"icon": "icon-zifangpeizhi",
 				"text": "资方配置",
 				"url": "/pages/client/client"
 			}, {
+				"id": "7002",
 				"icon": "icon-chanpindagang",
 				"text": "产品大纲",
 				"url": "/pages/client/client"
 			}, {
+				"id": "7003",
 				"icon": "icon-zhishiguanli",
 				"text": "知识管理",
 				"url": "/pages/client/client"
 			}, {
+				"id": "7004",
 				"icon": "icon-zhishichaxun",
 				"text": "知识查询",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 8,
+		"id": "8000",
 		"title": "统计数据",
 		"submenu": [
 			{
+				"id": "8001",
 				"icon": "icon-qiandantongji1",
 				"text": "签单统计",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8002",
 				"icon": "icon-zuodanyeji",
 				"text": "做单业绩",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8003",
 				"icon": "icon-xiaoshouyeji",
 				"text": "营销业绩",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8004",
 				"icon": "icon-zifangfangkuan",
 				"text": "资方放款",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8005",
 				"icon": "icon-kehuleixing",
 				"text": "客户类型",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8006",
 				"icon": "icon-kehubiaoqian",
 				"text": "客户标签",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8007",
 				"icon": "icon-huoyuefenxi",
 				"text": "活跃分析",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8008",
 				"icon": "icon-gongzuoxiaoshuai",
 				"text": "工作效率",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8009",
 				"icon": "icon-tonghuashuju",
 				"text": "通话数据",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8010",
 				"icon": "icon-tonghuafenxi",
 				"text": "通话分析",
 				"url": "/pages/client/client"
 			}, {
+				"id": "8011",
 				"icon": "icon-tonghuapaiming",
 				"text": "通话排名",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 9,
+		"id": "9000",
 		"title": "导入数据",
 		"submenu": [
 			{
+				"id": "9001",
 				"icon": "icon-piliangdaoru",
 				"text": "批量导入",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 10,
+		"id": "10000",
 		"title": "维护数据",
 		"submenu": [
 			{
+				"id": "10001",
 				"icon": "icon-wuxiaoshenhe",
 				"text": "无效审核",
 				"url": "/pages/client/client"
 			}, {
+				"id": "10002",
 				"icon": "icon-wuxiaoliebiao",
 				"text": "无效列表",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 11,
+		"id": "11000",
 		"title": "系统设置",
 		"submenu": [
 			{
+				"id": "11001",
 				"icon": "icon-bumenguanli",
 				"text": "部门管理",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/dep/centerList/centerList"
 			}, {
+				"id": "11002",
 				"icon": "icon-jiaosepeizhi",
 				"text": "角色配置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/roles/index/index"
 			}, {
+				"id": "11003",
 				"icon": "icon-quyuguanlu",
 				"text": "区域管理",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/area/index/index"
 			}, {
+				"id": "11004",
 				"icon": "icon-pingjipeizhi1",
 				"text": "评级配置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/level/index/index"
 			}, {
+				"id": "11005",
 				"icon": "icon-canshupeizhi",
 				"text": "参数配置",
 				"url": "/pages/client/client"
 			}, {
+				"id": "11006",
 				"icon": "icon-gexingpeizhi",
 				"text": "个性配置",
 				"url": "/pages/client/client"
 			}
 		]
 	}, {
-		"id": 12,
+		"id": "12000",
 		"title": "智能群呼",
 		"submenu": [
 			{
+				"id": "12001",
 				"icon": "icon-qunhurenyuan",
 				"text": "群呼人员",
 				"url": "/pages/client/client"
 			}, {
+				"id": "12002",
 				"icon": "icon-renwufenpei1",
 				"text": "任务分配",
 				"url": "/pages/client/client"
 			}, {
+				"id": "12003",
 				"icon": "icon-qunhujieguo",
 				"text": "群呼结果",
 				"url": "/pages/client/client"
 			}, {
+				"id": "12004",
 				"icon": "icon-qunhutongji1",
 				"text": "群呼统计",
 				"url": "/pages/client/client"

@@ -251,6 +251,7 @@
 	}
 
 	.uni-list-item__icon {
+		display: flex;
 		margin-right: 18rpx;
 		flex-direction: row;
 		justify-content: center;

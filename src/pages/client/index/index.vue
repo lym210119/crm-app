@@ -46,7 +46,7 @@
 
     <view class="header-group-btn" v-show="isOpenOperationBtn">
       <button size="mini" @tap="allSelected">
-        {{ isSelect ? "取消" : "全选" }}
+        {{ selectBtnText }}
       </button>
       <button size="mini" @tap="handleSelected('throw')">扔公海</button>
       <button size="mini" @tap="handleSelected('allot')">重分配</button>
@@ -211,13 +211,15 @@ export default {
   data() {
     return {
 			selectArr: [],
-			isSelect: false, // 是否开启 选择
+      isSelect: false, // 是否开启 选择,
+      selectBtnText: '全选',
       isOpenOperationBtn: false, // 是否显示操作按钮
       tabIndex: 0,
       tabList: [
         {
           id: 1,
           title: "我的"
+          
         },
         {
           id: 2,
@@ -238,35 +240,43 @@ export default {
       listData: [
         {
           id: '1',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '2',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '3',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '4',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '5',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '6',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '7',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         },
         {
           id: '8',
-          title: "哈哈哈哈"
+          title: "哈哈哈哈",
+          checked: false,
         }
       ],
       isLoading: false,
@@ -329,12 +339,27 @@ export default {
 		},
 		// 全选
 		allSelected() {
-			this.isSelect = !this.isSelect
-			this.listData.forEach(item => {
-				this.$set(item,'checked',this.isSelect)
-			});
-			this.selectArr = this.listData.map(item => item.id)
-			console.log(this.selectArr)
+      if (this.selectBtnText === '全选') {
+        this.selectBtnText = '单选'
+        this.isSelect = true
+		    this.listData.forEach(item => {
+          this.$set(item,'checked',true)
+        });
+      } else if (this.selectBtnText === '单选') {
+        this.selectBtnText = '取消'
+        this.isSelect = true
+        		    this.listData.forEach(item => {
+          this.$set(item,'checked',false)
+        });
+      } else if (this.selectBtnText === '取消') {
+        this.selectBtnText = '全选'
+        this.isSelect = false
+      }
+			// this.isSelect = !this.isSelect
+			// this.listData.forEach(item => {
+			// 	this.$set(item,'checked',this.isSelect)
+			// });
+
 		},
 		changeCheckbox(e) {
 			console.log(e)
