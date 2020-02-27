@@ -8,7 +8,7 @@
 				"id": "1001",
 				"icon": "icon-zongjirexian1",
 				"text": "总机热线",
-				"url": "/pages/client/index/index"
+				"url": "/pages/workBench/zongji/index/index"
 			},
 			{
 				"id": "1002",
@@ -20,7 +20,7 @@
 				"id": "1003",
 				"icon": "icon-tonghuajilu1",
 				"text": "通话记录",
-				"url": "/pages/tonghuajilu/tonghuajilu"
+				"url": "/pages/workBench/zongji/callRecord/callRecord"
 			}
 		]
 	}, {

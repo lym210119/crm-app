@@ -39,6 +39,42 @@
       }
     },
     {
+      "path": "pages/workBench/zongji/index/index",
+      "style": {
+        "navigationBarTitleText": "总机热线",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/zongji/callRecord/callRecord",
+      "style": {
+        "navigationBarTitleText": "通话记录",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            // "buttons": [{
+            //   "fontSrc": "/static/uni.ttf",
+            //   "text": "\ue537",
+            //   "width": "auto",
+            //   "fontSize": "28px",
+            //   "color": "#fff"
+            // }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
       "path": "pages/client/addCustomer/addCustomer",
       "style": {
         "navigationBarTitleText": "添加客户",

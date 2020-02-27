@@ -15,6 +15,9 @@ export default {
       src: ''
     }
   },
+  onBackPress(e) {
+    
+  },
   onLoad(opts) {
     this.src = opts.src
   }
