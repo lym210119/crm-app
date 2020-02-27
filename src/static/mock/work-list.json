@@ -76,7 +76,7 @@
 				"id": "2010",
 				"icon": "icon-tonghuajilu1",
 				"text": "通话记录",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/zongji/callRecord/callRecord"
 			}, {
 				"id": "2011",
 				"icon": "icon-lizhizhuanyi1",
