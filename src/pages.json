@@ -57,13 +57,13 @@
           "titleNView": {
             "titleColor": "#fff",
             "backgroundColor": "#19aa8d",
-            // "buttons": [{
-            //   "fontSrc": "/static/uni.ttf",
-            //   "text": "\ue537",
-            //   "width": "auto",
-            //   "fontSize": "28px",
-            //   "color": "#fff"
-            // }],
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
             "searchInput": {
               "backgroundColor": "#fff",
               "borderRadius": "6px",
@@ -89,6 +89,31 @@
                 "color": "#ffffff"
               }
             ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/yingxiao/valid/valid",
+      "style": {
+        "navigationBarTitleText": "有效线索",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
           }
         }
       }

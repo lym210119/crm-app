@@ -41,7 +41,7 @@
 				"id": "2003",
 				"icon": "icon-youxiaoxinke1",
 				"text": "有效新客",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/valid/valid"
 			}, {
 				"id": "2004",
 				"icon": "icon-kehuzongbiao1",

@@ -71,9 +71,9 @@
           :key="item.id"
           @tap="clickItem(item.url)"
         >
-          <view class="item-left" :class="{ active: item.type === '呼出' }">{{
-            item.type
-          }}</view>
+          <view class="item-left" :class="{ active: item.type === '呼出' }">
+            <text class="iconfont" :class="item.type === '呼出' ? 'icon-huchudianhua': 'icon-huru'"></text>
+          </view>
           <view class="item-right">
             <view class="right-top">
               <view class="cusname">{{ item.cusName }}</view>
@@ -352,6 +352,9 @@ export default {
 }
 .item-left.active {
   background-color: #007aff;
+}
+.item-left .iconfont {
+  font-size: 60upx;
 }
 .item-right {
   flex: 1;
