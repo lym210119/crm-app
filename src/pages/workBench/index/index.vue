@@ -7,13 +7,13 @@
 					<view class="gird-item-box">
 						<uni-grid :column="4" :highlight="true" :show-border="false">
 							<uni-grid-item v-for="(item2, index2) in item.submenu" :index="index2" :key="index2">
-								<navigator :url="item2.url" class="grid-item-box">
+								<view class="grid-item-box" @tap="handleNavigator(item2)">
 									<view class="icon-box" :style="'background-color:' + item2.color">
 										<text class="iconfont" :class="item2.icon"></text>	
 									</view>
 									<!-- <image :src="item2.icon" class="image" mode="aspectFill" /> -->
 									<text class="text">{{ item2.text }}</text>
-								</navigator>
+								</view>
 							</uni-grid-item>
 						</uni-grid>
 					</view>
@@ -42,6 +42,17 @@
 			this.getWorkList()
 		},
 		methods: {
+			handleNavigator(item) {
+				if (item.id === '2001') {
+					uni.switchTab({
+						url: item.url
+					})
+				} else {
+					uni.navigateTo({
+						url: item.url
+					})
+				}
+			},
 			getWorkList() {
 				// uni.showLoading({
 				// 	title: "正在加载数据..."

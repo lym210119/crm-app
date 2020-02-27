@@ -8,13 +8,13 @@
 				"id": "1001",
 				"icon": "icon-zongjirexian1",
 				"text": "总机热线",
-				"url": "/pages/zongjirexian/zongjirexian"
+				"url": "/pages/client/index/index"
 			},
 			{
 				"id": "1002",
 				"icon": "icon-lurukehu1",
 				"text": "录入客户",
-				"url": "/pages/lurukehu/lurukehu"
+				"url": "/pages/client/addCustomer/addCustomer"
 			},
 			{
 				"id": "1003",
@@ -31,12 +31,12 @@
 				"id": "2001",
 				"icon": "icon-wodekehu1",
 				"text": "我的客户",
-				"url": "/pages/client/client"
+				"url": "/pages/client/index/index"
 			}, {
 				"id": "2002",
 				"icon": "icon-lurukehu2",
 				"text": "录入客户",
-				"url": "/pages/client/client"
+				"url": "/pages/client/addCustomer/addCustomer"
 			}, {
 				"id": "2003",
 				"icon": "icon-youxiaoxinke1",
@@ -369,7 +369,7 @@
 				"id": "11005",
 				"icon": "icon-canshupeizhi",
 				"text": "参数配置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/parameterConfig/index/index"
 			}, {
 				"id": "11006",
 				"icon": "icon-gexingpeizhi",

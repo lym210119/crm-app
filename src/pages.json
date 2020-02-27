@@ -278,6 +278,25 @@
       }
     },
     {
+      "path": "pages/workBench/system/parameterConfig/index/index",
+      "style": {
+        "navigationBarTitleText": "参数配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/task/task",
       "style": {
         "navigationBarTitleText": "任务",
