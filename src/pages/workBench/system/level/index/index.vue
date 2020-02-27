@@ -95,6 +95,11 @@ export default {
       ]
     };
   },
+  onNavigationBarButtonTap(e) {
+    uni.navigateTo({
+      url: '/pages/workBench/system/level/add/add?type=add'
+    })
+  },
   methods: {
     onClick(e) {
       console.log(
@@ -102,7 +107,7 @@ export default {
       );
       if (e.index === 0) {
         uni.navigateTo({
-          url: ''
+          url: '/pages/workBench/system/level/add/add?type=edit'
         })
       } else {
         uni.showModal({

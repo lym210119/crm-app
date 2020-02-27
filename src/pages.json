@@ -259,6 +259,25 @@
       }
     },
     {
+      "path": "pages/workBench/system/level/add/add",
+      "style": {
+        "navigationBarTitleText": "添加配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/task/task",
       "style": {
         "navigationBarTitleText": "任务",
