@@ -5,11 +5,10 @@
       scroll-y="true"
       enableBackToTop="true"
       @scrolltolower="loadMore()"
-
     >
       <view class="item" v-for="item in listData" :key="item.id">
         <label>
-          <checkbox :value="item.cusId" checked="false" />
+          <checkbox :value="item.cusId" :checked="item.checked" />
         </label>
         <view class="item-right">
           <view class="item-right-top">
@@ -34,19 +33,72 @@
     </scroll-view>
 
     <view class="fixed-bottom">
-      <label> <checkbox value="all" checked="false" /> 全选 </label>
+      <checkbox-group @change="changeAll" style="width: auto;">
+        <label> <checkbox value="all" :checked="false" /> 全选 </label>
+      </checkbox-group>
       <view class="operation">
-        <button type="primary" size="mini">分配</button
-        ><button type="warn" size="mini">删除</button>
+        <!-- <picker style="line-height: 0;" @change="bindPickerChange" :value="index" :range="array"> -->
+        <button type="primary" size="mini" @tap="allot">
+          分配({{ allotLength }})
+        </button>
+
+        <!-- </picker> -->
+        <button type="warn" size="mini" @tap="remove">删除</button>
       </view>
     </view>
+    <w-picker
+      mode="linkage"
+      :level="3"
+      @confirm="onConfirm"
+      ref="linkage"
+      :linkList="linkList"
+      themeColor="#f00"
+    ></w-picker>
   </view>
 </template>
 
 <script>
+import wPicker from "@/components/w-picker/w-picker.vue";
 export default {
+  components: {
+    wPicker
+  },
   data() {
     return {
+      linkList: [
+        {
+          label: "中心1",
+          value: "10000",
+          children: [
+            {
+              label: "部门1",
+              value: "",
+              children: [
+                {
+                  label: "员工1",
+                  value: "20"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "中心2",
+          value: "10000",
+          children: [
+            {
+              label: "部门2",
+              value: "",
+              children: [
+                {
+                  label: "员工2",
+                  value: "20"
+                }
+              ]
+            }
+          ]
+        }
+      ],
       loadingText: "加载更多...",
       isLoading: false,
       listData: [
@@ -140,17 +192,136 @@ export default {
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
         }
-      ]
+      ],
+      allotLength: 0
     };
   },
+  onLoad() {
+    this.listData.forEach(item => {
+      this.$set(item, "checked", false);
+    });
+  },
   methods: {
+    allot() {
+      this.$refs.linkage.show();
+    },
+    remove() {
+      uni.showModal({
+        title: "提示",
+        content: "是否删除选中项？",
+        success: res => {
+          if (res.confirm) {
+          }
+        }
+      });
+    },
+    changeAll(e) {
+      let values = e.detail.value;
+      let isChecked = values.length ? true : false;
+
+      this.listData.forEach(item => {
+        this.$set(item, "checked", isChecked);
+      });
+    },
     loadMore(e) {
       setTimeout(() => {
         this.getList();
       }, 500);
     },
     getList(i) {
-      this.listData = this.listData.concat(this.listData);
+      let data = [
+        {
+          id: 1,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        },
+        {
+          id: 2,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: ""
+        },
+        {
+          id: 3,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        },
+        {
+          id: 4,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: ""
+        },
+        {
+          id: 5,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        },
+        {
+          id: 6,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: ""
+        },
+        {
+          id: 7,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        },
+        {
+          id: 8,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: ""
+        },
+        {
+          id: 9,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        },
+        {
+          id: 10,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          sources: "网络渠道(A申贷网)",
+          phone: "166****8542",
+          firstFollowTime: "2020-01-17 11:33:23"
+        }
+      ];
+      this.listData = this.listData.concat(data);
     }
   }
 };
