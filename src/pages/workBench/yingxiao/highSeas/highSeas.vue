@@ -88,29 +88,31 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <checkbox-group @change="changeCheckbox"></checkbox-group>
-        <view class="item" v-for="item in listData" :key="item.id">
-          <label>
-            <checkbox :value="item.cusId" :checked="item.checked" />
-          </label>
-          <view class="item-right">
-            <view class="item-right-top">
-              <view>
-                <text>{{ item.cusName }} ({{ item.cusId }})</text>
-                <text class="cus-type">{{ item.type }}</text>
+        <checkbox-group @change="changeCheckbox">
+          <view class="item" v-for="item in listData" :key="item.id">
+            <label>
+              <checkbox :value="item.cusId" :checked="item.checked" />
+            </label>
+            <view class="item-right">
+              <view class="item-right-top">
+                <view>
+                  <text>{{ item.cusName }} ({{ item.cusId }})</text>
+                  <text class="cus-type">{{ item.type }}</text>
+                </view>
+                <view style="font-size: 24upx;">{{ item.inputTime }}</view>
               </view>
-              <view style="font-size: 24upx;">{{ item.inputTime }}</view>
-            </view>
-            <view class="item-right-center">
-              <text>营销经理：{{ item.manageName }}</text>
-              <text>信息来源：网络渠道</text>
-            </view>
-            <view class="item-right-bottom">
-              <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
-              <text v-else style="color: red;">请及时跟进</text>
+              <view class="item-right-center">
+                <text>营销经理：{{ item.manageName }}</text>
+                <text>信息来源：网络渠道</text>
+              </view>
+              <view class="item-right-bottom">
+                <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
+                <text v-else style="color: red;">请及时跟进</text>
+              </view>
             </view>
           </view>
-        </view>
+        </checkbox-group>
+
         <view class="loading-more" v-if="isLoading || listData.length > 10">
           <text class="loading-more-text">{{ loadingText }}</text>
         </view>
@@ -143,7 +145,7 @@
       @confirm="onConfirm"
       ref="linkage"
       :linkList="linkList"
-      themeColor="#f00"
+      themeColor="#19aa8d"
     ></w-picker>
   </view>
 </template>
@@ -326,6 +328,7 @@ export default {
     };
   },
   methods: {
+    onConfirm() {},
     selectStaff() {
       this.$refs.linkage.show()
     },
@@ -351,7 +354,7 @@ export default {
         var length = parseInt(this.array[value])
         console.log(length)
         uni.navigateTo({
-          url: ""
+          url: "/pages/workBench/yingxiao/lunhu/lunhu?data=" + encodeURIComponent(JSON.stringify(length))
         });
       } else {
         uni.showToast({
@@ -363,7 +366,7 @@ export default {
     handleLunHu() {
       if (this.grabArr.length) {
         uni.navigateTo({
-          url: ''
+          url: "/pages/workBench/yingxiao/lunhu/lunhu?data=" + encodeURIComponent(JSON.stringify(this.grabArr))
         })
       } else {
         uni.showToast({
@@ -374,7 +377,7 @@ export default {
 
     },
     // 单选
-    changCheckbox(e) {
+    changeCheckbox(e) {
       this.grabArr = e.detail.value;
       console.log(this.grabArr);
     },
@@ -583,7 +586,7 @@ export default {
 }
 .mask-wrap {
   position: absolute;
-  top: calc(var(--status-bar-height) + 40px);
+  top: 40px;
   left: 0;
   right: 0;
   bottom: 0;

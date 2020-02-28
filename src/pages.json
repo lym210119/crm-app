@@ -144,6 +144,17 @@
       }
     },
     {
+      "path": "pages/workBench/yingxiao/lunhu/lunhu",
+      "style": {
+        "navigationBarTitleText": "轮呼",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
+      }
+    },
+    {
       "path": "pages/client/detail/detail",
       "style": {
         "navigationBarTitleText": "客户详情",
