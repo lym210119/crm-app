@@ -21,10 +21,10 @@
               <text>{{ item.phone }}</text>
             </view>
             <view class="item-right-bottom">
-              <text v-if="item.firstFollowTime"
-                >首次跟进时间：{{ item.firstFollowTime }}</text
+              <text
+                >客户情况：{{ item.cusInfo }}</text
               >
-              <text v-else style="color: red;">请及时跟进</text>
+              <!-- <text v-else style="color: red;">请及时跟进</text> -->
             </view>
           </view>
         </view>
@@ -121,7 +121,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 3,
@@ -139,7 +139,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 5,
@@ -157,7 +157,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 7,
@@ -175,7 +175,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 9,
@@ -262,7 +262,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 3,
@@ -280,7 +280,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 5,
@@ -298,7 +298,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 7,
@@ -316,7 +316,7 @@ export default {
           inputTime: "2019-12-24 11:26:48",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
-          firstFollowTime: ""
+          cusInfo: "客户情况介绍"
         },
         {
           id: 9,
