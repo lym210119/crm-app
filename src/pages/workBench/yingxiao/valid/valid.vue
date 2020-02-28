@@ -6,27 +6,30 @@
       enableBackToTop="true"
       @scrolltolower="loadMore()"
     >
-      <view class="item" v-for="item in listData" :key="item.id">
-        <label>
-          <checkbox :value="item.cusId" :checked="item.checked" />
-        </label>
-        <view class="item-right">
-          <view class="item-right-top">
-            <text>{{ item.cusName }} ({{ item.cusId }}) </text>
-            <text>{{ item.inputTime }}</text>
-          </view>
-          <view class="item-right-center">
-            <text>{{ item.sources }}</text>
-            <text>{{ item.phone }}</text>
-          </view>
-          <view class="item-right-bottom">
-            <text v-if="item.firstFollowTime"
-              >首次跟进时间：{{ item.firstFollowTime }}</text
-            >
-            <text v-else style="color: red;">请及时跟进</text>
+      <checkbox-group @change="changeCheckbox">
+        <view class="item" v-for="item in listData" :key="item.id">
+          <label>
+            <checkbox :value="item.cusId" :checked="item.checked" />
+          </label>
+          <view class="item-right">
+            <view class="item-right-top">
+              <text>{{ item.cusName }} ({{ item.cusId }}) </text>
+              <text>{{ item.inputTime }}</text>
+            </view>
+            <view class="item-right-center">
+              <text>{{ item.sources }}</text>
+              <text>{{ item.phone }}</text>
+            </view>
+            <view class="item-right-bottom">
+              <text v-if="item.firstFollowTime"
+                >首次跟进时间：{{ item.firstFollowTime }}</text
+              >
+              <text v-else style="color: red;">请及时跟进</text>
+            </view>
           </view>
         </view>
-      </view>
+      </checkbox-group>
+
       <view class="loading-more" v-if="isLoading || listData.length > 7">
         <text class="loading-more-text">{{ loadingText }}</text>
       </view>
@@ -39,7 +42,7 @@
       <view class="operation">
         <!-- <picker style="line-height: 0;" @change="bindPickerChange" :value="index" :range="array"> -->
         <button type="primary" size="mini" @tap="allot">
-          分配({{ allotLength }})
+          分配({{ allotArr.length }})
         </button>
 
         <!-- </picker> -->
@@ -193,16 +196,21 @@ export default {
           firstFollowTime: "2020-01-17 11:33:23"
         }
       ],
-      allotLength: 0
+      allotArr: []
     };
   },
   onLoad() {
-    this.listData.forEach(item => {
-      this.$set(item, "checked", false);
-    });
+
   },
   methods: {
     allot() {
+      if (!this.allotArr.length) {
+        uni.showToast({
+          icon: "none",
+          title: '请选择需要分配的客户'
+        })
+        return
+      }
       this.$refs.linkage.show();
     },
     remove() {
@@ -215,13 +223,21 @@ export default {
         }
       });
     },
+    changeCheckbox(e) {
+      console.log(e.detail.value)
+      this.allotArr = e.detail.value
+    },
     changeAll(e) {
       let values = e.detail.value;
       let isChecked = values.length ? true : false;
-
+      var arr = [];
       this.listData.forEach(item => {
         this.$set(item, "checked", isChecked);
+        if (item.checked) {
+          arr.push(item.cusId)
+        }
       });
+      this.allotArr = arr
     },
     loadMore(e) {
       setTimeout(() => {

@@ -5,34 +5,37 @@
         class="type"
         :class="{ active: mask === 1 }"
         @tap="handleOperation(1)"
-        >呼叫类型 <text class="iconfont icon-arrow-right"></text
+        >客户类型 <text class="iconfont icon-arrow-right"></text
       ></view>
-      <view
+      <!-- <view
         class="status"
         :class="{ active: mask === 2 }"
         @tap="handleOperation(2)"
         >接通状态 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view
+      ></view> -->
+      <picker
         class="staff"
         :class="{ active: mask === 3 }"
-        @tap="handleOperation(3)"
+        
         >员工 <text class="iconfont icon-arrow-right"></text
-      ></view>
+      ></picker>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="type-container" v-show="mask === 1">
-        <view>呼入</view>
-        <view>呼出</view>
+        <view>潜在</view>
+        <view>意向</view>
+        <view>需求</view>
+        <view>签单</view>
+        <view>放款</view>
       </view>
-      <view class="sort-container" v-show="mask === 2">
+      <!-- <view class="sort-container" v-show="mask === 2">
         <view @tap.stop="selectSort('呼入无坐席')">呼入无坐席</view>
         <view @tap.stop="selectSort('呼入未接')">呼入未接</view>
         <view @tap.stop="selectSort('呼入已接')">呼入已接</view>
         <view @tap.stop="selectSort('呼出未接')">呼出未接</view>
         <view @tap.stop="selectSort('呼出已接')">呼出已接</view>
-      </view>
-      <view class="filter-container" v-show="mask === 3">
+      </view> -->
+      <!-- <view class="filter-container" v-show="mask === 3">
         <view class="filter-list">
           <view class="filter-list-left">
             <view class="current">
@@ -50,13 +53,13 @@
           </view>
         </view>
         <view class="filter-bottom">
-          <!-- <view style="color: #007AFF;">自定义筛选</view> -->
+          <view style="color: #007AFF;">自定义筛选</view>
           <view class="filter-btn-group">
             <button type="primary" size="mini" plain="true">重置</button>
             <button type="primary" size="mini">完成</button>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
     <view class="list-container">
       <scroll-view
@@ -65,35 +68,52 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <view
-          class="item"
-          v-for="item in callList"
-          :key="item.id"
-          @tap="clickItem(item.url)"
-        >
-          <view class="item-left" :class="{ active: item.type === '呼出' }">
-            <text class="iconfont" :class="item.type === '呼出' ? 'icon-huchudianhua': 'icon-huru'"></text>
-          </view>
+        <view class="item" v-for="item in listData" :key="item.id">
+          <label>
+            <checkbox :value="item.cusId" :checked="item.checked" />
+          </label>
           <view class="item-right">
-            <view class="right-top">
-              <view class="cusname">{{ item.cusName }}</view>
-              <view class="time">{{ item.time }}</view>
+            <view class="item-right-top">
+              <view>
+                <text>{{ item.cusName }} ({{ item.cusId }})</text>
+                <text class="cus-type">{{ item.type }}</text>
+                 
+              </view>
+              <view style="font-size: 24upx;">{{ item.inputTime }}</view>
             </view>
-            <view class="right-bottom">
-              <view>
-                <view>通话时长：{{ item.duration }}分钟</view>
-                <view>员工： {{ item.staff }}</view>
-              </view>
-              <view>
-                <text class="iconfont icon-play"></text>
-              </view>
+            <view class="item-right-center">
+              <text>营销经理：{{ item.manageName }}</text>
+              <text>信息来源：网络渠道</text>
+            </view>
+            <view class="item-right-bottom">
+              <text v-if="item.follow"
+                >跟进记录：{{ item.follow }}</text
+              >
+              <text v-else style="color: red;">请及时跟进</text>
             </view>
           </view>
         </view>
-        <view class="loading-more" v-if="isLoading || callList.length > 7">
+        <view class="loading-more" v-if="isLoading || listData.length > 10">
           <text class="loading-more-text">{{ loadingText }}</text>
         </view>
       </scroll-view>
+    </view>
+
+    <view class="fixed-bottom">
+      <checkbox-group @change="changeAll" style="width: auto;">
+        <label> <checkbox value="all" :checked="false" /> 全选 </label>
+      </checkbox-group>
+      <view class="operation" style="flex:1">
+        <!-- <picker style="line-height: 0;" @change="bindPickerChange" :value="index" :range="array"> -->
+        <button type="primary" size="mini" @tap="handleGrab">
+          抓取
+        </button>
+
+        <!-- </picker> -->
+        <button type="warn" size="mini" @tap="handleRemove">删除</button>
+        <button type="primary" size="mini" @tap="handleLunhu">随机轮呼</button>
+        <!-- <button type="warn" size="mini" @tap="handleRemove">轮呼</button> -->
+      </view>
     </view>
   </view>
 </template>
@@ -102,116 +122,236 @@
 export default {
   data() {
     return {
-      mask: false,
-      callList: [
+      listData: [
         {
           id: 1,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 2,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 3,
-          type: "呼出",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 4,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 5,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 6,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 7,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 8,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 9,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         },
         {
           id: 10,
-          type: "呼入",
-          cusName: "暂无",
-          time: "2020-01-21 11:40:06",
-          duration: "45",
-          staff: "张三",
-          url: "https://img-cdn-qiniu.dcloud.net.cn/uniapp/audio/music.mp3"
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
         }
       ],
+      mask: false,
       isLoading: false,
-      loadingText: "加载更多...",
+      loadingText: "加载更多..."
     };
   },
   methods: {
+    // 全选
+    changeAll(e) {
+      let values = e.detail.value;
+      let isChecked = values.length ? true : false;
+
+      this.listData.forEach(item => {
+        this.$set(item, "checked", isChecked);
+      });
+    },
+    // 抓取
+    handleGrab() {
+      uni.showModal({
+        title: '提示',
+        content: '确定要把选中的客户抓取到自己的名下吗？',
+        success: res => {
+          if (res.confirm) {
+            
+          }
+        }
+      })
+    },
+    // 删除
+    handleRemove() {
+      uni.showModal({
+        title: '提示',
+        content: '确定要把选中的客户删除吗？',
+        success: res => {
+          if (res.confirm) {
+            
+          }
+        }
+      })
+    },
     loadMore(e) {
       setTimeout(() => {
         this.getList();
       }, 500);
     },
     getList(i) {
-      this.callList = this.callList.concat(this.callList)
-    },
-    clickItem(src) {
-      uni.navigateTo({
-        url: "/pages/client/record/record?src=" + src
-      });
+      let data = [
+        {
+          id: 1,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 2,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 3,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 4,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 5,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 6,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 7,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 8,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 9,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 10,
+          cusName: "胡德兵",
+          cusId: "3837",
+          inputTime: "2019-12-24 11:26:48",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        }
+      ];
+      this.listData = this.listData.concat(data);
     },
     handleOperation(flag) {
       console.log(this.mask);
@@ -271,7 +411,7 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 7;
 }
 .sort-container,
 .filter-container,
@@ -326,8 +466,20 @@ export default {
 .filter-btn-group {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
-
+.filter-btn-group::after {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  background-color: #c8c7cc;
+}
 .filter-btn-group > button {
   margin: 0 10upx;
 }
@@ -335,54 +487,40 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 20upx;
-  padding: 10upx 20upx;
+  padding: 20upx 30upx;
   background-color: #ffffff;
-  border-radius: 10upx;
+  position: relative;
 }
-.item-left {
-  width: 100upx;
-  height: 100upx;
-  line-height: 100upx;
-  margin-right: 20upx;
-  background-color: crimson;
-  border-radius: 50%;
-  text-align: center;
-  color: #ffffff;
-}
-.item-left.active {
-  background-color: #007aff;
-}
-.item-left .iconfont {
-  font-size: 60upx;
+
+.item::after {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  background-color: #c8c7cc;
 }
 .item-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  font-size: 28upx;
+  margin-left: 20upx;
 }
-.item-right .right-top {
+.item-right-top,
+.item-right-center {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
-.item-right .right-bottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-.item-right .right-bottom view {
+.item-right-center,
+.item-right-bottom {
   font-size: 24upx;
 }
-.item-right .right-bottom .icon-play {
-  height: 50upx;
-  line-height: 50upx;
-  font-size: 50upx;
-  color: #19aa8d;
-}
+
 .loading-more {
   align-items: center;
   justify-content: center;
@@ -394,5 +532,33 @@ export default {
 .loading-more-text {
   font-size: 28upx;
   color: #999;
+}
+.fixed-bottom {
+  z-index: 10;
+  height: 100upx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30upx;
+  background-color: #ffffff;
+  border-top: 1upx solid #cccccc;
+}
+.fixed-bottom .operation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.fixed-bottom .operation button {
+  margin-left: 20upx;
+}
+.cus-type {
+  margin-left: 20upx;
+  padding: 4upx 10upx; 
+  font-size: 20upx;
+  background-color: #19aa8d;
+  border-radius: 8upx;
+  color: #fff;
 }
 </style>
