@@ -99,11 +99,11 @@
                   <text>{{ item.cusName }} ({{ item.cusId }})</text>
                   <text class="cus-type">{{ item.type }}</text>
                 </view>
-                <view style="font-size: 24upx;">{{ item.inputTime }}</view>
+                <view style="font-size: 24upx;">营销经理：{{ item.manageName }}</view>
               </view>
               <view class="item-right-center">
-                <text>营销经理：{{ item.manageName }}</text>
                 <text>信息来源：网络渠道</text>
+                <text>跟进时间：{{ item.inputTime }}</text>
               </view>
               <view class="item-right-bottom">
                 <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
@@ -234,7 +234,7 @@ export default {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -243,7 +243,7 @@ export default {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -252,7 +252,7 @@ export default {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -261,7 +261,7 @@ export default {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -270,7 +270,7 @@ export default {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -279,7 +279,7 @@ export default {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -288,7 +288,7 @@ export default {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -297,7 +297,7 @@ export default {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -306,7 +306,7 @@ export default {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -315,7 +315,7 @@ export default {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -444,7 +444,7 @@ export default {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -453,7 +453,7 @@ export default {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -462,7 +462,7 @@ export default {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -471,7 +471,7 @@ export default {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -480,7 +480,7 @@ export default {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -489,7 +489,7 @@ export default {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -498,7 +498,7 @@ export default {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -507,7 +507,7 @@ export default {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -516,7 +516,7 @@ export default {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -525,7 +525,7 @@ export default {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -688,7 +688,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 20upx;
+  /* margin-left: 20upx; */
 }
 .item-right-top,
 .item-right-center {
