@@ -1,4 +1,5 @@
 <template>
+    <!-- 急需跟进 -->
   <view class="high-seas-page">
     <view class="filter-btn-group">
       <view
@@ -22,13 +23,11 @@
         <view>潜在</view>
         <view>意向</view>
         <view>需求</view>
-        <view>签单</view>
-        <view>放款</view>
       </view>
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
-            信息来源
+            流入公海剩余天数
           </view>
           <view class="time-select-list">
             <view
@@ -88,11 +87,11 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <checkbox-group @change="changeCheckbox">
+        <!-- <checkbox-group @change="changeCheckbox"> -->
           <view class="item" v-for="item in listData" :key="item.id">
-            <label>
+            <!-- <label>
               <checkbox :value="item.cusId" :checked="item.checked" />
-            </label>
+            </label> -->
             <view class="item-right">
               <view class="item-right-top">
                 <view>
@@ -103,15 +102,20 @@
               </view>
               <view class="item-right-center">
                 <text>信息来源：网络渠道</text>
-                <text>跟进时间：{{ item.inputTime }}</text>
+                <text>期望金额：50～100万</text>
+              </view>
+              <view class="item-right-center">
+                <text>上门状态：暂未到访</text>
+<text>
+                  跟进时间：{{ item.inputTime }}</text>
               </view>
               <view class="item-right-bottom">
-                <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
+                <text v-if="item.follow">客户情况：{{ item.follow }}</text>
                 <text v-else style="color: red;">请及时跟进</text>
               </view>
             </view>
           </view>
-        </checkbox-group>
+        <!-- </checkbox-group> -->
 
         <view class="loading-more" v-if="isLoading || listData.length > 10">
           <text class="loading-more-text">{{ loadingText }}</text>
@@ -119,16 +123,16 @@
       </scroll-view>
     </view>
 
-    <view class="fixed-bottom">
+    <!-- <view class="fixed-bottom">
       <checkbox-group @change="changeAll" style="width: auto;">
         <label> <checkbox value="all" :checked="false" /> 全选 </label>
       </checkbox-group>
-      <view class="operation" style="flex:1">
-        <button type="primary" size="mini" @tap="handleGrab">
+      <view class="operation"> -->
+        <!-- <button type="primary" size="mini" @tap="handleGrab">
           抓取
-        </button>
-        <button type="warn" size="mini" @tap="handleRemove">删除</button>
-        <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
+        </button> -->
+        <!-- <button type="warn" size="mini" @tap="handleRemove">删除</button> -->
+        <!-- <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
         <picker
           style="line-height: 0;"
           :range="array"
@@ -136,9 +140,9 @@
           @change="selectLunHu"
         >
           <button type="primary" size="mini">随机轮呼</button>
-        </picker>
-      </view>
-    </view>
+        </picker> -->
+      <!-- </view> -->
+    <!-- </view> -->
     <w-picker
       mode="linkage"
       :level="3"
@@ -195,27 +199,15 @@ export default {
       dateRangeList: [
         {
           id: 1,
-          label: "网络渠道"
+          label: "1～3天"
         },
         {
           id: 2,
-          label: "广告渠道"
+          label: "4～8天"
         },
         {
           id: 3,
-          label: "热线直呼"
-        },
-        {
-          id: 4,
-          label: "市场推广"
-        },
-        {
-          id: 5,
-          label: "其他渠道"
-        },
-        {
-          id: 6,
-          label: "客户转介绍"
+          label: "9～15天"
         }
       ],
       selectedId: [],
@@ -324,16 +316,18 @@ export default {
       grabArr: [],
       mask: false,
       isLoading: false,
-      loadingText: "加载更多..."
+      loadingText: "加载更多...",
     };
   },
   methods: {
+
     onConfirm() {},
     selectStaff() {
       this.$refs.linkage.show()
     },
     filterReset() {
       this.selectedId = [];
+      this.selectedHasFollow = 0;
     },
     filterConfirm() {},
     selectedItem(item) {

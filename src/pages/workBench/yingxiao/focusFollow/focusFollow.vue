@@ -1,11 +1,12 @@
 <template>
-  <view class="high-seas-page">
+  <!-- 重点关注 -->
+  <view class="focus-follow-page">
     <view class="filter-btn-group">
       <view
         class="type"
         :class="{ active: mask === 1 }"
         @tap="handleOperation(1)"
-        >客户类型 <text class="iconfont icon-arrow-right"></text
+        >颜色 <text class="iconfont icon-arrow-right"></text
       ></view>
       <view
         class="status"
@@ -19,11 +20,11 @@
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="type-container" v-show="mask === 1" @tap.stop="">
-        <view>潜在</view>
-        <view>意向</view>
-        <view>需求</view>
-        <view>签单</view>
-        <view>放款</view>
+        <view>白</view>
+        <view>红</view>
+        <view>黄</view>
+        <view>绿</view>
+        <view>蓝</view>
       </view>
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
@@ -55,32 +56,8 @@
           <button type="primary" size="mini" @tap="filterConfirm">确定</button>
         </view>
       </view>
-      <!-- <view class="filter-container" v-show="mask === 3">
-        <view class="filter-list">
-          <view class="filter-list-left">
-            <view class="current">
-              筛选场景
-            </view>
-          </view>
-          <view class="filter-list-right">
-            <view>全部客户</view>
-            <view>我负责的客户</view>
-            <view>下属负责的客户</view>
-            <view>我参与的客户</view>
-            <view>我关注的客户</view>
-            <view>重点客户</view>
-            <view>次重点客户</view>
-          </view>
-        </view>
-        <view class="filter-bottom">
-          <view style="color: #007AFF;">自定义筛选</view>
-          <view class="filter-btn-group">
-            <button type="primary" size="mini" plain="true">重置</button>
-            <button type="primary" size="mini">完成</button>
-          </view>
-        </view>
-      </view> -->
     </view>
+
     <view class="list-container">
       <scroll-view
         scroll-y="true"
@@ -97,13 +74,15 @@
               <view class="item-right-top">
                 <view>
                   <text>{{ item.cusName }} ({{ item.cusId }})</text>
-                  <text class="cus-type">{{ item.type }}</text>
+                  <!-- <text class="cus-type">{{ item.type }}</text> -->
                 </view>
-                <view style="font-size: 24upx;">营销经理：{{ item.manageName }}</view>
+                <view style="font-size: 24upx;"
+                  >营销经理：{{ item.manageName }}</view
+                >
               </view>
               <view class="item-right-center">
                 <text>信息来源：网络渠道</text>
-                <text>跟进时间：{{ item.inputTime }}</text>
+                <text>联系电话：{{ item.phone }}</text>
               </view>
               <view class="item-right-bottom">
                 <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
@@ -123,12 +102,12 @@
       <checkbox-group @change="changeAll" style="width: auto;">
         <label> <checkbox value="all" :checked="false" /> 全选 </label>
       </checkbox-group>
-      <view class="operation" style="flex:1">
-        <button type="primary" size="mini" @tap="handleGrab">
+      <view class="operation">
+        <!-- <button type="primary" size="mini" @tap="handleGrab">
           抓取
-        </button>
-        <button type="warn" size="mini" @tap="handleRemove">删除</button>
-        <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
+        </button> -->
+        <button type="warn" size="mini" @tap="handleRemove">取消关注</button>
+        <!-- <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
         <picker
           style="line-height: 0;"
           :range="array"
@@ -136,7 +115,7 @@
           @change="selectLunHu"
         >
           <button type="primary" size="mini">随机轮呼</button>
-        </picker>
+        </picker> -->
       </view>
     </view>
     <w-picker
@@ -158,6 +137,101 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
+      loadingText: "加载更多...",
+      listData: [
+        {
+          id: 1,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 2,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 3,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 4,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 5,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 6,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 7,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 8,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 9,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        },
+        {
+          id: 10,
+          cusName: "胡德兵",
+          cusId: "3837",
+          phone: "1388889999",
+          type: "潜在",
+          manageName: "张三",
+          follow: "最后一次跟进记录"
+        }
+      ],
+      mask: false,
       linkList: [
         {
           label: "中心1",
@@ -218,163 +292,27 @@ export default {
           label: "客户转介绍"
         }
       ],
-      selectedId: [],
-      array: [
-        "请选择轮呼条数",
-        "30条",
-        "50条",
-        "100条",
-        "200条",
-        "300条",
-        "500条"
-      ],
-      index: 0,
-      listData: [
-        {
-          id: 1,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 2,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 3,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 4,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 5,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 6,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 7,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 8,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 9,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        },
-        {
-          id: 10,
-          cusName: "胡德兵",
-          cusId: "3837",
-          inputTime: "2019-12-24",
-          type: "潜在",
-          manageName: "张三",
-          follow: "最后一次跟进记录"
-        }
-      ],
-      grabArr: [],
-      mask: false,
-      isLoading: false,
-      loadingText: "加载更多..."
+      selectedId: []
     };
   },
   methods: {
-    onConfirm() {},
-    selectStaff() {
-      this.$refs.linkage.show()
-    },
-    filterReset() {
-      this.selectedId = [];
-    },
-    filterConfirm() {},
-    selectedItem(item) {
-      console.log(this.selectedId.includes(item.id));
-      if (this.selectedId.includes(item.id)) {
-        console.log("inclues");
-        var index = this.selectedId.indexOf(item);
-        this.selectedId.splice(index, 1);
-      } else {
-        this.selectedId.push(item.id);
-      }
-    },
-    // 随机轮呼
-    selectLunHu(e) {
-      console.log(e.detail.value);
-      let value = e.detail.value;
-      if (value !== 0) {
-        var length = parseInt(this.array[value])
-        console.log(length)
-        uni.navigateTo({
-          url: "/pages/workBench/yingxiao/lunhu/lunhu?data=" + encodeURIComponent(JSON.stringify(length))
+    // 取消关注
+    handleRemove() {
+      if (this.grabArr.length) {
+        uni.showModal({
+          title: "提示",
+          content: "确定要把选中的客户取消关注吗？",
+          success: res => {
+            if (res.confirm) {
+            }
+          }
         });
       } else {
         uni.showToast({
           icon: "none",
-          title: "请选择轮呼条数"
+          title: "请选择需要取消关注的客户"
         });
       }
-    },
-    handleLunHu() {
-      if (this.grabArr.length) {
-        uni.navigateTo({
-          url: "/pages/workBench/yingxiao/lunhu/lunhu?data=" + encodeURIComponent(JSON.stringify(this.grabArr))
-        })
-      } else {
-        uni.showToast({
-          icon: 'none',
-          title: '请选择需要轮呼的客户'
-        })
-      }
-
     },
     // 单选
     changeCheckbox(e) {
@@ -395,44 +333,6 @@ export default {
       this.grabArr = arr;
       console.log(this.grabArr);
     },
-    // 抓取
-    handleGrab() {
-      if (this.grabArr.length) {
-        uni.showModal({
-          title: "提示",
-          content: "确定要把选中的客户抓取到自己的名下吗？",
-          success: res => {
-            if (res.confirm) {
-            }
-          }
-        });
-        
-      } else {
-        uni.showToast({
-          icon: 'none',
-          title: '请选择需要抓取的客户'
-        })
-      }
-    },
-    // 删除
-    handleRemove() {
-      if (this.grabArr.length) {
-        uni.showModal({
-          title: "提示",
-          content: "确定要把选中的客户删除吗？",
-          success: res => {
-            if (res.confirm) {
-            }
-          }
-        });
-      } else {
-        uni.showToast({
-          icon: 'none',
-          title: '请选择需要删除的客户'
-        })
-      }
-
-    },
     loadMore(e) {
       setTimeout(() => {
         this.getList();
@@ -444,7 +344,7 @@ export default {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -453,7 +353,7 @@ export default {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -462,7 +362,7 @@ export default {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -471,7 +371,7 @@ export default {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -480,7 +380,7 @@ export default {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -489,7 +389,7 @@ export default {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -498,7 +398,7 @@ export default {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -507,7 +407,7 @@ export default {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -516,7 +416,7 @@ export default {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
@@ -525,13 +425,31 @@ export default {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24",
+          phone: "1388889999",
           type: "潜在",
           manageName: "张三",
           follow: "最后一次跟进记录"
         }
       ];
       this.listData = this.listData.concat(data);
+    },
+    filterConfirm() {},
+    filterReset() {
+      this.selectedId = [];
+    },
+    selectedItem(item) {
+      console.log(this.selectedId.includes(item.id));
+      if (this.selectedId.includes(item.id)) {
+        console.log("inclues");
+        var index = this.selectedId.indexOf(item);
+        this.selectedId.splice(index, 1);
+      } else {
+        this.selectedId.push(item.id);
+      }
+    },
+    // 筛选员工
+    selectStaff() {
+      this.$refs.linkage.show();
     },
     handleOperation(flag) {
       console.log(this.mask);
@@ -551,7 +469,7 @@ export default {
 </script>
 
 <style>
-.high-seas-page {
+.focus-follow-page {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -562,106 +480,6 @@ export default {
   display: flex;
   width: 100%;
   overflow: hidden;
-}
-.filter-btn-group {
-  width: 100%;
-  height: 80upx;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-.filter-btn-group .iconfont {
-  font-size: 22upx;
-  vertical-align: middle;
-  margin: 0 8upx;
-  color: #cccccc;
-}
-
-.status.active,
-.type.active,
-.staff.active {
-  color: #007aff;
-}
-.mask-wrap {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 7;
-}
-.sort-container,
-.filter-container,
-.type-container {
-  background-color: #ffffff;
-}
-.sort-container > view,
-.type-container > view {
-  line-height: 80upx;
-  padding: 0 36upx;
-  border-bottom: 1px solid #f2f2f2;
-}
-.sort-container > view:last-child,
-.type-container > view:last-child {
-  border: none;
-}
-
-.filter-list {
-  display: flex;
-  flex-direction: row;
-  height: 600upx;
-}
-.filter-list-left {
-  flex: 1;
-  background-color: #f6f7f8;
-}
-.filter-list-left > view {
-  line-height: 80upx;
-  padding: 0 36upx;
-}
-.filter-list-left > view.current {
-  color: #007aff;
-  background-color: #ffffff;
-}
-.filter-list-right {
-  flex: 2;
-}
-.filter-list-right > view {
-  line-height: 80upx;
-  margin-left: 80upx;
-  border-bottom: 1px solid #f2f2f2;
-}
-.filter-bottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100upx;
-  padding: 0 36upx;
-  border-top: 1px solid #f2f2f2;
-}
-.filter-btn-group {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-}
-.filter-btn-group::after {
-  position: absolute;
-  z-index: 3;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  content: "";
-  -webkit-transform: scaleY(0.5);
-  transform: scaleY(0.5);
-  background-color: #c8c7cc;
-}
-.filter-btn-group > button {
-  margin: 0 10upx;
 }
 .item {
   display: flex;
@@ -713,36 +531,65 @@ export default {
   font-size: 28upx;
   color: #999;
 }
-.fixed-bottom {
-  z-index: 10;
-  height: 100upx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30upx;
+.filter-btn-group {
+  width: 100%;
+  height: 80upx;
   background-color: #ffffff;
-  border-top: 1upx solid #cccccc;
-}
-.fixed-bottom .operation {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
+  position: relative;
 }
-.fixed-bottom .operation button {
-  padding: 0 1em;
-  margin: 0;
-  /* margin-left: 20upx; */
-  font-size: 24upx;
+.filter-btn-group .iconfont {
+  font-size: 22upx;
+  vertical-align: middle;
+  margin: 0 8upx;
+  color: #cccccc;
 }
-.cus-type {
-  margin-left: 20upx;
-  padding: 4upx 10upx;
-  font-size: 20upx;
-  background-color: #19aa8d;
-  border-radius: 8upx;
-  color: #fff;
+.filter-btn-group::after {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  content: "";
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  background-color: #c8c7cc;
+}
+.filter-btn-group > button {
+  margin: 0 10upx;
+}
+.status.active,
+.type.active,
+.staff.active {
+  color: #007aff;
+}
+.mask-wrap {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 7;
+}
+.sort-container,
+.filter-container,
+.type-container {
+  background-color: #ffffff;
+}
+.sort-container > view,
+.type-container > view {
+  line-height: 80upx;
+  padding: 0 36upx;
+  border-bottom: 1px solid #f2f2f2;
+}
+.sort-container > view:last-child,
+.type-container > view:last-child {
+  border: none;
 }
 .time-select {
   display: flex;
@@ -782,9 +629,37 @@ export default {
   background-color: #007aff;
   color: #ffffff;
 }
-.filter-button {
+
+.filter-bottom {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100upx;
+  padding: 0 36upx;
+  border-top: 1px solid #f2f2f2;
+}
+.fixed-bottom {
+  z-index: 10;
+  height: 100upx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30upx;
+  background-color: #ffffff;
+  border-top: 1upx solid #cccccc;
+}
+.fixed-bottom .operation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-around;
+}
+.fixed-bottom .operation button {
+  padding: 0 1em;
+  margin: 0;
+  /* margin-left: 20upx; */
+  font-size: 24upx;
 }
 </style>

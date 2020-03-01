@@ -51,7 +51,7 @@
 				"id": "2005",
 				"icon": "icon-jixugenjin1",
 				"text": "急需跟进",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/urgency/urgency"
 			}, {
 				"id": "2006",
 				"icon": "icon-gonghaikehu",
@@ -61,7 +61,7 @@
 				"id": "2007",
 				"icon": "icon-zhongdianguanzhu",
 				"text": "重点关注",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/focusFollow/focusFollow"
 			}, {
 				"id": "2008",
 				"icon": "icon-yuyueshangmen1",

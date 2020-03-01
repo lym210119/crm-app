@@ -4,14 +4,15 @@
       statusBar="true"
       backgroundColor="#19aa8d"
       color="#fff"
-      left-icon="back"
-      @clickLeft="clickBack"
     >
       <view class="navbar-title">
         <view>张三 先生（10086）</view>
         <view style="font-size: 24upx;">剩余 50 人未呼</view>
       </view>
-
+      <view slot="left" class="navbar-left">
+        <uni-icons type="arrowleft" size="26" color="#fff" @tap="clickBack"></uni-icons>
+        <text class="start" @tap="clickStart">开始</text>
+      </view>
       <view slot="right" class="navbar-right">
         <view>李斯斯</view></view
       >
@@ -157,12 +158,12 @@
 <script>
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue";
 import uniPopup from "@/components/uni-popup/uni-popup.vue";
-import follow from '../../../client/detail/follow.vue'
+import uniIcons from '@/components/uni-icons/uni-icons.vue';
 export default {
   components: {
     uniNavBar,
     uniPopup,
-    follow
+    uniIcons
   },
   data() {
     return {
@@ -232,6 +233,12 @@ export default {
     console.log(data);
   },
   methods: {
+    clickStart() {
+      uni.showToast({
+        icon: 'none',
+        title: 'start'
+      })
+    },
     clickBack() {
       uni.showModal({
         title: '提示',
@@ -299,8 +306,20 @@ export default {
   text-align: center;
 }
 .navbar-left {
-  margin-left: 16upx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* margin-left: 16upx; */
   font-size: 24upx;
+}
+.navbar-left .start {
+  margin-left: 25upx;
+  background-color: #ffffff;
+  padding: 0 16upx;
+  white-space: nowrap;
+  border-radius: 10upx;
+  color: #333;
 }
 
 .navbar-right view {
