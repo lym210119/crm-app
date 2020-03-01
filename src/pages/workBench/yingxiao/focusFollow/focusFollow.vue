@@ -66,7 +66,13 @@
         style="flex:1"
       >
         <checkbox-group @change="changeCheckbox">
-          <view class="item" v-for="item in listData" :key="item.id">
+          <view
+            class="item"
+            :class="{ textColor: item.bgColor !== '#ffffff' }"
+            v-for="item in listData"
+            :key="item.id"
+            :style="'background-color: ' + item.bgColor"
+          >
             <label>
               <checkbox :value="item.cusId" :checked="item.checked" />
             </label>
@@ -139,6 +145,7 @@ export default {
     return {
       isLoading: false,
       loadingText: "加载更多...",
+      bgColor: ["#9b2a2a", "#6b8e22", "#ffa500", "#4169ff", "#ffffff"],
       listData: [
         {
           id: 1,
@@ -146,6 +153,7 @@ export default {
           cusId: "3837",
           phone: "1388889999",
           type: "潜在",
+
           manageName: "张三",
           follow: "最后一次跟进记录"
         },
@@ -295,6 +303,14 @@ export default {
       selectedId: []
     };
   },
+  onLoad() {
+    this.listData.forEach(item => {
+      var bgColor = this.bgColor[
+        Math.floor(Math.random() * this.bgColor.length)
+      ];
+      this.$set(item, "bgColor", bgColor);
+    });
+  },
   methods: {
     // 取消关注
     handleRemove() {
@@ -346,6 +362,7 @@ export default {
           cusId: "3837",
           phone: "1388889999",
           type: "潜在",
+
           manageName: "张三",
           follow: "最后一次跟进记录"
         },
@@ -431,6 +448,12 @@ export default {
           follow: "最后一次跟进记录"
         }
       ];
+      data.forEach(item => {
+        var bgColor = this.bgColor[
+          Math.floor(Math.random() * this.bgColor.length)
+        ];
+        this.$set(item, "bgColor", bgColor);
+      });
       this.listData = this.listData.concat(data);
     },
     filterConfirm() {},
@@ -661,5 +684,8 @@ export default {
   margin: 0;
   /* margin-left: 20upx; */
   font-size: 24upx;
+}
+.item.textColor {
+  color: #ffffff;
 }
 </style>
