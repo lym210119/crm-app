@@ -4,12 +4,16 @@
       statusBar="true"
       backgroundColor="#19aa8d"
       color="#fff"
-      @clickLeft="startLunHu"
+      left-icon="back"
+      @clickLeft="clickBack"
     >
-      <view class="navbar-title">张三 先生（10086）</view>
-      <view slot="left" class="navbar-left">开始轮呼</view>
+      <view class="navbar-title">
+        <view>张三 先生（10086）</view>
+        <view style="font-size: 24upx;">剩余 50 人未呼</view>
+      </view>
+
       <view slot="right" class="navbar-right">
-        <view>下一位</view><view>李斯斯</view></view
+        <view>李斯斯</view></view
       >
     </uni-nav-bar>
 
@@ -56,7 +60,6 @@
         <view class="form-item-con">
           <view class="item-left">
             <text>客户情况：</text>
-            <text class="iconfont icon-bianji" style="margin-left: 0;"></text>
           </view>
           <view class="item-right">
             <textarea
@@ -90,7 +93,6 @@
         <view class="form-item-con">
           <view class="item-left">
             <text>跟进内容：</text>
-            <text class="iconfont icon-bianji" style="margin-left: 0;"></text>
           </view>
           <view class="item-right">
             <textarea
@@ -121,7 +123,7 @@
     <uni-popup ref="popup" type="center">
       <scroll-view scroll-y="true" class="history-follow-container">
 
-              <view
+      <view
         class="swiper-item follow-steps"
         v-for="(item, i) in followList"
         :key="item.id"
@@ -147,7 +149,6 @@
         </view>
       </view>
         
-        <!-- <follow></follow> -->
       </scroll-view>
     </uni-popup>
   </view>
@@ -187,7 +188,7 @@ export default {
       tagStaticList: ["生意","上班","待业","信用卡","微粒贷","按揭房","全款房","有保单","有社保","公积金","按揭车","全款车","白户","有逾期","黑名单"],
       followTags: ["不需要","无人接","开场挂","需回拨","挂断","停机","关机","空号"],
       followValue: 'heool',
-            followList: [
+      followList: [
         {
           id: 10001,
           handles: "张山",
@@ -231,6 +232,17 @@ export default {
     console.log(data);
   },
   methods: {
+    clickBack() {
+      uni.showModal({
+        title: '提示',
+        content: '你还有50人未呼，确定要退出吗？',
+        success: res => {
+          if (res.confirm) {
+            uni.navigateBack()
+          }
+        }
+      })
+    },
     startLunHu() {
       uni.showToast({
         icon: "none",

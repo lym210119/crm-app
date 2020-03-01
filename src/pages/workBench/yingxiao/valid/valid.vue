@@ -109,7 +109,7 @@ export default {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -118,7 +118,7 @@ export default {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -127,7 +127,7 @@ export default {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -136,7 +136,7 @@ export default {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -145,7 +145,7 @@ export default {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -154,7 +154,7 @@ export default {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -163,7 +163,7 @@ export default {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -172,7 +172,7 @@ export default {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -181,7 +181,7 @@ export default {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -190,7 +190,7 @@ export default {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -250,7 +250,7 @@ export default {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -259,7 +259,7 @@ export default {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -268,7 +268,7 @@ export default {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -277,7 +277,7 @@ export default {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -286,7 +286,7 @@ export default {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -295,7 +295,7 @@ export default {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -304,7 +304,7 @@ export default {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -313,7 +313,7 @@ export default {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           cusInfo: "客户情况介绍"
@@ -322,7 +322,7 @@ export default {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"
@@ -331,7 +331,7 @@ export default {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
-          inputTime: "2019-12-24 11:26:48",
+          inputTime: "2019-12-24",
           sources: "网络渠道(A申贷网)",
           phone: "166****8542",
           firstFollowTime: "2020-01-17 11:33:23"

@@ -46,7 +46,7 @@
 				"id": "2004",
 				"icon": "icon-kehuzongbiao1",
 				"text": "客户总表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/total/total"
 			}, {
 				"id": "2005",
 				"icon": "icon-jixugenjin1",
