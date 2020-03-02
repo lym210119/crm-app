@@ -22,7 +22,7 @@
             <view
               class="time-select-item"
               :class="{ selected: selectedId.includes(item.id) }"
-              v-for="(item) in dateRangeList"
+              v-for="item in dateRangeList"
               :key="item.id"
               @tap.stop="selectedItem(item)"
               >{{ item.label }}</view
@@ -87,13 +87,7 @@
         style="flex:1"
       >
         <checkbox-group @change="changeCheckbox">
-          <view
-            class="item"
-            :class="{ textColor: item.bgColor !== '#ffffff' }"
-            v-for="item in listData"
-            :key="item.id"
-            :style="'background-color: ' + item.bgColor"
-          >
+          <view class="item" v-for="item in listData" :key="item.id">
             <label>
               <checkbox :value="item.cusId" :checked="item.checked" />
             </label>
@@ -101,7 +95,7 @@
               <view class="item-right-top">
                 <view>
                   <text>{{ item.cusName }} ({{ item.cusId }})</text>
-                  <!-- <text class="cus-type">{{ item.type }}</text> -->
+                  <text class="cus-type">{{ item.type }}</text>
                 </view>
                 <view style="font-size: 24upx;"
                   >营销经理：{{ item.manageName }}</view
@@ -112,8 +106,7 @@
                 <text>联系电话：{{ item.phone }}</text>
               </view>
               <view class="item-right-bottom">
-                <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
-                <text v-else style="color: red;">请及时跟进</text>
+                <text v-if="item.follow">上门时间：{{ item.follow }}</text>
               </view>
             </view>
           </view>
@@ -130,10 +123,10 @@
         <label> <checkbox value="all" :checked="false" /> 全选 </label>
       </checkbox-group>
       <view class="operation" style="flex: 1">
-        <button size="mini" @tap="settingColor">
-          设置颜色
+        <button size="mini" @tap="selectedPerson">
+          添加接待人员
         </button>
-        <button type="warn" size="mini" @tap="handleRemove">取消关注</button>
+        <!-- <button type="warn" size="mini" @tap="handleRemove">取消关注</button> -->
         <!-- <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
         <picker
           style="line-height: 0;"
@@ -151,14 +144,7 @@
       @confirm="onConfirm"
       ref="linkage"
       :linkList="linkList"
-      themeColor="#19aa8d"
-    ></w-picker>
-    <w-picker
-      mode="selector"
-      @confirm="onConfirmColor"
-      ref="selector"
-      :selectList="bgColor"
-      themeColor="#19aa8d"
+      themeColor="#007aff"
     ></w-picker>
   </view>
 </template>
@@ -175,103 +161,96 @@ export default {
       endDateVal: null,
       isLoading: false,
       loadingText: "加载更多...",
-      bgColor: [
-        { label: "红", value: "#9b2a2a" },
-        { label: "绿", value: "#6b8e22" },
-        { label: "黄", value: "#ffa500" },
-        { label: "蓝", value: "#4169ff" },
-        { label: "白", value: "#ffffff" }
-      ],
       listData: [
         {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         }
       ],
       mask: false,
@@ -347,14 +326,7 @@ export default {
       return this.getDate("end");
     }
   },
-  onLoad() {
-    this.listData.forEach(item => {
-      var bgColor = this.bgColor[
-        Math.floor(Math.random() * this.bgColor.length)
-      ].value;
-      this.$set(item, "bgColor", bgColor);
-    });
-  },
+  onLoad() {},
   methods: {
     bindStartDateChange: function(e) {
       console.log(e.target.value);
@@ -399,41 +371,14 @@ export default {
       day = day > 9 ? day : "0" + day;
       return `${year}-${month}-${day}`;
     },
-    onConfirmColor(e) {
-      console.log(e);
-      console.log(this.grabArr);
-      this.listData.forEach(item => {
-        if (this.grabArr.includes(item.cusId)) {
-          item.bgColor = e.checkArr.value;
-        }
-      });
-    },
-    settingColor() {
+
+    selectedPerson() {
       if (this.grabArr.length) {
-        console.log(this.grabArr);
-        this.$refs.selector.show();
+        this.$refs.linkage.show();
       } else {
         uni.showToast({
           icon: "none",
           title: "请先选择客户"
-        });
-      }
-    },
-    // 取消关注
-    handleRemove() {
-      if (this.grabArr.length) {
-        uni.showModal({
-          title: "提示",
-          content: "确定要把选中的客户取消关注吗？",
-          success: res => {
-            if (res.confirm) {
-            }
-          }
-        });
-      } else {
-        uni.showToast({
-          icon: "none",
-          title: "请选择需要取消关注的客户"
         });
       }
     },
@@ -468,99 +413,94 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
 
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "上门状态",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         }
       ];
-      data.forEach(item => {
-        var bgColor = this.bgColor[
-          Math.floor(Math.random() * this.bgColor.length)
-        ].value;
-        this.$set(item, "bgColor", bgColor);
-      });
+
       this.listData = this.listData.concat(data);
     },
     filterConfirm() {},
@@ -792,14 +732,20 @@ export default {
   /* margin-left: 20upx; */
   font-size: 24upx;
 }
-.item.textColor {
-  color: #ffffff;
-}
+
 .picker-data-container {
   flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+}
+.cus-type {
+  margin-left: 20upx;
+  padding: 4upx 10upx;
+  font-size: 20upx;
+  background-color: #19aa8d;
+  border-radius: 8upx;
+  color: #fff;
 }
 </style>

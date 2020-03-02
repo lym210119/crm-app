@@ -55,7 +55,7 @@
       @confirm="onConfirm"
       ref="linkage"
       :linkList="linkList"
-      themeColor="#f00"
+      themeColor="#007aff"
     ></w-picker>
   </view>
 </template>

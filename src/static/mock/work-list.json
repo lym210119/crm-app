@@ -71,7 +71,7 @@
 				"id": "2009",
 				"icon": "icon-qiandanliebiao1",
 				"text": "签单列表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/sign/list/list"
 			}, {
 				"id": "2010",
 				"icon": "icon-tonghuajilu1",
@@ -81,7 +81,7 @@
 				"id": "2011",
 				"icon": "icon-lizhizhuanyi1",
 				"text": "离职转移",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/sign/detail/detail"
 			}
 		]
 	}, {

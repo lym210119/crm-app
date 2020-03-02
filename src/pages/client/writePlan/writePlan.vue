@@ -5,7 +5,7 @@
       step="1"
       @confirm="onConfirm"
       ref="dateTime"
-      themeColor="#f00"
+      themeColor="#007aff"
     ></w-picker>
 
     <view class="list-item" @tap="$refs.dateTime.show()">

@@ -36,6 +36,14 @@ export default {
     // 工作台菜单
     getWorkMenu() {
       return minRequest.get('/static/mock/work-list.json')
+    },
+    // 资方
+    getZifangList() {
+      return minRequest.get('/static/mock/zifang.json')
+    },
+    // 做单人员
+    getZuodanrenyuan() {
+      return minRequest.get('/static/mock/zuodanrenyuan.json')
     }
   }
 }
