@@ -1,13 +1,7 @@
 <template>
-  <!-- 重点关注 -->
+  <!-- 预约上门 -->
   <view class="focus-follow-page">
     <view class="filter-btn-group">
-      <view
-        class="type"
-        :class="{ active: mask === 1 }"
-        @tap="handleOperation(1)"
-        >颜色 <text class="iconfont icon-arrow-right"></text
-      ></view>
       <view
         class="status"
         :class="{ active: mask === 2 }"
@@ -19,13 +13,6 @@
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
-      <view class="type-container" v-show="mask === 1" @tap.stop="">
-        <view>白</view>
-        <view>红</view>
-        <view>黄</view>
-        <view>绿</view>
-        <view>蓝</view>
-      </view>
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
@@ -40,6 +27,40 @@
               @tap.stop="selectedItem(item)"
               >{{ item.label }}</view
             >
+          </view>
+        </view>
+        <view class="time-select">
+          <view class="time-select-label">
+            上门时间
+          </view>
+          <view class="time-select-list">
+            <view class="picker-data-container">
+              <picker
+                mode="date"
+                :value="startDateVal"
+                :start="startDate"
+                :end="endDate"
+                @change="bindStartDateChange"
+              >
+                <view class="uni-input">{{
+                  startDateVal ? startDateVal : "开始时间"
+                }}</view>
+              </picker>
+              <view class="">
+                --
+              </view>
+              <picker
+                mode="date"
+                :value="endDateVal"
+                :start="startDate"
+                :end="endDate"
+                @change="bindEndDateChange"
+              >
+                <view class="uni-input">{{
+                  endDateVal ? endDateVal : "结束时间"
+                }}</view>
+              </picker>
+            </view>
           </view>
         </view>
         <view class="filter-bottom">
@@ -150,6 +171,8 @@ export default {
   },
   data() {
     return {
+      startDateVal: null,
+      endDateVal: null,
       isLoading: false,
       loadingText: "加载更多...",
       bgColor: [
@@ -316,6 +339,14 @@ export default {
       grabArr: []
     };
   },
+  computed: {
+    startDate() {
+      return this.getDate("start");
+    },
+    endDate() {
+      return this.getDate("end");
+    }
+  },
   onLoad() {
     this.listData.forEach(item => {
       var bgColor = this.bgColor[
@@ -325,19 +356,62 @@ export default {
     });
   },
   methods: {
+    bindStartDateChange: function(e) {
+      console.log(e.target.value);
+      if (this.timeStr(e.target.value) > this.timeStr(this.endDateVal)) {
+        uni.showToast({
+          title: "开始时间不能大于结束时间",
+          icon: "none"
+        });
+        return;
+      }
+      this.startDateVal = e.target.value;
+    },
+    bindEndDateChange: function(e) {
+      console.log(e.target.value);
+      if (this.timeStr(e.target.value) < this.timeStr(this.startDateVal)) {
+        uni.showToast({
+          title: "开始时间不能大于结束时间",
+          icon: "none"
+        });
+        return;
+      }
+      this.endDateVal = e.target.value;
+    },
+    timeStr(data) {
+      console.log(data);
+      if (data) {
+        return new Date(data.split("-").join("/")).getTime();
+      }
+    },
+    getDate(type) {
+      const date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+
+      if (type === "start") {
+        year = year - 10; // 时间范围限制
+      } else if (type === "end") {
+        year = year + 10;
+      }
+      month = month > 9 ? month : "0" + month;
+      day = day > 9 ? day : "0" + day;
+      return `${year}-${month}-${day}`;
+    },
     onConfirmColor(e) {
-      console.log(e)
-      console.log(this.grabArr)
+      console.log(e);
+      console.log(this.grabArr);
       this.listData.forEach(item => {
         if (this.grabArr.includes(item.cusId)) {
-          item.bgColor = e.checkArr.value
+          item.bgColor = e.checkArr.value;
         }
-      })
+      });
     },
     settingColor() {
       if (this.grabArr.length) {
         console.log(this.grabArr);
-        this.$refs.selector.show()
+        this.$refs.selector.show();
       } else {
         uni.showToast({
           icon: "none",
@@ -721,5 +795,11 @@ export default {
 .item.textColor {
   color: #ffffff;
 }
-
+.picker-data-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
 </style>
