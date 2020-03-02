@@ -108,10 +108,10 @@
       <checkbox-group @change="changeAll" style="width: auto;">
         <label> <checkbox value="all" :checked="false" /> 全选 </label>
       </checkbox-group>
-      <view class="operation">
-        <!-- <button type="primary" size="mini" @tap="handleGrab">
-          抓取
-        </button> -->
+      <view class="operation" style="flex: 1">
+        <button size="mini" @tap="settingColor">
+          设置颜色
+        </button>
         <button type="warn" size="mini" @tap="handleRemove">取消关注</button>
         <!-- <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
         <picker
@@ -132,6 +132,13 @@
       :linkList="linkList"
       themeColor="#19aa8d"
     ></w-picker>
+    <w-picker
+      mode="selector"
+      @confirm="onConfirmColor"
+      ref="selector"
+      :selectList="bgColor"
+      themeColor="#19aa8d"
+    ></w-picker>
   </view>
 </template>
 
@@ -145,7 +152,13 @@ export default {
     return {
       isLoading: false,
       loadingText: "加载更多...",
-      bgColor: ["#9b2a2a", "#6b8e22", "#ffa500", "#4169ff", "#ffffff"],
+      bgColor: [
+        { label: "红", value: "#9b2a2a" },
+        { label: "绿", value: "#6b8e22" },
+        { label: "黄", value: "#ffa500" },
+        { label: "蓝", value: "#4169ff" },
+        { label: "白", value: "#ffffff" }
+      ],
       listData: [
         {
           id: 1,
@@ -153,7 +166,6 @@ export default {
           cusId: "3837",
           phone: "1388889999",
           type: "潜在",
-
           manageName: "张三",
           follow: "最后一次跟进记录"
         },
@@ -300,18 +312,39 @@ export default {
           label: "客户转介绍"
         }
       ],
-      selectedId: []
+      selectedId: [],
+      grabArr: []
     };
   },
   onLoad() {
     this.listData.forEach(item => {
       var bgColor = this.bgColor[
         Math.floor(Math.random() * this.bgColor.length)
-      ];
+      ].value;
       this.$set(item, "bgColor", bgColor);
     });
   },
   methods: {
+    onConfirmColor(e) {
+      console.log(e)
+      console.log(this.grabArr)
+      this.listData.forEach(item => {
+        if (this.grabArr.includes(item.cusId)) {
+          item.bgColor = e.checkArr.value
+        }
+      })
+    },
+    settingColor() {
+      if (this.grabArr.length) {
+        console.log(this.grabArr);
+        this.$refs.selector.show()
+      } else {
+        uni.showToast({
+          icon: "none",
+          title: "请先选择客户"
+        });
+      }
+    },
     // 取消关注
     handleRemove() {
       if (this.grabArr.length) {
@@ -451,7 +484,7 @@ export default {
       data.forEach(item => {
         var bgColor = this.bgColor[
           Math.floor(Math.random() * this.bgColor.length)
-        ];
+        ].value;
         this.$set(item, "bgColor", bgColor);
       });
       this.listData = this.listData.concat(data);
