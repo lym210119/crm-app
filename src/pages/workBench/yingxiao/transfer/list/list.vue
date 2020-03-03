@@ -1,97 +1,25 @@
 <template>
-  <!-- 签单列表 -->
-  <view class="focus-follow-page">
+  <view class="transfer-list-page">
     <view class="filter-btn-group">
       <view
         class="type"
         :class="{ active: mask === 1 }"
         @tap="handleOperation(1)"
-        >签单状态 <text class="iconfont icon-arrow-right"></text
+        >数据状态 <text class="iconfont icon-arrow-right"></text
       ></view>
       <view
         class="status"
         :class="{ active: mask === 2 }"
         @tap="handleOperation(2)"
-        >筛选 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >员工 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >资方 <text class="iconfont icon-arrow-right"></text
+        >中心/部门 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="type-container" v-show="mask === 1" @tap.stop="">
-        <view>盖章待补充</view>
-        <view>待审核</view>
-        <view>审核驳回</view>
-        <view>审核通过</view>
+        <view>已转移</view>
+        <view>未转移</view>
       </view>
-      <view class="sort-container" v-show="mask === 2" @tap.stop="">
-        <view class="time-select">
-          <view class="time-select-label">
-            信息来源
-          </view>
-          <view class="time-select-list">
-            <view
-              class="time-select-item"
-              :class="{ selected: selectedId.includes(item.id) }"
-              v-for="item in dateRangeList"
-              :key="item.id"
-              @tap.stop="selectedItem(item)"
-              >{{ item.label }}</view
-            >
-          </view>
-        </view>
-        <view class="time-select">
-          <view class="time-select-label">
-            签单时间
-          </view>
-          <view class="time-select-list">
-            <view class="picker-data-container">
-              <picker
-                mode="date"
-                :value="startDateVal"
-                :start="startDate"
-                :end="endDate"
-                @change="bindStartDateChange"
-              >
-                <view class="uni-input">{{
-                  startDateVal ? startDateVal : "开始时间"
-                }}</view>
-              </picker>
-              <view class="">
-                --
-              </view>
-              <picker
-                mode="date"
-                :value="endDateVal"
-                :start="startDate"
-                :end="endDate"
-                @change="bindEndDateChange"
-              >
-                <view class="uni-input">{{
-                  endDateVal ? endDateVal : "结束时间"
-                }}</view>
-              </picker>
-            </view>
-          </view>
-        </view>
-        <view class="filter-bottom">
-          <!-- <view style="color: #007AFF;">自定义筛选</view> -->
 
-          <button
-            type="primary"
-            size="mini"
-            plain="true"
-            @tap.stop="filterReset"
-          >
-            重置
-          </button>
-          <button type="primary" size="mini" @tap="filterConfirm">确定</button>
-        </view>
-      </view>
     </view>
 
     <view class="list-container">
@@ -102,23 +30,23 @@
         style="flex:1"
       >
 
-          <view class="item" v-for="item in listData" :key="item.id" @tap="clickItem">
+          <view class="item" v-for="item in listData" :key="item.id">
             <view class="item-right">
               <view class="item-right-top">
                 <view>
-                  <text>{{ item.cusName }} ({{ item.cusId }})</text>
+                  <text>{{ item.cusName }} (2-1组)</text>
                   <text class="cus-type">{{ item.type }}</text>
                 </view>
                 <view style="font-size: 24upx;"
-                  >协议编号：XD1000092</view
+                  >登录账号：guwen001</view
                 >
               </view>
               <view class="item-right-center">
-                <text>贷款金额：1000000</text>
-                <text>贷款收费：5%</text>
+                <text>员工职位：营销经理</text>
               </view>
               <view class="item-right-bottom">
-                <text v-if="item.follow">签单时间：{{ item.follow }}</text>
+                <text v-if="item.follow">离职时间：{{ item.follow }}</text>
+                <text class="btn-primary" @tap="clickItem(item.id)">转移数据</text>
               </view>
             </view>
           </view>
@@ -128,8 +56,7 @@
         </view>
       </scroll-view>
     </view>
-
-    <w-picker
+        <w-picker
       mode="linkage"
       :level="3"
       @confirm="onConfirm"
@@ -158,7 +85,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -167,7 +94,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -176,7 +103,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -185,7 +112,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -194,7 +121,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -203,7 +130,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -212,7 +139,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -221,7 +148,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -230,7 +157,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -239,7 +166,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         }
@@ -321,7 +248,7 @@ export default {
   methods: {
     clickItem() {
       uni.navigateTo({
-        url: '/pages/workBench/yingxiao/sign/detail/detail'
+        url: '/pages/workBench/yingxiao/transfer/detail/detail'
       })
     },
     bindStartDateChange: function(e) {
@@ -391,7 +318,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
 
           manageName: "张三",
           follow: "2020-03-02"
@@ -401,7 +328,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -410,7 +337,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -419,7 +346,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -428,7 +355,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -437,7 +364,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -446,7 +373,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -455,7 +382,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -464,7 +391,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         },
@@ -473,7 +400,7 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "待审核",
+          type: "未转移",
           manageName: "张三",
           follow: "2020-03-02"
         }
@@ -495,18 +422,13 @@ export default {
         this.selectedId.push(item.id);
       }
     },
-    // 筛选员工
-    selectStaff() {
-      this.$refs.linkage.show();
-    },
+    
     handleOperation(flag) {
       console.log(this.mask);
       if (flag === 0) {
-        this.isOpenOperationBtn = !this.isOpenOperationBtn;
         this.mask = 0;
       } else {
         this.mask = flag;
-        this.isOpenOperationBtn = false;
       }
     },
     clickMask() {
@@ -517,8 +439,8 @@ export default {
 </script>
 
 <style>
-.focus-follow-page {
-  display: flex;
+.transfer-list-page {
+    display: flex;
   flex-direction: column;
   height: 100%;
   position: relative;
@@ -564,9 +486,20 @@ export default {
 }
 .item-right-center,
 .item-right-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   font-size: 24upx;
 }
-
+.item-right-bottom .btn-primary {
+    margin-left: 6upx;
+  padding: 0 10upx;
+  font-size: 24upx;
+  color: #fff;
+  border-radius: 8upx;
+  background-color: #1ab394;
+}
 .loading-more {
   align-items: center;
   justify-content: center;
@@ -646,7 +579,6 @@ export default {
   background-color: #ffffff;
   border-bottom: 1upx solid #f1f1f1;
 }
-
 .time-select-label {
   line-height: 80upx;
   flex-shrink: 0;
@@ -660,7 +592,6 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
 .time-select-item {
   width: 150upx;
   height: 64upx;
@@ -677,7 +608,6 @@ export default {
   background-color: #007aff;
   color: #ffffff;
 }
-
 .filter-bottom {
   display: flex;
   flex-direction: row;
@@ -722,7 +652,7 @@ export default {
   margin-left: 20upx;
   padding: 4upx 10upx;
   font-size: 20upx;
-  background-color: #19aa8d;
+  background-color:#ed5565;
   border-radius: 8upx;
   color: #fff;
 }

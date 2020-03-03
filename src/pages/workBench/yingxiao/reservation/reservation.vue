@@ -86,11 +86,7 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <checkbox-group @change="changeCheckbox">
           <view class="item" v-for="item in listData" :key="item.id">
-            <label>
-              <checkbox :value="item.cusId" :checked="item.checked" />
-            </label>
             <view class="item-right">
               <view class="item-right-top">
                 <view>
@@ -98,19 +94,23 @@
                   <text class="cus-type">{{ item.type }}</text>
                 </view>
                 <view style="font-size: 24upx;"
-                  >营销经理：{{ item.manageName }}</view
+                  >联系电话：{{ item.phone }}</view
                 >
               </view>
               <view class="item-right-center">
-                <text>信息来源：网络渠道</text>
-                <text>联系电话：{{ item.phone }}</text>
+                <text>营销经理：{{ item.manageName }} （2中心-3组）</text>
               </view>
               <view class="item-right-bottom">
                 <text v-if="item.follow">上门时间：{{ item.follow }}</text>
+                <view class="btn-group">
+                  <text class="btn-primary" @tap="clickBtnGroup(1)">到店</text>
+                  <text class="btn-success" @tap="clickBtnGroup(1)"> <text class="iconfont icon-plus"></text> 接待</text>
+                  <text class="btn-danger" @tap="clickBtnGroup(1)">取消</text>
+                  <text class="btn-warning" @tap="clickBtnGroup(1)">改约</text>
+                </view>
               </view>
             </view>
           </view>
-        </checkbox-group>
 
         <view class="loading-more" v-if="isLoading || listData.length > 10">
           <text class="loading-more-text">{{ loadingText }}</text>
@@ -118,26 +118,7 @@
       </scroll-view>
     </view>
 
-    <view class="fixed-bottom">
-      <checkbox-group @change="changeAll" style="width: auto;">
-        <label> <checkbox value="all" :checked="false" /> 全选 </label>
-      </checkbox-group>
-      <view class="operation" style="flex: 1">
-        <button size="mini" @tap="selectedPerson">
-          添加接待人员
-        </button>
-        <!-- <button type="warn" size="mini" @tap="handleRemove">取消关注</button> -->
-        <!-- <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
-        <picker
-          style="line-height: 0;"
-          :range="array"
-          :value="index"
-          @change="selectLunHu"
-        >
-          <button type="primary" size="mini">随机轮呼</button>
-        </picker> -->
-      </view>
-    </view>
+
     <w-picker
       mode="linkage"
       :level="3"
@@ -328,6 +309,28 @@ export default {
   },
   onLoad() {},
   methods: {
+    clickBtnGroup(type) {
+      switch (type) {
+        case 1:
+          
+          break;
+      
+        case 2:
+          
+          break;
+      
+        case 3:
+          
+          break;
+      
+        case 4:
+          
+          break;
+      
+        default:
+          break;
+      }
+    },
     bindStartDateChange: function(e) {
       console.log(e.target.value);
       if (this.timeStr(e.target.value) > this.timeStr(this.endDateVal)) {
@@ -382,25 +385,7 @@ export default {
         });
       }
     },
-    // 单选
-    changeCheckbox(e) {
-      this.grabArr = e.detail.value;
-      console.log(this.grabArr);
-    },
-    // 全选
-    changeAll(e) {
-      let values = e.detail.value;
-      let isChecked = values.length ? true : false;
-      let arr = [];
-      this.listData.forEach(item => {
-        this.$set(item, "checked", isChecked);
-        if (item.checked) {
-          arr.push(item.cusId);
-        }
-      });
-      this.grabArr = arr;
-      console.log(this.grabArr);
-    },
+
     loadMore(e) {
       setTimeout(() => {
         this.getList();
@@ -586,7 +571,34 @@ export default {
 }
 .item-right-center,
 .item-right-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   font-size: 24upx;
+}
+
+.btn-group>text {
+  margin-left: 6upx;
+  padding: 0 10upx;
+  font-size: 24upx;
+  color: #fff;
+  border-radius: 8upx;
+}
+.btn-group .iconfont {
+  font-size: 24upx;
+}
+.btn-group .btn-primary {
+  background-color: #1ab394;
+}
+.btn-group .btn-success {
+  background-color: #1c84c6;
+}
+.btn-group .btn-warning {
+  background-color: #f8ac59;
+}
+.btn-group .btn-danger {
+  background-color: #ed5565;
 }
 
 .loading-more {
@@ -709,29 +721,7 @@ export default {
   padding: 0 36upx;
   border-top: 1px solid #f2f2f2;
 }
-.fixed-bottom {
-  z-index: 10;
-  height: 100upx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 30upx;
-  background-color: #ffffff;
-  border-top: 1upx solid #cccccc;
-}
-.fixed-bottom .operation {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-}
-.fixed-bottom .operation button {
-  padding: 0 1em;
-  margin: 0;
-  /* margin-left: 20upx; */
-  font-size: 24upx;
-}
+
 
 .picker-data-container {
   flex: 1;

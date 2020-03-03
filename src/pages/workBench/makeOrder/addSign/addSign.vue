@@ -1,28 +1,17 @@
 <template>
-  <!-- 签单详情 -->
-  <view class="add-customer-page">
-    <scroll-view scroll-y="true" style="height: 100%">
+  <view class="add-sign-page">
+    <scroll-view scroll-y="true" style="height:100%;">
       <form @submit="submit">
         <view class="list-item">
-          <view class="item-label required">客户姓名</view>
+          <view class="item-label required">委托甲方</view>
           <view class="item-value">
-            <input type="text" name="name" placeholder="请输入客户姓名" />
+            <input type="text" name="partyA" placeholder="请输入委托甲方" />
           </view>
         </view>
         <view class="list-item">
-          <view class="item-label required">协议编号</view>
+          <view class="item-label required">身份证号</view>
           <view class="item-value">
-            <input
-              type="text"
-              name="protocolNumber"
-              placeholder="请输入协议编号"
-            />
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">证件编号</view>
-          <view class="item-value">
-            <input type="text" name="IDcard" placeholder="请输入证件编号" />
+            <input type="text" name="IDcard" placeholder="请输入身份证号" />
           </view>
         </view>
         <view class="list-item">
@@ -40,14 +29,37 @@
               name="zifang"
               :value="zifangValue"
             />
-            <text :class="{'text-gray': !zifangLabel}">{{zifangLabel ? zifangLabel : "请选择资方"}}</text>
+            <text :class="{ 'text-gray': !zifangLabel }">{{
+              zifangLabel ? zifangLabel : "请选择资方"
+            }}</text>
           </view>
           <text class="iconfont icon-arrow-right1"></text>
+        </view>
+        <view class="list-item">
+          <view class="item-label required">进件类型</view>
+          <view class="item-value">
+            <radio-group name="intoType">
+              <label
+                class=""
+                v-for="(item, index) in intoType"
+                :key="item.value"
+              >
+                <radio :value="item.value" />
+                {{ item.name }}
+              </label>
+            </radio-group>
+          </view>
         </view>
         <view class="list-item">
           <view class="item-label required">贷款金额</view>
           <view class="item-value">
             <input type="text" name="loanMoney" placeholder="请输入贷款金额" />
+          </view>
+        </view>
+        <view class="list-item">
+          <view class="item-label required">已收定金</view>
+          <view class="item-value">
+            <input type="text" name="deposit" placeholder="请输入已收定金" />
           </view>
         </view>
         <view class="list-item">
@@ -81,16 +93,14 @@
             <textarea name="collectExplain" placeholder="请输入收费说明" />
           </view>
         </view>
-        <view class="list-item">
-          <view class="item-label required">已收定金</view>
-          <view class="item-value">
-            <input type="text" name="deposit" placeholder="请输入已收定金" />
-          </view>
-        </view>
+
         <view class="list-item">
           <view class="item-label required">评估方式</view>
           <view class="item-value">
-            <radio-group name="assessmentMethod" @change="changeAssessmentMethod">
+            <radio-group
+              name="assessmentMethod"
+              @change="changeAssessmentMethod"
+            >
               <label
                 class=""
                 v-for="(item, index) in collectType"
@@ -138,7 +148,9 @@
               name="person"
               :value="personValue"
             />
-            <text :class="{'text-gray': !personLabel}">{{personLabel ? personLabel : "请选择做单人员"}}</text>
+            <text :class="{ 'text-gray': !personLabel }">{{
+              personLabel ? personLabel : "请选择做单人员"
+            }}</text>
           </view>
           <text class="iconfont icon-arrow-right1"></text>
         </view>
@@ -163,7 +175,7 @@
             </radio-group>
           </view>
         </view>
-                <view class="list-textarea">
+        <view class="list-textarea">
           <view class="item-label">审核意见</view>
           <view class="item-value">
             <textarea name="checkOpinion" placeholder="请输入审核意见" />
@@ -173,7 +185,7 @@
       </form>
     </scroll-view>
     <w-picker
-      v-if="zifangList.length!=0"
+      v-if="zifangList.length != 0"
       mode="linkage"
       :level="3"
       @confirm="onZifang"
@@ -182,7 +194,7 @@
       themeColor="#007aff"
     ></w-picker>
     <w-picker
-      v-if="personList.length!=0"
+      v-if="personList.length != 0"
       mode="linkage"
       :level="3"
       @confirm="onPerson"
@@ -195,34 +207,35 @@
 
 <script>
 import wPicker from "@/components/w-picker/w-picker.vue";
+
 export default {
   components: {
     wPicker
   },
   data() {
     return {
-
-      assessmentCollectRate: ["1%", "2%", "3%"],
-      assessmentCollectRateIndex: null,
-      zifangList: [],
-      zifangValue: '',
-      zifangLabel: '',
       personList: [],
-      personValue: '',
-      personLabel: '',
+      personValue: "",
+      personLabel: "",
+      zifangList: [],
+      zifangValue: "",
+      zifangLabel: "",
       checkStatus: [
         { value: "1", name: "通过" },
         { value: "2", name: "驳回" }
+      ],
+      intoType: [
+        { value: "1", name: "抵押" },
+        { value: "2", name: "信贷" }
       ],
       collectType: [
         { value: "1", name: "按比例" },
         { value: "2", name: "按笔数" }
       ],
       collectTypeIndex: null,
+      assessmentCollectRate: ["1%", "2%", "3%"],
+      assessmentCollectRateIndex: null
     };
-  },
-  onLoad() {
-    // this.getZifangList();
   },
   onNavigationBarButtonTap(e) {
     this.$refs.submitBtn.$dispatch("Form", "uni-form-submit", {
@@ -230,32 +243,30 @@ export default {
     });
   },
   methods: {
-    onZifang(e) {
-      console.log(e)
-      this.zifangValue = e.checkValue.join(',')
-      this.zifangLabel = e.checkArr.join(' | ')
-    },
-    onPerson(e) {
-      console.log(e)
-      this.personValue = e.checkValue.join(',')
-      this.personLabel = e.checkArr.join(' | ')
-    },
-    // 评估方式百分比选择
-    changeAssessmentCollectRate(e) {
-      this.assessmentCollectRateIndex = e.detail.value
-    },
-    changeAssessmentMethod(e) {
-      console.log(e.detail.value)
-      this.collectTypeIndex = e.detail.value
+    submit(e) {
+      var formdata = e.detail.value;
+      console.log(formdata);
     },
     selectPerson() {
       this.$minApi.getZuodanrenyuan().then(res => {
-        this.personList = res.data
+        this.personList = res.data;
         setTimeout(() => {
           this.$refs.person.show();
-          
         }, 50);
-      })
+      });
+    },
+    onPerson(e) {
+      console.log(e);
+      this.personValue = e.checkValue.join(",");
+      this.personLabel = e.checkArr.join(" | ");
+    },
+    // 评估方式百分比选择
+    changeAssessmentCollectRate(e) {
+      this.assessmentCollectRateIndex = e.detail.value;
+    },
+    changeAssessmentMethod(e) {
+      console.log(e.detail.value);
+      this.collectTypeIndex = e.detail.value;
     },
     getZifangList() {
       this.$minApi.getZifangList().then(res => {
@@ -263,28 +274,22 @@ export default {
         this.zifangList = res.data;
         setTimeout(() => {
           this.$refs.linkage.show();
-          
         }, 50);
       });
     },
-    submit(e) {
-      var formdata = e.detail.value;
-      console.log(formdata);
-    },
-
+    onZifang(e) {
+      console.log(e);
+      this.zifangValue = e.checkValue.join(",");
+      this.zifangLabel = e.checkArr.join(" | ");
+    }
   }
 };
 </script>
 
 <style>
-.add-customer-page {
-  display: flex;
+.add-sign-page {
   height: 100%;
-  width: 100%;
-  flex: 1;
-  flex-direction: column;
-  overflow: hidden;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 .list-item {
   display: flex;

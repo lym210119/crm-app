@@ -19,7 +19,8 @@ minRequest.interceptors.response((response) => {
 // 设置默认配置
 minRequest.setConfig((config) => {
   if (process.env.NODE_ENV === 'development') {
-    config.baseURL = 'http://192.168.1.5:8080/crm-app'
+    console.log(location)
+    config.baseURL = location.origin + '/crm-app'
   } else {
     config.baseURL = 'https://style65.gitee.io/crm-app'
   }

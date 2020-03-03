@@ -81,7 +81,7 @@
 				"id": "2011",
 				"icon": "icon-lizhizhuanyi1",
 				"text": "离职转移",
-				"url": "/pages/workBench/yingxiao/sign/detail/detail"
+				"url": "/pages/workBench/yingxiao/transfer/list/list"
 			}
 		]
 	}, {
@@ -90,28 +90,33 @@
 		"submenu": [{
 				"id": "3001",
 				"icon": "icon-zuodankanban",
-				"text": "做单看板",
-				"url": "/pages/client/client"
+				"text": "新增签单",
+				"url": "/pages/workBench/makeOrder/addSign/addSign"
 			}, {
 				"id": "3002",
+				"icon": "icon-zuodankanban",
+				"text": "做单看板",
+				"url": "/pages/workBench/makeOrder/kanban/kanbana"
+			}, {
+				"id": "3003",
 				"icon": "icon-zuodanguanli",
 				"text": "做单管理",
 				"url": "/pages/client/client"
 			}, {
-				"id": "3003",
+				"id": "3004",
 				"icon": "icon-zuodanjihua",
 				"text": "做单计划",
 				"url": "/pages/client/client"
 			}, {
-				"id": "3004",
+				"id": "3005",
 				"icon": "icon-zuodangenjin",
 				"text": "做单跟进",
 				"url": "/pages/client/client"
 			}, {
-				"id": "3005",
+				"id": "3006",
 				"icon": "icon-lizhifenpei1",
 				"text": "离职分配",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/yingxiao/transfer/list/list"
 			}
 		]
 	}, {
