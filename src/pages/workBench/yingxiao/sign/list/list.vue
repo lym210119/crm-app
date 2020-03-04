@@ -119,6 +119,7 @@
               </view>
               <view class="item-right-bottom">
                 <text v-if="item.follow">签单时间：{{ item.follow }}</text>
+                <text v-if="item.follow">签单经理：张三</text>
               </view>
             </view>
           </view>
@@ -564,6 +565,9 @@ export default {
 }
 .item-right-center,
 .item-right-bottom {
+    display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 24upx;
 }
 

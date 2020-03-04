@@ -351,6 +351,125 @@
       }
     },
     {
+      "path": "pages/workBench/makeOrder/manage/manage",
+      "style": {
+        "navigationBarTitleText": "做单管理",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/makeOrder/plan/plan",
+      "style": {
+        "navigationBarTitleText": "做单计划",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/makeOrder/follow/follow",
+      "style": {
+        "navigationBarTitleText": "做单跟进",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/finance/contractConfirm/contractConfirm",
+      "style": {
+        "navigationBarTitleText": "合同确认",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/finance/deposit/deposit",
+      "style": {
+        "navigationBarTitleText": "定金列表",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
@@ -375,6 +494,7 @@
         }
       }
     },
+
     {
       "path": "pages/workBench/yingxiao/lunhu/lunhu",
       "style": {

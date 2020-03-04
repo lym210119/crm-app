@@ -703,8 +703,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.client-item > .info {
-}
+
 .client-item > .title > .username {
   font-size: 28upx;
   /* font-weight: 700; */
@@ -799,8 +798,7 @@ export default {
   align-items: center;
   margin-top: 15upx;
 }
-.item-bottom .icon-group {
-}
+
 .item-bottom .icon-group .iconfont {
   margin-left: 30upx;
   color: #18a98c;

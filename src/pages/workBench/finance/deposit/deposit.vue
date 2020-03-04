@@ -1,59 +1,60 @@
 <template>
-  <!-- 做单看板 -->
+  <!-- 定金列表 -->
   <view class="focus-follow-page">
     <view class="filter-btn-group">
       <view
-        class="type"
-        :class="{ active: mask === 1 }"
-        @tap="handleOperation(1)"
-        >颜色 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view
-        class="type"
+        class="status"
         :class="{ active: mask === 2 }"
         @tap="handleOperation(2)"
-        >时间 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view
-        class="status"
-        :class="{ active: mask === 3 }"
-        @tap="handleOperation(3)"
         >筛选 <text class="iconfont icon-arrow-right"></text
       ></view>
-      <view class="staff" :class="{ active: mask === 4 }" @tap="selectStaff"
+      <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
         >员工 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
-      <view class="type-container" v-show="mask === 1" @tap.stop="">
-        <view>白</view>
-        <view>红</view>
-        <view>黄</view>
-        <view>绿</view>
-        <view>蓝</view>
-      </view>
-      <view class="type-container select-time" v-show="mask === 2">
-        <view>本周</view>
-        <view>上周</view>
-        <view>本月</view>
-        <view>上月</view>
-        <view>本季</view>
-        <view>上季</view>
-        <view>本年</view>
-        <view>上年</view>
-      </view>
-      <view class="sort-container" v-show="mask === 3" @tap.stop="">
+      <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
-            信息来源
+            收支方式
           </view>
           <view class="time-select-list">
             <view
               class="time-select-item"
-              :class="{ selected: selectedId.includes(item.id) }"
+              :class="{ selected: selectedId === item.id }"
               v-for="item in dateRangeList"
               :key="item.id"
               @tap.stop="selectedItem(item)"
+              >{{ item.label }}</view
+            >
+          </view>
+        </view>
+        <view class="time-select">
+          <view class="time-select-label">
+            记录状态
+          </view>
+          <view class="time-select-list">
+            <view
+              class="time-select-item"
+              :class="{ selected: recordStatusIndex === item.id }"
+              v-for="item in recordStatus"
+              :key="item.id"
+              @tap.stop="recordStatusIndex = item.id"
+              >{{ item.label }}</view
+            >
+          </view>
+        </view>
+        <view class="time-select">
+          <view class="time-select-label">
+            财务确认
+          </view>
+          <view class="time-select-list">
+            <view
+              class="time-select-item"
+              :class="{ selected: financeConfirmIndex === item.id }"
+              v-for="item in financeConfirm"
+              :key="item.id"
+              @tap.stop="financeConfirmIndex = item.id"
               >{{ item.label }}</view
             >
           </view>
@@ -81,49 +82,35 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <view
-          class="item"
-          :class="{ textColor: item.bgColor !== '#ffffff' }"
-          v-for="item in listData"
-          :key="item.id"
-          :style="'background-color: ' + item.bgColor"
-        >
+        <view class="item" v-for="item in listData" :key="item.id">
           <view class="item-right">
             <view class="item-right-top">
               <view>
                 <text>{{ item.cusName }} ({{ item.cusId }})</text>
-                <picker
-                  class="picker-status"
-                  :value="statusIndex"
-                  :range="statusArr"
-                  @change="changeStatus"
-                >
-                  <text>{{ statusArr[statusIndex] }}</text>
-                  <text class="iconfont icon-bianji"></text>
-                </picker>
               </view>
-              <view class="bank-tag"
-                >银行</view
-              >
+              <view>协议编号：DY110</view>
             </view>
             <view class="item-right-center">
-              <text>营销经理：{{ item.manageName }}</text>
-              <text>产品：新一代</text>
+              <text>收支人员：张三</text>
+              <text>定金：500</text>
             </view>
             <view class="item-right-center">
-              <text>贷款金额：{{ item.manageName }}</text>
-              <text>2020-03-04/<text style="color:red;">放款日期</text></text>
+              <text>退款金额：500</text>
+              <text>收支时间：2020-03-03</text>
+            </view>
+            <view class="item-right-center">
+              <text>录入人员：李四</text>
+              <text>状态：退定金</text>
             </view>
             <view class="item-right-bottom">
-              <text>详情：{{ item.follow }}</text>
+              <view class="btn-group">
+                <button size="mini" class="btn-success">财务确认</button>
+                <button size="mini" class="btn-primary">借款</button>
+                <button size="mini" class="btn-info">退定</button>
+                <button size="mini" class="btn-danger">作废</button>
+              </view>
             </view>
-          </view>
-          <view class="item-bottom">
-            <view>2020-03-03/<text style="color:red;">签单日期</text></view>
-            <view class="btn-group"
-              ><button size="mini" @tap="addFollow"><text class="iconfont icon-plus"></text> 跟进</button
-              ><button size="mini">颜色</button></view
-            >
+
           </view>
         </view>
 
@@ -141,13 +128,6 @@
       :linkList="linkList"
       themeColor="#007aff"
     ></w-picker>
-    <w-picker
-      mode="selector"
-      @confirm="onConfirmColor"
-      ref="selector"
-      :selectList="bgColor"
-      themeColor="#007aff"
-    ></w-picker>
   </view>
 </template>
 
@@ -159,120 +139,100 @@ export default {
   },
   data() {
     return {
-      statusArr: [
-        "进件中",
-        "换方案",
-        "需预约进件",
-        "需沟通",
-        "等征信",
-        "批核待签约",
-        "待放款",
-        "已放款",
-        "暂停",
-        "无方案",
-        "退件",
-        "推迟安排"
-      ],
-      statusIndex: 0,
+      startDateVal: null,
+      endDateVal: null,
       isLoading: false,
       loadingText: "加载更多...",
-      bgColor: [
-        { label: "红", value: "#9b2a2a" },
-        { label: "绿", value: "#6b8e22" },
-        { label: "黄", value: "#ffa500" },
-        { label: "蓝", value: "#4169ff" },
-        { label: "白", value: "#ffffff" }
-      ],
       listData: [
         {
           id: 1,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         }
       ],
       mask: false,
@@ -313,71 +273,112 @@ export default {
       dateRangeList: [
         {
           id: 1,
-          label: "网络渠道"
+          label: "现金"
         },
         {
           id: 2,
-          label: "广告渠道"
+          label: "支付宝"
         },
         {
           id: 3,
-          label: "热线直呼"
+          label: "微信"
         },
         {
           id: 4,
-          label: "市场推广"
+          label: "网银"
         },
         {
           id: 5,
-          label: "其他渠道"
-        },
-        {
-          id: 6,
-          label: "客户转介绍"
+          label: "代扣"
         }
       ],
-      selectedId: [],
-      grabArr: []
+      selectedId: "",
+      recordStatus: [
+        {
+          id: 1,
+          label: "正常"
+        },
+        {
+          id: 2,
+          label: "作废"
+        },
+        {
+          id: 3,
+          label: "退定"
+        }
+      ],
+      recordStatusIndex: "",
+      financeConfirm: [
+        {
+          id: 1,
+          label: "未确认"
+        },
+        {
+          id: 2,
+          label: "通过"
+        }
+      ],
+      financeConfirmIndex: ''
     };
   },
-  onLoad() {
-    this.listData.forEach(item => {
-      var bgColor = this.bgColor[
-        Math.floor(Math.random() * this.bgColor.length)
-      ].value;
-      this.$set(item, "bgColor", bgColor);
-    });
+  computed: {
+    startDate() {
+      return this.getDate("start");
+    },
+    endDate() {
+      return this.getDate("end");
+    }
   },
+  onLoad() {},
   methods: {
-    addFollow() {
+    clickItem() {
       uni.navigateTo({
-        url: '/pages/client/writeFollow/writeFollow'
-      })
-    },
-    changeStatus(e) {
-      this.statusIndex = e.detail.value
-    },
-    onConfirmColor(e) {
-      console.log(e);
-      console.log(this.grabArr);
-      this.listData.forEach(item => {
-        if (this.grabArr.includes(item.cusId)) {
-          item.bgColor = e.checkArr.value;
-        }
+        url: "/pages/workBench/yingxiao/sign/detail/detail"
       });
     },
-    settingColor() {
-      if (this.grabArr.length) {
-        console.log(this.grabArr);
-        this.$refs.selector.show();
-      } else {
+    bindStartDateChange: function(e) {
+      console.log(e.target.value);
+      if (this.timeStr(e.target.value) > this.timeStr(this.endDateVal)) {
         uni.showToast({
-          icon: "none",
-          title: "请先选择客户"
+          title: "开始时间不能大于结束时间",
+          icon: "none"
         });
+        return;
+      }
+      this.startDateVal = e.target.value;
+    },
+    bindEndDateChange: function(e) {
+      console.log(e.target.value);
+      if (this.timeStr(e.target.value) < this.timeStr(this.startDateVal)) {
+        uni.showToast({
+          title: "开始时间不能大于结束时间",
+          icon: "none"
+        });
+        return;
+      }
+      this.endDateVal = e.target.value;
+    },
+    timeStr(data) {
+      console.log(data);
+      if (data) {
+        return new Date(data.split("-").join("/")).getTime();
       }
     },
+    getDate(type) {
+      const date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
 
+      if (type === "start") {
+        year = year - 10; // 时间范围限制
+      } else if (type === "end") {
+        year = year + 10;
+      }
+      month = month > 9 ? month : "0" + month;
+      day = day > 9 ? day : "0" + day;
+      return `${year}-${month}-${day}`;
+    },
 
     loadMore(e) {
       setTimeout(() => {
@@ -391,113 +392,104 @@ export default {
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
+
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 2,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 3,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 4,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 5,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 6,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 7,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 8,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 9,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         },
         {
           id: 10,
           cusName: "胡德兵",
           cusId: "3837",
           phone: "1388889999",
-          type: "潜在",
+          type: "待审核",
           manageName: "张三",
-          follow: "最后一次跟进记录"
+          follow: "2020-03-02"
         }
       ];
-      data.forEach(item => {
-        var bgColor = this.bgColor[
-          Math.floor(Math.random() * this.bgColor.length)
-        ].value;
-        this.$set(item, "bgColor", bgColor);
-      });
+
       this.listData = this.listData.concat(data);
     },
     filterConfirm() {},
     filterReset() {
-      this.selectedId = [];
+      this.selectedId = "";
+      this.recordStatusIndex = '';
+      this.financeConfirmIndex = ''
     },
     selectedItem(item) {
-      console.log(this.selectedId.includes(item.id));
-      if (this.selectedId.includes(item.id)) {
-        console.log("inclues");
-        var index = this.selectedId.indexOf(item);
-        this.selectedId.splice(index, 1);
-      } else {
-        this.selectedId.push(item.id);
-      }
+      this.selectedId = item.id;
     },
     // 筛选员工
     selectStaff() {
@@ -533,19 +525,14 @@ export default {
   width: 100%;
   overflow: hidden;
 }
+
 .item {
   display: flex;
-  flex-direction: column;
-  /* align-items: center; */
+  flex-direction: row;
+  align-items: center;
   padding: 20upx 30upx;
   background-color: #ffffff;
   position: relative;
-}
-.item-bottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  
 }
 
 .item::after {
@@ -658,7 +645,7 @@ export default {
 }
 
 .time-select-label {
-  line-height: 80upx;
+  line-height: 60upx;
   flex-shrink: 0;
   font-size: 28upx;
   color: #999999;
@@ -669,13 +656,15 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-bottom: 20upx;
 }
 
 .time-select-item {
-  width: 150upx;
-  height: 64upx;
-  line-height: 64upx;
-  margin: 15upx 20upx;
+  /* width: 150upx; */
+  /* height: 64upx; */
+  /* line-height: 64upx; */
+  padding: 10upx 30upx;
+  margin: 10upx;
   background-color: #f4f4f4;
   border-radius: 10upx;
   color: #666666;
@@ -720,33 +709,20 @@ export default {
   /* margin-left: 20upx; */
   font-size: 24upx;
 }
-.item.textColor {
-  color: #ffffff;
+
+.picker-data-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
-.picker-status {
-  display: inline-block;
+.cus-type {
   margin-left: 20upx;
   padding: 4upx 10upx;
   font-size: 20upx;
   background-color: #19aa8d;
   border-radius: 8upx;
   color: #fff;
-}
-.picker-status .icon-bianji {
-  margin-left: 10upx;
-  font-size: 24upx;
-}
-.btn-group .iconfont{
-  font-size: 24upx;
-}
-.btn-group button {
-  margin-left: 10upx;
-  font-size: 24upx;
-}
-.bank-tag {
-  padding: 0 20upx;
-  background-color: greenyellow;
-  color: green;
-  font-size: 28upx;
 }
 </style>

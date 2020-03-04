@@ -251,7 +251,9 @@ export default {
     selectPerson() {
       this.$minApi.getZuodanrenyuan().then(res => {
         this.personList = res.data
+
         setTimeout(() => {
+          console.log(JSON.stringify(this.personList))
           this.$refs.person.show();
           
         }, 50);

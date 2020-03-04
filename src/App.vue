@@ -21,6 +21,7 @@
 	/*每个页面公共css */
 	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 	@import './common/uni.css';
+	@import './common/common.css';
 	/* 引入 iconfont 8*/
 	@import 'https://at.alicdn.com/t/font_1631979_p6xtp6df3r.css';
 	/* 引入动画库 */

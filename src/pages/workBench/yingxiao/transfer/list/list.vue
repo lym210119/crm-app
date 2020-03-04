@@ -10,7 +10,7 @@
       <view
         class="status"
         :class="{ active: mask === 2 }"
-        @tap="handleOperation(2)"
+        @tap="selectStaff"
         >中心/部门 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
@@ -38,7 +38,7 @@
                   <text class="cus-type">{{ item.type }}</text>
                 </view>
                 <view style="font-size: 24upx;"
-                  >登录账号：guwen001</view
+                  >剩余<text style="color: red">50</text>条</view
                 >
               </view>
               <view class="item-right-center">
