@@ -21,5 +21,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 git push -f git@gitee.com:style65/crm-app.git master:gh-pages
+git push -f git@e.coding.net:style65/crm-app/crm-app.git master:gh-pages
+
 
 cd -
