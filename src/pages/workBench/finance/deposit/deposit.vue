@@ -104,6 +104,7 @@
             </view>
             <view class="item-right-bottom">
               <view class="btn-group">
+                未确认
                 <button size="mini" class="btn-success">财务确认</button>
                 <button size="mini" class="btn-primary">借款</button>
                 <button size="mini" class="btn-info">退定</button>
