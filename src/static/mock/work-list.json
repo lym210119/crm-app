@@ -163,7 +163,7 @@
 				"id": "5001",
 				"icon": "icon-huohouliebiao",
 				"text": "贷后列表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/afterLoan/list/list"
 			}, {
 				"id": "5002",
 				"icon": "icon-huifangjilu1",

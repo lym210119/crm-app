@@ -545,6 +545,31 @@
       }
     },
     {
+      "path": "pages/workBench/afterLoan/list/list",
+      "style": {
+        "navigationBarTitleText": "贷后列表",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
