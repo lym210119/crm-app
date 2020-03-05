@@ -470,6 +470,81 @@
       }
     },
     {
+      "path": "pages/workBench/finance/checkout/checkout",
+      "style": {
+        "navigationBarTitleText": "结算管理",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/finance/reimbursement/reimbursement",
+      "style": {
+        "navigationBarTitleText": "做单报销",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/finance/reimbursementList/reimbursementList",
+      "style": {
+        "navigationBarTitleText": "报销列表",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/finance/statistics/statistics",
+      "style": {
+        "navigationBarTitleText": "财务业绩"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

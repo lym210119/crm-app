@@ -137,22 +137,22 @@
 				"id": "4003",
 				"icon": "icon-jiesuanguanli",
 				"text": "结算管理",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/finance/checkout/checkout"
 			}, {
 				"id": "4004",
 				"icon": "icon-zuodanbaoxiao",
 				"text": "做单报销",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/finance/reimbursement/reimbursement"
 			}, {
 				"id": "4005",
 				"icon": "icon-baoxiaoliebiao",
 				"text": "报销列表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/finance/reimbursementList/reimbursementList"
 			}, {
 				"id": "4006",
 				"icon": "icon-caiwuyeji",
 				"text": "财务业绩",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/finance/statistics/statistics"
 			}
 		]
 	}, {
