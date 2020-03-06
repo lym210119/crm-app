@@ -168,17 +168,17 @@
 				"id": "5002",
 				"icon": "icon-huifangjilu1",
 				"text": "回访记录",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/afterLoan/returning/returning"
 			}, {
 				"id": "5003",
 				"icon": "icon-huifangtongji",
 				"text": "回访统计",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/afterLoan/returnStat/returnStat"
 			}, {
 				"id": "5004",
 				"icon": "icon-manyidu",
 				"text": "满意度",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/afterLoan/satisfied/satisfied"
 			}
 		]
 	}, {
@@ -189,17 +189,17 @@
 				"id": "6001",
 				"icon": "icon-fabugonggao1",
 				"text": "发布公告",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/annouce/annouce"
 			}, {
 				"id": "6002",
 				"icon": "icon-guanligonggao1",
 				"text": "管理公告",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/gglist/gglist"
 			}, {
 				"id": "6003",
 				"icon": "icon-gonggaoliebiao",
 				"text": "公告列表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/gglist/gglist"
 			}, {
 				"id": "6004",
 				"icon": "icon-xinzengyuangong",

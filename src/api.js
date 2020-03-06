@@ -44,6 +44,10 @@ export default {
     // 做单人员
     getZuodanrenyuan() {
       return minRequest.get('/static/mock/zuodanrenyuan.json')
+    },
+    // 回访统计
+    getReturnStat() {
+      return minRequest.get('/static/mock/ucharts-pie.json')
     }
   }
 }

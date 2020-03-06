@@ -142,19 +142,19 @@
 	},
 	"Ring": {
 		"series": [{
-			"name": "一班",
+			"name": "无",
 			"data": 50
 		}, {
-			"name": "二班",
+			"name": "较差",
 			"data": 30
 		}, {
-			"name": "三班",
+			"name": "一般",
 			"data": 20
 		}, {
-			"name": "四班",
+			"name": "满意",
 			"data": 18
 		}, {
-			"name": "五班",
+			"name": "非常满意",
 			"data": 8
 		}]
 	},

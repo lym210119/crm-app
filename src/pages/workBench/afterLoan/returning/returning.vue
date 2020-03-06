@@ -11,18 +11,13 @@
       <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
         >营销人员 <text class="iconfont icon-arrow-right"></text
       ></view>
-      <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >做单人员 <text class="iconfont icon-arrow-right"></text
-      ></view>
-      <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >资方 <text class="iconfont icon-arrow-right"></text
-      ></view>
+
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
-            信息来源
+            回访类型
           </view>
           <view class="time-select-list">
             <view
@@ -38,19 +33,19 @@
 
         <view class="time-select">
           <view class="time-select-label">
-            签单时间
+            回访时间
           </view>
           <view class="time-select-list">
             <view class="picker-data-container">
               <picker
                 mode="date"
-                :value="qdStartDateVal"
+                :value="hfStartDateVal"
                 :start="startDate"
                 :end="endDate"
-                @change="bindStartDateChange($event, 'qd')"
+                @change="bindStartDateChange($event, 'hf')"
               >
                 <view class="uni-input">{{
-                  qdStartDateVal ? qdStartDateVal : "开始时间"
+                  hfStartDateVal ? hfStartDateVal : "开始时间"
                 }}</view>
               </picker>
               <view class="">
@@ -58,47 +53,13 @@
               </view>
               <picker
                 mode="date"
-                :value="qdEndDateVal"
+                :value="hfEndDateVal"
                 :start="startDate"
                 :end="endDate"
-                @change="bindEndDateChange($event, 'qd')"
+                @change="bindEndDateChange($event, 'hf')"
               >
                 <view class="uni-input">{{
-                  qdEndDateVal ? qdEndDateVal : "结束时间"
-                }}</view>
-              </picker>
-            </view>
-          </view>
-        </view>
-        <view class="time-select">
-          <view class="time-select-label">
-            放款时间
-          </view>
-          <view class="time-select-list">
-            <view class="picker-data-container">
-              <picker
-                mode="date"
-                :value="fkStartDateVal"
-                :start="startDate"
-                :end="endDate"
-                @change="bindStartDateChange($event, 'fk')"
-              >
-                <view class="uni-input">{{
-                  fkStartDateVal ? fkStartDateVal : "开始时间"
-                }}</view>
-              </picker>
-              <view class="">
-                --
-              </view>
-              <picker
-                mode="date"
-                :value="fkEndDateVal"
-                :start="startDate"
-                :end="endDate"
-                @change="bindEndDateChange($event, 'fk')"
-              >
-                <view class="uni-input">{{
-                  fkEndDateVal ? fkEndDateVal : "结束时间"
+                  hfEndDateVal ? hfEndDateVal : "结束时间"
                 }}</view>
               </picker>
             </view>
@@ -133,27 +94,16 @@
               <view>
                 <text>{{ item.cusName }} ({{ item.cusId }})</text>
               </view>
-              <view>协议编号：DY110</view>
+              <view>回访类型：节日回访</view>
             </view>
             <view class="item-right-center">
-              <text>贷款金额：5000</text>
+              <text>回访人员：张三</text>
               <text
-                >放款金额：4000</text
+                >回访时间：2020-01-13</text
               >
             </view>
-            <view class="item-right-center">
-              <text>产品：银行-建设银行-建设贷</text>
-              <text>营销经理：张三</text>
-            </view>
-            <view class="item-right-center">
-              <text>做单经理：李四</text>
-              <text>状态：未回访 <text class="btn-confirm">已回访</text></text>
-            </view>
             <view class="item-right-bottom">
-              <view class="btn-group">
-                <button class="btn-primary" size="mini" >回访</button>
-                <button class="btn-info" size="mini">还款计划</button>
-                </view>
+              <text>回访内容：回访内容回访内容回访内容回访内容回访内容回访内容</text>
             </view>
           </view>
         </view>
@@ -186,34 +136,32 @@ export default {
       dateRangeList: [
         {
           id: 1,
-          label: "网络渠道"
+          label: "辅助销售"
         },
         {
           id: 2,
-          label: "广告渠道"
+          label: "签单回访"
         },
         {
           id: 3,
-          label: "热线直呼"
+          label: "放款回访"
         },
         {
           id: 4,
-          label: "市场推广"
+          label: "节日回访"
         },
         {
           id: 5,
-          label: "其他渠道"
+          label: "活动推荐"
         },
         {
           id: 6,
-          label: "客户转介绍"
+          label: "退单原因"
         }
       ],
       selectedId: [],
-      qdStartDateVal: null,
-      qdEndDateVal: null,
-      fkStartDateVal: null,
-      fkEndDateVal: null,
+      hfStartDateVal: null,
+      hfEndDateVal: null,
       isLoading: false,
       loadingText: "加载更多...",
       listData: [
@@ -365,14 +313,9 @@ export default {
         this.selectedId.push(item.id);
       }
     },
-    // clickItem() {
-    //   uni.navigateTo({
-    //     url: "/pages/workBench/yingxiao/sign/detail/detail"
-    //   });
-    // },
     bindStartDateChange: function(e, type) {
       console.log(e.target.value);
-      var endVal = type === "qd" ? this.qdEndDateVal : this.fkEndDateVal;
+      var endVal = type === "hf" ? this.hfEndDateVal : this.fkEndDateVal;
       if (this.timeStr(e.target.value) > this.timeStr(endVal)) {
         uni.showToast({
           title: "开始时间不能大于结束时间",
@@ -380,15 +323,15 @@ export default {
         });
         return;
       }
-      if (type === "qd") {
-        this.qdStartDateVal = e.target.value;
+      if (type === "hf") {
+        this.hfStartDateVal = e.target.value;
       } else {
         this.fkStartDateVal = e.target.value;
       }
     },
     bindEndDateChange: function(e, type) {
       console.log(e.target.value);
-      var startVal = type === "qd" ? this.qdStartDateVal : this.fkStartDateVal;
+      var startVal = type === "hf" ? this.hfStartDateVal : this.fkStartDateVal;
       if (this.timeStr(e.target.value) < this.timeStr(startVal)) {
         uni.showToast({
           title: "开始时间不能大于结束时间",
@@ -396,8 +339,8 @@ export default {
         });
         return;
       }
-      if (type === "qd") {
-        this.qdEndDateVal = e.target.value;
+      if (type === "hf") {
+        this.hfEndDateVal = e.target.value;
       } else {
         this.fkEndDateVal = e.target.value;
       }
@@ -528,10 +471,8 @@ export default {
     },
     filterConfirm() {},
     filterReset() {
-      this.qdStartDateVal = null;
-      this.qdEndDateVal = null;
-      this.fkStartDateVal = null;
-      this.fkEndDateVal = null;
+      this.hfStartDateVal = null;
+      this.hfEndDateVal = null;
       this.selectedId = []
     },
 

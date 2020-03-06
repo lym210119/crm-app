@@ -570,6 +570,80 @@
       }
     },
     {
+      "path": "pages/workBench/afterLoan/returning/returning",
+      "style": {
+        "navigationBarTitleText": "回访记录",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入客户姓名或手机号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/afterLoan/returnStat/returnStat",
+      "style": {
+        "navigationBarTitleText": "回访统计"
+      }
+    },
+    {
+      "path": "pages/workBench/afterLoan/satisfied/satisfied",
+      "style": {
+        "navigationBarTitleText": "满意度"
+      }
+    },
+    {
+      "path": "pages/workBench/hr/annouce/annouce",
+      "style": {
+        "navigationBarTitleText": "发布公告"
+      }
+    },
+    {
+      "path": "pages/workBench/hr/gglist/gglist",
+      "style": {
+        "navigationBarTitleText": "公告管理",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入公告标题",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/hr/ggdetail/ggdetail",
+      "style": {
+        "navigationBarTitleText": "公告详情"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
