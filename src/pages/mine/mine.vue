@@ -217,7 +217,7 @@ export default {
 }
 .header .container {
   margin-top: -90upx;
-  padding: 0 30upx;
+  padding: 0 20upx;
 }
 .user-wrap,
 .qrcode-wrap,
@@ -229,7 +229,7 @@ export default {
   margin-bottom: 10upx;
   background-color: #ffffff;
   box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
-    0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    0 3px -1px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
 }
 .user-wrap .avatar {
   width: 136upx;
