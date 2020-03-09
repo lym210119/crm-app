@@ -644,6 +644,25 @@
       }
     },
     {
+      "path": "pages/workBench/hr/addStaff/addStaff",
+      "style": {
+        "navigationBarTitleText": "新增员工",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

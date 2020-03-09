@@ -204,7 +204,7 @@
 				"id": "6004",
 				"icon": "icon-xinzengyuangong",
 				"text": "新增员工",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/addStaff/addStaff"
 			}, {
 				"id": "6005",
 				"icon": "icon-yuangongdangan",

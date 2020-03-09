@@ -48,6 +48,10 @@ export default {
     // 回访统计
     getReturnStat() {
       return minRequest.get('/static/mock/ucharts-pie.json')
+    },
+    // 新增员工 - 所属部门选择
+    getDepartment() {
+      return minRequest.get('/static/mock/department.json')
     }
   }
 }
