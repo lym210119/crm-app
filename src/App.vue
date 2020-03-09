@@ -23,7 +23,7 @@
 	@import './common/uni.css';
 	@import './common/common.css';
 	/* 引入 iconfont 8*/
-	@import 'https://at.alicdn.com/t/font_1631979_p6xtp6df3r.css';
+	@import 'https://at.alicdn.com/t/font_1631979_s13synxx7x.css';
 	/* 引入动画库 */
 	@import './common/animate.css';
 
