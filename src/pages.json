@@ -990,6 +990,17 @@
           "scrollIndicator": "none"
         }
       }
+    },
+    {
+      "path": "pages/login1/login1",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "app-plus": {
+          "titleNView": false,
+          "bounce": "none",
+          "scrollIndicator": "none"
+        }
+      }
     }
   ],
   "globalStyle": {
