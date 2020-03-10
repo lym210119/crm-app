@@ -129,6 +129,12 @@
 
     <script>
       $(function() {
+        window.addEventListener('hashchange', function(event) {
+            console.log(event);
+        })
+        if (location.href.indexOf('login') > -1) {
+          $('#side-move-area').hide()
+        }
         $('.call-status').on('click', function() {
           var activeLeftVal = $('#side-fab-bar').css('right')
           var right = activeLeftVal === '-150px' ? '0px' : '-150px';
