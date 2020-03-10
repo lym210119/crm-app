@@ -164,8 +164,19 @@ export default {
   components: {
     wPicker
   },
+  onLoad(opts) {
+    if (opts.type) {
+      this.title = "编辑员工";
+      } else {
+      this.title = "新增员工";
+    }
+    uni.setNavigationBarTitle({
+      title: this.title
+    });
+  },
   data() {
     return {
+      title: '新增员工',
       date: null,
       departmentValue: "",
       departmentLabel: "",

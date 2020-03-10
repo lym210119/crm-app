@@ -209,7 +209,7 @@
 				"id": "6005",
 				"icon": "icon-yuangongdangan",
 				"text": "员工档案",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/staffFiles/staffFiles"
 			}, {
 				"id": "6006",
 				"icon": "icon-renwufenpei",

@@ -663,6 +663,31 @@
       }
     },
     {
+      "path": "pages/workBench/hr/staffFiles/staffFiles",
+      "style": {
+        "navigationBarTitleText": "员工档案",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入员工姓名、账号或座席号",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
