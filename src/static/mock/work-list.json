@@ -214,7 +214,7 @@
 				"id": "6006",
 				"icon": "icon-renwufenpei",
 				"text": "任务分配",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/task/task"
 			}, {
 				"id": "6007",
 				"icon": "icon-tongguanshezhi",
