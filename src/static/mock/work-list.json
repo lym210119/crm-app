@@ -276,7 +276,7 @@
 				"id": "8001",
 				"icon": "icon-qiandantongji1",
 				"text": "签单统计",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/sign/sign"
 			}, {
 				"id": "8002",
 				"icon": "icon-zuodanyeji",

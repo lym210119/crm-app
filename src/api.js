@@ -52,6 +52,10 @@ export default {
     // 新增员工 - 所属部门选择
     getDepartment() {
       return minRequest.get('/static/mock/department.json')
+    },
+    // 签单统计
+    getSignChartData() {
+      return minRequest.get('/static/mock/ucharts-sign.json')
     }
   }
 }

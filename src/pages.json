@@ -896,6 +896,12 @@
       }
     },
     {
+      "path": "pages/workBench/stat/sign/sign",
+      "style": {
+        "navigationBarTitleText": "签单统计"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
