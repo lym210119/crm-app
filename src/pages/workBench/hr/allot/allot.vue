@@ -1,148 +1,107 @@
 <template>
-<!-- 任务分配详情 -->
+  <!-- 任务分配详情 -->
   <view class="task-allot-page">
     <scroll-view scroll-y="true" style="height:100%;">
       <form @submit="submit">
         <view class="list-item">
           <view class="item-label required">月份</view>
           <view class="item-value">
-            <input type="text" name="month" placeholder="请选择员工姓名" />
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">登录账号</view>
-          <view class="item-value">
-            <input type="text" name="account" placeholder="请输入登录账号" />
-          </view>
-        </view>
-        <input type="text" name="text" id="" value="text" v-if="false">
-        <view class="list-item">
-          <view class="item-label required">登录密码</view>
-          <view class="item-value">
-            <input type="text" name="password" placeholder="请输入登录密码" />
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">联系电话</view>
-          <view class="item-value">
-            <input type="number" name="phone" placeholder="请输入联系电话" />
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">月份</view>
-          <view class="item-value">
             <input
               v-show="false"
               type="text"
-              name="date"
-              :value="date"
+              name="month"
+              :value="monthArr[monthIndex]"
             />
             <picker
-              :value="date"
-              :start="startDate"
-              :end="endDate"
-              @change="bindDateChange"
+              :value="monthIndex"
+              :range="monthArr"
+              @change="bindMonthChange"
             >
               <!-- <view class="uni-input">{{ date }}</view> -->
-              <text :class="{ 'text-gray': !date }">{{
-                date ? date : "请选择月份"
+              <text :class="{ 'text-gray': monthIndex === null }">{{
+                monthIndex === null ? "请选择月份" : monthArr[monthIndex]
               }}</text>
             </picker>
           </view>
+          <text class="item-unit">月</text>
         </view>
-        <view class="list-item">
-          <view class="item-label">Y3微信号</view>
-          <view class="item-value">
-            <input type="text" name="wechat" placeholder="请输入Y3微信号" />
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">所属部门</view>
-          <view class="item-value" @tap="getDepartment">
-            <input
-              v-show="false"
-              type="text"
-              name="department"
-              :value="departmentValue"
-            />
-            <text :class="{ 'text-gray': !departmentLabel }">{{
-              departmentLabel ? departmentLabel : "请选择所属部门"
-            }}</text>
-          </view>
-          <!-- <text class="iconfont icon-arrow-right1"></text> -->
-        </view>
-        <view class="list-item">
-          <view class="item-label required">角色权限</view>
-          <view class="item-value">
-            <input
-              v-show="false"
-              type="text"
-              name="auth"
-              :value="authList[authIndex]"
-            />
-            <picker
-              :range="authList"
-              :value="authIndex"
-              @change="bindChangeAuth"
-            >
-              <text :class="{ 'text-gray': authIndex === null }">{{
-                authIndex === null ? "请选择角色权限" : authList[authIndex]
-              }}</text>
-            </picker>
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">权限分类</view>
-          <view class="item-value">
-            <input
-              v-show="false"
-              type="text"
-              name="authType"
-              :value="authTypeList[authTypeIndex]"
-            />
-            <picker
-              :range="authTypeList"
-              :value="authTypeIndex"
-              @change="bindChangeAuthType"
-            >
-              <text :class="{ 'text-gray': authTypeIndex === null }">{{
-                authTypeIndex === null
-                  ? "请选择权限分类"
-                  : authTypeList[authTypeIndex]
-              }}</text>
-            </picker>
-          </view>
-        </view>
-        <view class="list-item">
-          <view class="item-label required">客户电话是否可见</view>
-          <view class="item-value">
+
+        <!-- 营销任务 -->
+        <block>
+          <view class="list-item">
+            <view class="item-label required">日通话时长</view>
             <view class="item-value">
               <input
-                v-show="false"
                 type="text"
-                name="phoneVisible"
-                :value="phoneVisible[phoneVisibleIndex]"
+                name="dayCallDuration"
+                placeholder="请输入日通话时长"
               />
-              <picker
-                :range="phoneVisible"
-                :value="phoneVisibleIndex"
-                @change="bindChangePhoneVisible"
-              >
-                <text :class="{ 'text-gray': phoneVisibleIndex === null }">{{
-                  phoneVisibleIndex === null
-                    ? "请选择客户电话是否可见"
-                    : phoneVisible[phoneVisibleIndex]
-                }}</text>
-              </picker>
             </view>
+            <text class="item-unit">分</text>
           </view>
-        </view>
-        <view class="list-textarea">
-          <view class="item-label">备注</view>
+          <view class="list-item">
+            <view class="item-label required">月上门数</view>
+            <view class="item-value">
+              <input
+                type="text"
+                name="monthVisitNum"
+                placeholder="请输入月上门数"
+              />
+            </view>
+            <text class="item-unit">个</text>
+          </view>
+          <view class="list-item">
+            <view class="item-label required">月签单金额</view>
+            <view class="item-value">
+              <input
+                type="text"
+                name="monthSignMoney"
+                placeholder="请输入月签单金额"
+              />
+            </view>
+            <text class="item-unit">万元</text>
+          </view>
+        </block>
+
+        <!-- 渠道任务 -->
+        <block>
+        <view class="list-item">
+          <view class="item-label required">月放款数</view>
           <view class="item-value">
-            <textarea name="remark" placeholder="请输入备注" />
+            <input
+              type="text"
+              name="monthSignNum"
+              placeholder="请输入月放款数"
+            />
           </view>
+          <text class="item-unit">笔</text>
         </view>
+        </block>
+
+
+        <view class="list-item">
+          <view class="item-label required">月放款金额</view>
+          <view class="item-value">
+            <input
+              type="text"
+              name="monthMakeLoanMoney"
+              placeholder="请输入月放款金额"
+            />
+          </view>
+          <text class="item-unit">万元</text>
+        </view>
+        <view class="list-item">
+          <view class="item-label required">月创收金额</view>
+          <view class="item-value">
+            <input
+              type="text"
+              name="monthIncomeMoney"
+              placeholder="请输入月创收金额"
+            />
+          </view>
+          <text class="item-unit">元</text>
+        </view>
+
         <button ref="submitBtn" form-type="submit"></button>
       </form>
       <w-picker
@@ -165,11 +124,10 @@ export default {
   components: {
     wPicker
   },
-  onLoad(opts) {
-
-  },
+  onLoad(opts) {},
   data() {
     return {
+      monthIndex: null,
       departmentValue: "",
       departmentLabel: "",
       departmentList: [],
@@ -195,13 +153,7 @@ export default {
   },
   computed: {
     monthArr() {
-      return [...Array(10)]
-    },
-    startDate() {
-      return this.getDate("start");
-    },
-    endDate() {
-      return this.getDate("end");
+      return Array.from(new Array(12).keys(), x => x + 1);
     }
   },
   onNavigationBarButtonTap(e) {
@@ -237,24 +189,9 @@ export default {
       this.departmentValue = e.checkValue.join(",");
       this.departmentLabel = e.checkArr.join(" | ");
     },
-    bindDateChange(e) {
+    bindMonthChange(e) {
       console.log(123);
-      this.date = e.target.value;
-    },
-    getDate(type) {
-      const date = new Date();
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-
-      if (type === "start") {
-        year = year - 60;
-      } else if (type === "end") {
-        year = year + 2;
-      }
-      month = month > 9 ? month : "0" + month;
-      day = day > 9 ? day : "0" + day;
-      return `${year}-${month}-${day}`;
+      this.monthIndex = e.target.value;
     }
   }
 };
@@ -287,6 +224,9 @@ export default {
 .item-value input {
   /* padding-right: 20upx; */
   text-align: right;
+}
+.item-unit {
+  margin-left: 10upx;
 }
 .text-gray {
   color: gray;

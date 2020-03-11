@@ -732,6 +732,88 @@
       }
     },
     {
+      "path": "pages/workBench/hr/assessmentSettings/list/list",
+      "style": {
+        "navigationBarTitleText": "通关设置",
+        "app-plus": {
+          "titleNView": {
+            "titleColor": "#fff",
+            "backgroundColor": "#19aa8d",
+            "buttons": [{
+              // "fontSrc": "/static/uni.ttf",
+              "text": "搜索",
+              "width": "44px",
+              "fontSize": "14px",
+              "color": "#fff"
+            }],
+            "searchInput": {
+              "backgroundColor": "#fff",
+              "borderRadius": "6px",
+              "placeholder": "请输入通关项名称",
+              "autoFocus": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/hr/assessmentSettings/edit/edit",
+      "style": {
+        "navigationBarTitleText": "修改通关项",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/knowledge/zifang/list/list",
+      "style": {
+        "navigationBarTitleText": "资方配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/knowledge/zifang/add/add",
+      "style": {
+        "navigationBarTitleText": "添加资方",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

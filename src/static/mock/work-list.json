@@ -219,7 +219,7 @@
 				"id": "6007",
 				"icon": "icon-tongguanshezhi",
 				"text": "通关设置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/hr/assessmentSettings/list/list"
 			}, {
 				"id": "6008",
 				"icon": "icon-tongguanshenpi",
@@ -245,7 +245,7 @@
 				"id": "7001",
 				"icon": "icon-zifangpeizhi",
 				"text": "资方配置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/knowledge/zifang/list/list"
 			}, {
 				"id": "7002",
 				"icon": "icon-chanpindagang",
