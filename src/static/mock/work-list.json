@@ -250,17 +250,22 @@
 				"id": "7002",
 				"icon": "icon-chanpindagang",
 				"text": "产品大纲",
-				"url": "/pages/client/client"
-			}, {
+				"url": "/pages/workBench/knowledge/product/list/list"
+			},{
 				"id": "7003",
-				"icon": "icon-zhishiguanli",
-				"text": "知识管理",
-				"url": "/pages/client/client"
+				"icon": "icon-chanpindagang",
+				"text": "添加产品",
+				"url": "/pages/workBench/knowledge/product/add/add"
 			}, {
 				"id": "7004",
+				"icon": "icon-zhishiguanli",
+				"text": "知识管理",
+				"url": "/pages/workBench/knowledge/know/list/list?type=manage"
+			}, {
+				"id": "7005",
 				"icon": "icon-zhishichaxun",
 				"text": "知识查询",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/knowledge/know/list/list"
 			}
 		]
 	}, {
