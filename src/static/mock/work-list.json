@@ -281,17 +281,17 @@
 				"id": "8002",
 				"icon": "icon-zuodanyeji",
 				"text": "做单业绩",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/doOrder/doOrder"
 			}, {
 				"id": "8003",
 				"icon": "icon-xiaoshouyeji",
 				"text": "营销业绩",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/marketing/marketing"
 			}, {
 				"id": "8004",
 				"icon": "icon-zifangfangkuan",
 				"text": "资方放款",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/zf/zf"
 			}, {
 				"id": "8005",
 				"icon": "icon-kehuleixing",

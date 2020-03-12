@@ -902,6 +902,24 @@
       }
     },
     {
+      "path": "pages/workBench/stat/doOrder/doOrder",
+      "style": {
+        "navigationBarTitleText": "做单业绩"
+      }
+    },
+    {
+      "path": "pages/workBench/stat/marketing/marketing",
+      "style": {
+        "navigationBarTitleText": "营销业绩"
+      }
+    },
+    {
+      "path": "pages/workBench/stat/zf/zf",
+      "style": {
+        "navigationBarTitleText": "资方放款"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

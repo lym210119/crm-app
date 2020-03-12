@@ -56,6 +56,14 @@ export default {
     // 签单统计
     getSignChartData() {
       return minRequest.get('/static/mock/ucharts-sign.json')
+    },
+    // 做单业绩
+    getDoOrderStat() {
+      return minRequest.get('/static/mock/stat-doOrder.json')
+    },
+    // 资方放款统计
+    getZifangStat() {
+      return minRequest.get('/static/mock/stat-zf.json')
     }
   }
 }
