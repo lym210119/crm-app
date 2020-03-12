@@ -350,6 +350,8 @@ export default {
       });
     },
     touchPie(e, id) {
+      console.log(123);
+      console.log(id);
       canvasObj[id].showToolTip(e, {
         format: function(item) {
           return item.name + ":" + item.data;
@@ -395,7 +397,7 @@ export default {
       return [Math.round(R * 255), Math.round(G * 255), Math.round(B * 255)];
     },
     // 获取HSL数组
-    getHslArray: function (length) {
+    getHslArray(length) {
       var HSL = [];
       var hslLength = length; // 获取数量
       for (var i = 0; i < hslLength; i++) {
@@ -406,20 +408,32 @@ export default {
           i--;
           continue; // 重新获取随机色
         }
-        ret[1] = 0.7 + (ret[1] * 0.2); // [0.7 - 0.9] 排除过灰颜色
-        ret[2] = 0.4 + (ret[2] * 0.4); // [0.4 - 0.8] 排除过亮过暗色
+        ret[1] = 0.7 + ret[1] * 0.2; // [0.7 - 0.9] 排除过灰颜色
+        ret[2] = 0.4 + ret[2] * 0.4; // [0.4 - 0.8] 排除过亮过暗色
 
         // 数据转化到小数点后两位
-        ret = ret.map(function (item) {
+        ret = ret.map(function(item) {
           return parseFloat(item.toFixed(2));
         });
-        var rgb = this.hslToRgb(...ret)
-        HSL.push('rgb(' + rgb.join(',') + ')');
-
+        var rgb = this.hslToRgb(...ret);
+        var hex = this.rgbToHex(rgb.join(','))
+        HSL.push(hex);
       }
       return HSL;
-    }
+    },
+    rgbToHex(rgb) {
+      // rgb(x, y, z)
+      var color = rgb.toString().match(/\d+/g); // 把 x,y,z 推送到 color 数组里
+      var hex = "#";
 
+      for (var i = 0; i < 3; i++) {
+        // 'Number.toString(16)' 是JS默认能实现转换成16进制数的方法.
+        // 'color[i]' 是数组，要转换成字符串.
+        // 如果结果是一位数，就在前面补零。例如： A变成0A
+        hex += ("0" + Number(color[i]).toString(16)).slice(-2);
+      }
+      return hex;
+    }
   }
 };
 </script>
