@@ -296,12 +296,12 @@
 				"id": "8005",
 				"icon": "icon-kehuleixing",
 				"text": "客户类型",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/cusNum/cusNum"
 			}, {
 				"id": "8006",
 				"icon": "icon-kehubiaoqian",
 				"text": "客户标签",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/tags/tags"
 			}, {
 				"id": "8007",
 				"icon": "icon-huoyuefenxi",

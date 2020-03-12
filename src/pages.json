@@ -920,6 +920,18 @@
       }
     },
     {
+      "path": "pages/workBench/stat/cusNum/cusNum",
+      "style": {
+        "navigationBarTitleText": "客户类型"
+      }
+    },
+    {
+      "path": "pages/workBench/stat/tags/tags",
+      "style": {
+        "navigationBarTitleText": "客户标签"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

@@ -64,6 +64,14 @@ export default {
     // 资方放款统计
     getZifangStat() {
       return minRequest.get('/static/mock/stat-zf.json')
+    },
+    // 客户类型统计
+    getCusnumStat() {
+      return minRequest.get('/static/mock/stat-cusnum.json')
+    },
+    // 客户类型统计
+    getCusTagsStat() {
+      return minRequest.get('/static/mock/stat-tags.json')
     }
   }
 }
