@@ -84,6 +84,14 @@ export default {
     // 活跃分析统计
     getStatCalldata() {
       return minRequest.get('/static/mock/stat-calldata.json')
+    },
+    // 活跃分析统计
+    getStatCallfx() {
+      return minRequest.get('/static/mock/stat-callfx.json')
+    },
+    // 活跃分析统计
+    getStatCallTop() {
+      return minRequest.get('/static/mock/stat-calltop.json')
     }
   }
 }

@@ -321,12 +321,12 @@
 				"id": "8010",
 				"icon": "icon-tonghuafenxi",
 				"text": "通话分析",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/callfx/callfx"
 			}, {
 				"id": "8011",
 				"icon": "icon-tonghuapaiming",
 				"text": "通话排名",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/callTop/callTop"
 			}
 		]
 	}, {
@@ -337,7 +337,7 @@
 				"id": "9001",
 				"icon": "icon-piliangdaoru",
 				"text": "批量导入",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/import/import"
 			}
 		]
 	}, {
@@ -348,12 +348,12 @@
 				"id": "10001",
 				"icon": "icon-wuxiaoshenhe",
 				"text": "无效审核",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/invalid/check/check"
 			}, {
 				"id": "10002",
 				"icon": "icon-wuxiaoliebiao",
 				"text": "无效列表",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/invalid/list/list"
 			}
 		]
 	}, {

@@ -1,24 +1,24 @@
-.btn-group .btn-primary {
+.btn-primary {
   background-color: #1ab394;
   color: #ffffff
 }
-.btn-group .btn-success {
+.btn-success {
   background-color: #1c84c6;
   color: #ffffff;
 }
-.btn-group .btn-warning {
+.btn-warning {
   background-color: #f8ac59;
   color: #ffffff;
 }
-.btn-group .btn-danger {
+.btn-danger {
   background-color: #ed5565;
   color: #ffffff;
 }
-.btn-group .btn-info {
+.btn-info {
   background-color: #23c6c8;
   color: #ffffff;
 }
-.btn-group button {
+button {
   margin-left: 10upx;
   font-size: 24upx;
   padding: 0 0.8em;

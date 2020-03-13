@@ -1,12 +1,7 @@
 <template>
+<!-- 无效列表 -->
   <view class="high-seas-page">
     <view class="filter-btn-group">
-      <view
-        class="type"
-        :class="{ active: mask === 1 }"
-        @tap="handleOperation(1)"
-        >客户类型 <text class="iconfont icon-arrow-right"></text
-      ></view>
       <view
         class="status"
         :class="{ active: mask === 2 }"
@@ -18,13 +13,7 @@
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
-      <view class="type-container" v-show="mask === 1" @tap.stop="">
-        <view>潜在</view>
-        <view>意向</view>
-        <view>需求</view>
-        <view>签单</view>
-        <view>放款</view>
-      </view>
+
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
@@ -39,6 +28,11 @@
               @tap.stop="selectedItem(item)"
               >{{ item.label }}</view
             >
+          </view>
+          <view class="time-select-label">是否跟进</view>
+          <view class="time-select-list">
+            <view class="time-select-item" :class="{ selected: selectedHasFollow === 1 }" @tap.stop="hasFollow(1)">是</view>
+            <view class="time-select-item" :class="{ selected: selectedHasFollow === 2}" @tap.stop="hasFollow(2)">否</view>
           </view>
         </view>
         <view class="filter-bottom">
@@ -55,31 +49,6 @@
           <button type="primary" size="mini" @tap="filterConfirm">确定</button>
         </view>
       </view>
-      <!-- <view class="filter-container" v-show="mask === 3">
-        <view class="filter-list">
-          <view class="filter-list-left">
-            <view class="current">
-              筛选场景
-            </view>
-          </view>
-          <view class="filter-list-right">
-            <view>全部客户</view>
-            <view>我负责的客户</view>
-            <view>下属负责的客户</view>
-            <view>我参与的客户</view>
-            <view>我关注的客户</view>
-            <view>重点客户</view>
-            <view>次重点客户</view>
-          </view>
-        </view>
-        <view class="filter-bottom">
-          <view style="color: #007AFF;">自定义筛选</view>
-          <view class="filter-btn-group">
-            <button type="primary" size="mini" plain="true">重置</button>
-            <button type="primary" size="mini">完成</button>
-          </view>
-        </view>
-      </view> -->
     </view>
     <view class="list-container">
       <scroll-view
@@ -88,30 +57,29 @@
         @scrolltolower="loadMore()"
         style="flex:1"
       >
-        <checkbox-group @change="changeCheckbox">
+        <!-- <checkbox-group @change="changeCheckbox"> -->
           <view class="item" v-for="item in listData" :key="item.id">
-            <label>
+            <!-- <label>
               <checkbox :value="item.cusId" :checked="item.checked" />
-            </label>
+            </label> -->
             <view class="item-right">
               <view class="item-right-top">
                 <view>
                   <text>{{ item.cusName }} ({{ item.cusId }})</text>
-                  <text class="cus-type">{{ item.type }}</text>
                 </view>
-                <view style="font-size: 24upx;">营销经理：{{ item.manageName }}</view>
+                <view style="font-size: 24upx;">跟进人：{{ item.manageName }}</view>
               </view>
               <view class="item-right-center">
+                <text>申请时间：{{ item.inputTime }}</text>
                 <text>信息来源：网络渠道</text>
-                <text>跟进时间：{{ item.inputTime }}</text>
               </view>
-              <view class="item-right-bottom">
-                <text v-if="item.follow">跟进记录：{{ item.follow }}</text>
-                <text v-else style="color: red;">请及时跟进</text>
+              <view class="item-right-center">
+                <text style="flex:1;">客户情况：{{ item.follow }}</text>
+                <button class="btn-primary" size="mini">恢复</button>
               </view>
             </view>
           </view>
-        </checkbox-group>
+        <!-- </checkbox-group> -->
 
         <view class="loading-more" v-if="isLoading || listData.length > 10">
           <text class="loading-more-text">{{ loadingText }}</text>
@@ -119,26 +87,18 @@
       </scroll-view>
     </view>
 
-    <view class="fixed-bottom">
+    <!-- <view class="fixed-bottom">
       <checkbox-group @change="changeAll" style="width: auto;">
         <label> <checkbox value="all" :checked="false" /> 全选 </label>
       </checkbox-group>
-      <view class="operation" style="flex:1">
-        <button type="primary" size="mini" @tap="handleGrab">
-          抓取
+      <view class="operation">
+        <button type="primary" size="mini" @tap="handlePass">
+          通过
         </button>
-        <button type="warn" size="mini" @tap="handleRemove">删除</button>
-        <button type="primary" size="mini" @tap="handleLunHu">轮呼</button>
-        <picker
-          style="line-height: 0;"
-          :range="array"
-          :value="index"
-          @change="selectLunHu"
-        >
-          <button type="primary" size="mini">随机轮呼</button>
-        </picker>
+        <button type="warn" size="mini" @tap="handleReject">驳回</button>
+  
       </view>
-    </view>
+    </view> -->
     <w-picker
       mode="linkage"
       :level="3"
@@ -324,16 +284,21 @@ export default {
       grabArr: [],
       mask: false,
       isLoading: false,
-      loadingText: "加载更多..."
+      loadingText: "加载更多...",
+      selectedHasFollow: 0
     };
   },
   methods: {
+    hasFollow(i) {
+      this.selectedHasFollow = i
+    },
     onConfirm() {},
     selectStaff() {
       this.$refs.linkage.show()
     },
     filterReset() {
       this.selectedId = [];
+      this.selectedHasFollow = 0;
     },
     filterConfirm() {},
     selectedItem(item) {
@@ -396,11 +361,11 @@ export default {
       console.log(this.grabArr);
     },
     // 抓取
-    handleGrab() {
+    handlePass() {
       if (this.grabArr.length) {
         uni.showModal({
           title: "提示",
-          content: "确定要把选中的客户抓取到自己的名下吗？",
+          content: "确定要把选中的客户通过为无效吗？",
           success: res => {
             if (res.confirm) {
             }
@@ -410,16 +375,16 @@ export default {
       } else {
         uni.showToast({
           icon: 'none',
-          title: '请选择需要抓取的客户'
+          title: '请选择需要通过的客户'
         })
       }
     },
     // 删除
-    handleRemove() {
+    handleReject() {
       if (this.grabArr.length) {
         uni.showModal({
           title: "提示",
-          content: "确定要把选中的客户删除吗？",
+          content: "确定要把选中的客户驳回吗？",
           success: res => {
             if (res.confirm) {
             }
@@ -428,7 +393,7 @@ export default {
       } else {
         uni.showToast({
           icon: 'none',
-          title: '请选择需要删除的客户'
+          title: '请选择需要驳回的客户'
         })
       }
 
@@ -733,7 +698,7 @@ export default {
 .fixed-bottom .operation button {
   padding: 0 1em;
   margin: 0;
-  /* margin-left: 20upx; */
+  margin-left: 20upx;
   font-size: 24upx;
 }
 .cus-type {

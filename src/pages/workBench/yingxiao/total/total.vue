@@ -350,7 +350,7 @@ export default {
       console.log(this.selectedId.includes(item.id));
       if (this.selectedId.includes(item.id)) {
         console.log("inclues");
-        var index = this.selectedId.indexOf(item);
+        var index = this.selectedId.indexOf(item.id);
         this.selectedId.splice(index, 1);
       } else {
         this.selectedId.push(item.id);

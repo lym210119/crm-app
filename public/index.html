@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/crm-app/static/favicon.ico">
     <title>
       <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -27,7 +28,7 @@
       href="<%= BASE_URL %>static/index.<%= VUE_APP_INDEX_CSS_HASH %>.css"
     />
 
-    <script src="https://cdn.bootcss.com/zepto/1.2.0/zepto.min.js"></script>
+    <script src="/crm-app/static/js/zepto.min.js"></script>
     <style>
       #side-move-area {
         position: absolute;
@@ -128,6 +129,7 @@
     </div>
 
     <script>
+
       $(function() {
         window.addEventListener('hashchange', function(event) {
             console.log(event);

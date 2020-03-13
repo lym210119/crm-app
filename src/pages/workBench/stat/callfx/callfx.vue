@@ -1,5 +1,5 @@
 <template>
-  <!-- 工作效率 -->
+  <!-- 通话分析 -->
   <view class="qiun-columns">
     <view class="filter-btn-group">
       <view
@@ -9,14 +9,44 @@
         >筛选 <text class="iconfont icon-arrow-right"></text
       ></view>
       <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >部门 <text class="iconfont icon-arrow-right"></text
+        >员工 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
-            时间(注：不选时默认时间段为当前月)
+            呼入/呼出
+          </view>
+          <view class="time-select-list">
+            <view
+              class="time-select-item"
+              :class="{ selected: callIndex === item.id }"
+              v-for="item in callType"
+              :key="item.id"
+              @tap.stop="callIndex = item.id"
+              >{{ item.label }}</view
+            >
+          </view>
+        </view>
+        <view class="time-select">
+          <view class="time-select-label">
+            通话时长
+          </view>
+          <view class="time-select-list">
+            <view
+              class="time-select-item"
+              :class="{ selected: callDurationIndex === item.id }"
+              v-for="item in callDuration"
+              :key="item.id"
+              @tap.stop="callDurationIndex = item.id"
+              >{{ item.label }}</view
+            >
+          </view>
+        </view>
+        <view class="time-select">
+          <view class="time-select-label">
+            时间
           </view>
           <view class="time-select-list">
             <view class="picker-data-container">
@@ -64,9 +94,26 @@
       </view>
     </view>
 
-    <!-- <view class="qiun-padding">
-      <view class="qiun-tip" @tap="changeData()">更新柱状图数据</view>
-    </view> -->
+
+    <view class="four-data">
+      <view class="data-item">
+        <view class="data-title">接通率</view>
+        <view class="data-title">38%</view>
+      </view>
+      <view class="data-item">
+        <view class="data-title">通话时间</view>
+        <view class="data-title">683 分钟</view>
+      </view>
+      <view class="data-item">
+        <view class="data-title">拨打次数</view>
+        <view class="data-title">1000</view>
+      </view>
+      <view class="data-item">
+        <view class="data-title">平均通话时长</view>
+        <view class="data-title">26.57 秒</view>
+      </view>
+    </view>
+
 
     <view class="qiun-charts">
       <!--#ifdef MP-ALIPAY -->
@@ -120,6 +167,44 @@ export default {
   },
   data() {
     return {
+      callIndex: '',
+      callType: [
+        {
+          id: 1,
+          label: "全部"
+        },
+        {
+          id: 2,
+          label: "呼入"
+        },
+        {
+          id: 3,
+          label: "呼出"
+        }
+      ],
+      callDurationIndex: '',
+      callDuration: [
+        {
+          id: 1,
+          label: "全部"
+        },
+        {
+          id: 2,
+          label: "1~30秒"
+        },
+        {
+          id: 3,
+          label: "31~60秒"
+        },
+        {
+          id: 4,
+          label: "60~180秒"
+        },
+        {
+          id: 5,
+          label: "180秒以上"
+        }
+      ],
       startDateVal: null,
       endDateVal: null,
       mask: false,
@@ -205,7 +290,10 @@ export default {
     },
     filterConfirm() {},
     filterReset() {
-      this.selectedId = [];
+      this.startDateVal = null
+      this.endDateVal = null
+      this.callIndex = '';
+      this.callDurationIndex = ''
     },
     bindStartDateChange: function(e) {
       console.log(e.target.value);
@@ -267,7 +355,7 @@ export default {
     },
     getServerData() {
       this.$minApi
-        .getStatWorkRate()
+        .getStatCallfx()
         .then(res => {
           // uni.hideLoading();
           console.log(res);
@@ -287,15 +375,16 @@ export default {
         series: []
       };
 
+      //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
       LineA.categories = data.LineA.categories;
+      //这里的series数据是后台做好的，如果您的数据没有和前面我注释掉的格式一样，请自行拼接数据
       LineA.series = data.LineA.series;
-      
       this.showLineA("canvasLineA", LineA);
     },
     changeData() {
       canvasObj["canvasLineA"].updateData({
-        series: _self.serverData.ColumnB.series,
-        categories: _self.serverData.ColumnB.categories
+        series: _self.serverData.LineA.series,
+        categories: _self.serverData.LineA.categories
       });
     },
     showLineA(canvasId, chartData) {
@@ -323,9 +412,9 @@ export default {
           disableGrid: false,
           type: "grid",
           gridType: "dash",
-          itemCount: 8,
-          // scrollShow: true,
-          // scrollAlign: "left"
+          itemCount: 4,
+          scrollShow: true,
+          scrollAlign: "left"
           //scrollBackgroundColor:'#F7F7FF',//可不填写，配合enableScroll图表拖拽功能使用，X轴滚动条背景颜色,默认为 #EFEBEF
           //scrollColor:'#DEE7F7',//可不填写，配合enableScroll图表拖拽功能使用，X轴滚动条颜色,默认为 #A6A6A6
         },
@@ -349,6 +438,7 @@ export default {
       });
     },
 
+
     touchLineA(e) {
       canvasObj["canvasLineA"].scrollStart(e);
     },
@@ -369,6 +459,15 @@ export default {
 </script>
 
 <style>
+.four-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10upx 30upx;
+  background-color: #ffffff;
+  text-align: center;
+}
 page {
   background: #f2f2f2;
   width: 750upx;

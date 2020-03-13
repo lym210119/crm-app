@@ -1,5 +1,5 @@
 <template>
-  <!-- 工作效率 -->
+  <!-- 通话排名 -->
   <view class="qiun-columns">
     <view class="filter-btn-group">
       <view
@@ -9,14 +9,14 @@
         >筛选 <text class="iconfont icon-arrow-right"></text
       ></view>
       <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >部门 <text class="iconfont icon-arrow-right"></text
+        >营销部门 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
       <view class="sort-container" v-show="mask === 2" @tap.stop="">
         <view class="time-select">
           <view class="time-select-label">
-            时间(注：不选时默认时间段为当前月)
+            时间
           </view>
           <view class="time-select-list">
             <view class="picker-data-container">
@@ -71,30 +71,22 @@
     <view class="qiun-charts">
       <!--#ifdef MP-ALIPAY -->
       <canvas
-        canvas-id="canvasLineA"
-        id="canvasLineA"
+        canvas-id="canvasColumn"
+        id="canvasColumn"
         class="charts"
         :width="cWidth * pixelRatio"
         :height="cHeight * pixelRatio"
         :style="{ width: cWidth + 'px', height: cHeight + 'px' }"
-        disable-scroll="true"
-        @touchstart="touchLineA"
-        @touchmove="moveLineA"
-        @touchend="touchEndLineA"
+        @touchstart="touchIt($event, 'canvasColumn')"
       ></canvas>
-      <!-- 使用图表拖拽功能时，建议给canvas增加disable-scroll=true属性，在拖拽时禁止屏幕滚动 -->
       <!--#endif-->
       <!--#ifndef MP-ALIPAY -->
       <canvas
-        canvas-id="canvasLineA"
-        id="canvasLineA"
+        canvas-id="canvasColumn"
+        id="canvasColumn"
         class="charts"
-        disable-scroll="true"
-        @touchstart="touchLineA"
-        @touchmove="moveLineA"
-        @touchend="touchEndLineA"
+        @touchstart="touchIt($event, 'canvasColumn')"
       ></canvas>
-      <!-- 使用图表拖拽功能时，建议给canvas增加disable-scroll=true属性，在拖拽时禁止屏幕滚动 -->
       <!--#endif-->
     </view>
 
@@ -267,7 +259,7 @@ export default {
     },
     getServerData() {
       this.$minApi
-        .getStatWorkRate()
+        .getStatCallTop()
         .then(res => {
           // uni.hideLoading();
           console.log(res);
@@ -282,85 +274,76 @@ export default {
       this.tips = data.tips;
       // this.sliderMax = data.Candle.categories.length;
 
-      let LineA = {
+      let Column = {
         categories: [],
         series: []
       };
 
-      LineA.categories = data.LineA.categories;
-      LineA.series = data.LineA.series;
-      
-      this.showLineA("canvasLineA", LineA);
+      //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+      Column.categories = data.Column.categories;
+      //这里的series数据是后台做好的，如果您的数据没有和前面我注释掉的格式一样，请自行拼接数据
+      Column.series = data.Column.series;
+
+      this.showColumn("canvasColumn", Column);
     },
     changeData() {
-      canvasObj["canvasLineA"].updateData({
+      canvasObj["canvasColumn"].updateData({
         series: _self.serverData.ColumnB.series,
         categories: _self.serverData.ColumnB.categories
       });
     },
-    showLineA(canvasId, chartData) {
+    showColumn(canvasId, chartData) {
       canvasObj[canvasId] = new uCharts({
         $this: _self,
         canvasId: canvasId,
-        type: "line",
-        fontSize: 11,
+        type: "column",
         padding: [15, 15, 0, 15],
         legend: {
           show: true,
           padding: 5,
           lineHeight: 26,
-          margin: 5
+          margin: 0
         },
-        dataLabel: false,
-        dataPointShape: false,
+        fontSize: 11,
         background: "#FFFFFF",
         pixelRatio: _self.pixelRatio,
+        animation: false,
         categories: chartData.categories,
         series: chartData.series,
-        animation: false,
-        enableScroll: true, //开启图表拖拽功能
         xAxis: {
-          disableGrid: false,
-          type: "grid",
-          gridType: "dash",
-          itemCount: 8,
-          // scrollShow: true,
-          // scrollAlign: "left"
-          //scrollBackgroundColor:'#F7F7FF',//可不填写，配合enableScroll图表拖拽功能使用，X轴滚动条背景颜色,默认为 #EFEBEF
-          //scrollColor:'#DEE7F7',//可不填写，配合enableScroll图表拖拽功能使用，X轴滚动条颜色,默认为 #A6A6A6
+          disableGrid: true
         },
         yAxis: {
-          //disabled:true
           gridType: "dash",
-          splitNumber: 8,
-          // min: 10,
-          // max: 180,
-          format: val => {
-            return val.toFixed(0);
-          } //如不写此方法，Y轴刻度默认保留两位小数
+          // format: val => {
+          //   return val.toFixed(0) + "元";
+          // }
         },
+        dataLabel: true,
         width: _self.cWidth * _self.pixelRatio,
         height: _self.cHeight * _self.pixelRatio,
-        dataLabel: true,
-        dataPointShape: true,
         extra: {
-          lineStyle: "straight"
+          column: {
+            type: "group",
+            width:
+              (_self.cWidth * _self.pixelRatio * 0.45) /
+              chartData.categories.length
+          }
         }
       });
     },
 
-    touchLineA(e) {
-      canvasObj["canvasLineA"].scrollStart(e);
-    },
-    moveLineA(e) {
-      canvasObj["canvasLineA"].scroll(e);
-    },
-    touchEndLineA(e) {
-      canvasObj["canvasLineA"].scrollEnd(e);
-      //下面是toolTip事件，如果滚动后不需要显示，可不填写
-      canvasObj["canvasLineA"].showToolTip(e, {
+    touchIt(e, id) {
+      canvasObj[id].touchLegend(e, {
+        animation: false
+      });
+      canvasObj[id].showToolTip(e, {
         format: function(item, category) {
-          return category + " " + item.name + ":" + item.data;
+          if (typeof item.data === "object") {
+            return category + " " + item.name + "：" + item.data.value;
+          } else {
+            return category + " " + item.name + "：" + item.data;
+          }
         }
       });
     }
