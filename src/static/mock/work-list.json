@@ -306,17 +306,17 @@
 				"id": "8007",
 				"icon": "icon-huoyuefenxi",
 				"text": "活跃分析",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/liveness/liveness"
 			}, {
 				"id": "8008",
 				"icon": "icon-gongzuoxiaoshuai",
 				"text": "工作效率",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/workRate/workRate"
 			}, {
 				"id": "8009",
 				"icon": "icon-tonghuashuju",
 				"text": "通话数据",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/stat/callData/callData"
 			}, {
 				"id": "8010",
 				"icon": "icon-tonghuafenxi",

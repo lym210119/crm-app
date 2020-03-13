@@ -67,9 +67,7 @@
     <!-- <view class="qiun-padding">
       <view class="qiun-tip" @tap="changeData()">更新柱状图数据</view>
     </view> -->
-    <view class="qiun-title-bar" style="background-color: #ffffff;">
-      <view class="qiun-title-dot-light">营销业绩柱状图</view>
-    </view>
+
     <view class="qiun-charts">
       <!--#ifdef MP-ALIPAY -->
       <canvas

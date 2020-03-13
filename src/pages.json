@@ -932,6 +932,24 @@
       }
     },
     {
+      "path": "pages/workBench/stat/liveness/liveness",
+      "style": {
+        "navigationBarTitleText": "活跃分析"
+      }
+    },
+    {
+      "path": "pages/workBench/stat/workRate/workRate",
+      "style": {
+        "navigationBarTitleText": "工作效率"
+      }
+    },
+    {
+      "path": "pages/workBench/stat/callData/callData",
+      "style": {
+        "navigationBarTitleText": "通话数据"
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",

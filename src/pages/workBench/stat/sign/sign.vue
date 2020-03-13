@@ -63,9 +63,7 @@
       </view>
     </view>
 
-    <view class="qiun-bg-white qiun-title-bar qiun-common-mt">
-      <view class="qiun-title-dot-light">签单统计温度计式图表</view>
-    </view>
+
     <view class="qiun-charts">
       <!--#ifdef MP-ALIPAY -->
       <canvas

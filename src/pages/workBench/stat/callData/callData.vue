@@ -1,5 +1,5 @@
 <template>
-  <!-- 客户标签 -->
+  <!-- 通话数据 -->
   <view class="qiun-columns">
     <view class="filter-btn-group">
       <view
@@ -9,7 +9,7 @@
         >筛选 <text class="iconfont icon-arrow-right"></text
       ></view>
       <view class="staff" :class="{ active: mask === 3 }" @tap="selectStaff"
-        >部门 <text class="iconfont icon-arrow-right"></text
+        >做单部门 <text class="iconfont icon-arrow-right"></text
       ></view>
     </view>
     <view class="mask-wrap" v-show="mask" @tap="clickMask">
@@ -71,21 +71,21 @@
     <view class="qiun-charts">
       <!--#ifdef MP-ALIPAY -->
       <canvas
-        canvas-id="canvasRing"
-        id="canvasRing"
+        canvas-id="canvasColumn"
+        id="canvasColumn"
         class="charts"
         :width="cWidth * pixelRatio"
         :height="cHeight * pixelRatio"
         :style="{ width: cWidth + 'px', height: cHeight + 'px' }"
-        @touchstart="touchPie($event, 'canvasRing')"
+        @touchstart="touchIt($event, 'canvasColumn')"
       ></canvas>
       <!--#endif-->
       <!--#ifndef MP-ALIPAY -->
       <canvas
-        canvas-id="canvasRing"
-        id="canvasRing"
+        canvas-id="canvasColumn"
+        id="canvasColumn"
         class="charts"
-        @touchstart="touchPie($event, 'canvasRing')"
+        @touchstart="touchIt($event, 'canvasColumn')"
       ></canvas>
       <!--#endif-->
     </view>
@@ -182,7 +182,7 @@ export default {
     });
     //#endif
     this.cWidth = uni.upx2px(750);
-    this.cHeight = uni.upx2px(800);
+    this.cHeight = uni.upx2px(500);
     // this.cWidth2 = uni.upx2px(700);
     // this.cHeight2 = uni.upx2px(1100);
 
@@ -190,7 +190,6 @@ export default {
   },
   onReady() {
     this.getServerData();
-    // console.log(this.getRandomColor());
   },
   methods: {
     onConfirm(e) {
@@ -260,7 +259,7 @@ export default {
     },
     getServerData() {
       this.$minApi
-        .getCusTagsStat()
+        .getStatCalldata()
         .then(res => {
           // uni.hideLoading();
           console.log(res);
@@ -275,13 +274,17 @@ export default {
       this.tips = data.tips;
       // this.sliderMax = data.Candle.categories.length;
 
-      let Ring = {
+      let Column = {
+        categories: [],
         series: []
       };
 
-      Ring.series = data.Ring.series;
+      //这里我后台返回的是数组，所以用等于，如果您后台返回的是单条数据，需要push进去
+      Column.categories = data.Column.categories;
+      //这里的series数据是后台做好的，如果您的数据没有和前面我注释掉的格式一样，请自行拼接数据
+      Column.series = data.Column.series;
 
-      this.showRing("canvasRing", Ring);
+      this.showColumn("canvasColumn", Column);
     },
     changeData() {
       canvasObj["canvasColumn"].updateData({
@@ -289,148 +292,58 @@ export default {
         categories: _self.serverData.ColumnB.categories
       });
     },
-    showRing(canvasId, chartData) {
-      var total = 0;
-      var colors = [];
-      if (chartData.series.length) {
-        colors = this.getHslArray(chartData.series.length);
-        chartData.series.forEach(element => {
-          total += element.data;
-        });
-      }
-      console.log(colors);
-
-      console.log(chartData);
+    showColumn(canvasId, chartData) {
       canvasObj[canvasId] = new uCharts({
         $this: _self,
         canvasId: canvasId,
-        type: "ring",
-        fontSize: 11,
-        padding: [5, 15, 5, 15],
+        type: "column",
+        padding: [15, 15, 0, 15],
         legend: {
           show: true,
-          position: "bottom",
-          float: "center",
-          itemGap: 10,
           padding: 5,
           lineHeight: 26,
-          margin: 5,
-          backgroundColor: "rgba(41,198,90,0.2)",
-          borderColor: "rgba(41,198,90,0.5)",
-          borderWidth: 1
+          margin: 5
         },
-        colors: colors,
-        title: {
-          name: total,
-          color: "#7cb5ec",
-          fontSize: 25 * _self.pixelRatio
-        },
-        subtitle: {
-          name: "总计",
-          color: "#666666",
-          fontSize: 15 * _self.pixelRatio
-        },
-        extra: {
-          pie: {
-            lableWidth: 15,
-            ringWidth: 40 * _self.pixelRatio, //圆环的宽度
-            offsetAngle: 0 //圆环的角度
-          }
-        },
+        fontSize: 11,
         background: "#FFFFFF",
         pixelRatio: _self.pixelRatio,
+        animation: true,
+        categories: chartData.categories,
         series: chartData.series,
-        animation: false,
+        xAxis: {
+          disableGrid: true
+        },
+        yAxis: {
+          //disabled:true
+          gridType: "dash",
+        },
+        dataLabel: true,
         width: _self.cWidth * _self.pixelRatio,
         height: _self.cHeight * _self.pixelRatio,
-        disablePieStroke: true,
-        dataLabel: true
+        extra: {
+          column: {
+            type: "stack",
+            width:
+              (_self.cWidth * _self.pixelRatio * 0.5) /
+              chartData.categories.length
+          }
+        }
       });
     },
-    touchPie(e, id) {
-      console.log(123);
-      console.log(id);
+
+    touchIt(e, id) {
+      canvasObj[id].touchLegend(e, {
+        animation: false
+      });
       canvasObj[id].showToolTip(e, {
-        format: function(item) {
-          return item.name + ":" + item.data;
+        format: function(item, category) {
+          if (typeof item.data === "object") {
+            return category + " " + item.name + "：" + item.data.value;
+          } else {
+            return category + " " + item.name + "：" + item.data;
+          }
         }
       });
-    },
-    // 获取随机HSL
-    randomHsl: function() {
-      var H = Math.random();
-      var S = Math.random();
-      var L = Math.random();
-      return [H, S, L];
-    },
-    /**
-     * HSL颜色值转换为RGB
-     * H，S，L 设定在 [0, 1] 之间
-     * R，G，B 返回在 [0, 255] 之间
-     *
-     * @param H 色相
-     * @param S 饱和度
-     * @param L 亮度
-     * @returns Array RGB色值
-     */
-    hslToRgb: function(H, S, L) {
-      var R, G, B;
-      if (+S === 0) {
-        R = G = B = L; // 饱和度为0 为灰色
-      } else {
-        var hue2Rgb = function(p, q, t) {
-          if (t < 0) t += 1;
-          if (t > 1) t -= 1;
-          if (t < 1 / 6) return p + (q - p) * 6 * t;
-          if (t < 1 / 2) return q;
-          if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-          return p;
-        };
-        var Q = L < 0.5 ? L * (1 + S) : L + S - L * S;
-        var P = 2 * L - Q;
-        R = hue2Rgb(P, Q, H + 1 / 3);
-        G = hue2Rgb(P, Q, H);
-        B = hue2Rgb(P, Q, H - 1 / 3);
-      }
-      return [Math.round(R * 255), Math.round(G * 255), Math.round(B * 255)];
-    },
-    // 获取HSL数组
-    getHslArray(length) {
-      var HSL = [];
-      var hslLength = length; // 获取数量
-      for (var i = 0; i < hslLength; i++) {
-        var ret = this.randomHsl();
-
-        // 颜色相邻颜色差异须大于 0.25
-        if (i > 0 && Math.abs(ret[0] - HSL[i - 1][0]) < 0.25) {
-          i--;
-          continue; // 重新获取随机色
-        }
-        ret[1] = 0.7 + ret[1] * 0.2; // [0.7 - 0.9] 排除过灰颜色
-        ret[2] = 0.4 + ret[2] * 0.4; // [0.4 - 0.8] 排除过亮过暗色
-
-        // 数据转化到小数点后两位
-        ret = ret.map(function(item) {
-          return parseFloat(item.toFixed(2));
-        });
-        var rgb = this.hslToRgb(...ret);
-        var hex = this.rgbToHex(rgb.join(','))
-        HSL.push(hex);
-      }
-      return HSL;
-    },
-    rgbToHex(rgb) {
-      // rgb(x, y, z)
-      var color = rgb.toString().match(/\d+/g); // 把 x,y,z 推送到 color 数组里
-      var hex = "#";
-
-      for (var i = 0; i < 3; i++) {
-        // 'Number.toString(16)' 是JS默认能实现转换成16进制数的方法.
-        // 'color[i]' 是数组，要转换成字符串.
-        // 如果结果是一位数，就在前面补零。例如： A变成0A
-        hex += ("0" + Number(color[i]).toString(16)).slice(-2);
-      }
-      return hex;
     }
   }
 };
@@ -487,14 +400,14 @@ page {
 /* 通用样式 */
 .qiun-charts {
   width: 750upx;
-  height: 800upx;
+  height: 500upx;
   background-color: #ffffff;
   padding: 20upx 0;
 }
 
 .charts {
   width: 750upx;
-  height: 800upx;
+  height: 500upx;
   background-color: #ffffff;
 }
 

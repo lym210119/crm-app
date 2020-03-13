@@ -72,6 +72,18 @@ export default {
     // 客户类型统计
     getCusTagsStat() {
       return minRequest.get('/static/mock/stat-tags.json')
+    },
+    // 活跃分析统计
+    getStatLiveness() {
+      return minRequest.get('/static/mock/stat-liveness.json')
+    },
+    // 活跃分析统计
+    getStatWorkRate() {
+      return minRequest.get('/static/mock/stat-workrate.json')
+    },
+    // 活跃分析统计
+    getStatCalldata() {
+      return minRequest.get('/static/mock/stat-calldata.json')
     }
   }
 }

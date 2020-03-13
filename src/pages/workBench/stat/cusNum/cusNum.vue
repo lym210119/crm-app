@@ -67,9 +67,7 @@
     <!-- <view class="qiun-padding">
       <view class="qiun-tip" @tap="changeData()">更新柱状图数据</view>
     </view> -->
-		<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
-			<view class="qiun-title-dot-light">客户类型饼状图</view>
-		</view>
+
 		<view class="qiun-charts">
 			<!--#ifdef MP-ALIPAY -->
 			<canvas canvas-id="canvasPie" id="canvasPie" class="charts" :width="cWidth*pixelRatio" :height="cHeight*pixelRatio"
