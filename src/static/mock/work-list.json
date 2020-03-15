@@ -389,7 +389,7 @@
 				"id": "11006",
 				"icon": "icon-gexingpeizhi",
 				"text": "个性配置",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/system/customize/list/list"
 			}
 		]
 	}, {
@@ -400,12 +400,12 @@
 				"id": "12001",
 				"icon": "icon-qunhurenyuan",
 				"text": "群呼人员",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/call/user/user"
 			}, {
 				"id": "12002",
 				"icon": "icon-renwufenpei1",
 				"text": "任务分配",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/call/task/list/list"
 			}, {
 				"id": "12003",
 				"icon": "icon-qunhujieguo",

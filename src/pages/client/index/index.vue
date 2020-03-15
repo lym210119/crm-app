@@ -141,8 +141,8 @@
               /></label>
 
               <view class="title">
-                <view class="username">客户名称 （9527）</view>
                 <view class="tag">到店</view>
+                <view class="username">客户名称 （9527）</view>
               </view>
               <view class="info">
                 <view class="info-left">
@@ -163,7 +163,7 @@
                   </view>
                 </view>
               </view>
-              <scroll-view class="tag-container" scroll-x="true">
+              <scroll-view class="tag-container" scroll-x="true" :show-scrollbar="false">
                 <view class="tag-item">标签</view>
                 <view class="tag-item">标签</view>
                 <view class="tag-item">标签</view>
@@ -696,7 +696,12 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-.client-item > .title,
+.client-item > .title {
+    display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 .client-item > .info {
   display: flex;
   flex-direction: row;
@@ -706,6 +711,7 @@ export default {
 .client-item > .info {
 }
 .client-item > .title > .username {
+  margin-left: 20upx;
   font-size: 28upx;
   /* font-weight: 700; */
   color: #333333;
@@ -731,9 +737,9 @@ export default {
   padding: 0 30upx;
   border-radius: 50upx;
   font-weight: 400;
-  /* background-color: #e6f0fc; */
-  color: #9aa6c7;
-  border: 2upx solid #9aa6c7;
+  background-color: #718df6;
+  color: #fff;
+  /* border: 2upx solid #9aa6c7; */
   font-size: 24upx;
 }
 
@@ -797,7 +803,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15upx;
+  /* margin-top: 15upx; */
 }
 .item-bottom .icon-group {
 }
@@ -805,5 +811,11 @@ export default {
   margin-left: 30upx;
   color: #18a98c;
   font-size: 40upx;
+}
+.item-bottom .icon-group .iconfont.icon-xiegenjin- {
+  color:indianred;
+}
+.item-bottom .icon-group .iconfont.icon-gengduo {
+  color:#2097e2;
 }
 </style>

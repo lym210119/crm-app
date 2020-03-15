@@ -145,7 +145,7 @@ export default {
   transform: translateX(-50%);
   width: 16upx;
   height: 16upx;
-  background-color: #0870fe;
+  background-color: #4681f6;
   border-radius: 50%;
   border: 8upx solid #b3d9e9;
 }
@@ -187,6 +187,6 @@ export default {
   height: 50upx;
   line-height: 50upx;
   font-size: 50upx;
-  color: #19aa8d;
+  color: #ec7958;
 }
 </style>

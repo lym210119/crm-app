@@ -1018,6 +1018,88 @@
       }
     },
     {
+      "path": "pages/workBench/system/customize/list/list",
+      "style": {
+        "navigationBarTitleText": "个性配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/system/customize/add/add",
+      "style": {
+        "navigationBarTitleText": "添加配置",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/call/user/user",
+      "style": {
+        "navigationBarTitleText": "群呼人员"
+      }
+    },
+    {
+      "path": "pages/workBench/call/task/list/list",
+      "style": {
+        "navigationBarTitleText": "任务分配",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "新增",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/workBench/call/task/add/add",
+      "style": {
+        "navigationBarTitleText": "新增任务",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "12",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
