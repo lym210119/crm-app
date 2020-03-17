@@ -11,7 +11,7 @@
 			<view class="login-title">登录</view>
 			<view class="login-title-small">使用您的账号登录锦衣卫助贷系统</view>
 		</div>
-
+	
     <view class="login-form">
 			<template v-if="loginType === 1">
 				<view class="input-item">
