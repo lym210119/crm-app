@@ -102,7 +102,7 @@
         </view>
       </navigator>
       <navigator
-        url="/pages/mine/qichacha/qichacha"
+        url="/pages/mine/setting/setting"
         class="navigator-item setting"
       >
         <view class="iconfont icon-shezhi"> </view>

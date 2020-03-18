@@ -1401,7 +1401,26 @@
     {
       "path": "pages/mine/group/group",
       "style": {
-        "navigationBarTitleText": "申贷网"
+        "navigationBarTitleText": "申贷网",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "邀请",
+                "fontSize": "14",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    }, 
+    {
+      "path": "pages/mine/setting/setting",
+      "style": {
+        "navigationBarTitleText": "设置"
       }
     }, 
     {
