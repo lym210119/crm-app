@@ -43,14 +43,14 @@
             <view class="company-name">
               <image
                 class="company-image"
-                src="../../static/company.png"
+                src="/static/company.png"
                 mode=""
               ></image>
               申贷网
             </view>
-            <view class="company-group">
+            <navigator url="/pages/mine/group/group" class="company-group">
               组织架构
-            </view>
+            </navigator>
           </view>
         </view>
       </view>

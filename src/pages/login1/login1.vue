@@ -4,7 +4,7 @@
 		<div class="login-head">
 			<image
 				class="login-logo"
-				src="../../static/login-logo.png"
+				src="/static/login-logo.png"
 				mode="widthFix"
 				lazy-load=""
 			></image>

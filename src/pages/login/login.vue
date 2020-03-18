@@ -4,7 +4,7 @@
     <div class="login-head">
       <image
         class="login-logo"
-        src="../../static/login-logo.png"
+        src="/static/login-logo.png"
         mode="widthFix"
         lazy-load=""
       ></image>
@@ -124,6 +124,7 @@ export default {
 }
 .login-form > button {
   background-color: #19aa8d;
+  margin: 0;
 }
 .phone-login {
   margin-top: 30upx;

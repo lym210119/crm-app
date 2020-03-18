@@ -92,6 +92,10 @@ export default {
     // 活跃分析统计
     getStatCallTop() {
       return minRequest.get('/static/mock/stat-calltop.json')
+    },
+    // 任务提醒
+    getTaskList() {
+      return minRequest.get('/static/mock/task.json')
     }
   }
 }
