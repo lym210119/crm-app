@@ -19,24 +19,21 @@
               <text class="notice primary">
                 上门公告：谁谁谁 的客户上门了
               </text>
-              <text class="notice success">
-                上门公告：谁谁谁 的客户上门了 </text
+              <text class="notice success"> 上门公告：谁谁谁 的客户上门了 </text
               ><text class="notice danger">
                 上门公告：谁谁谁 的客户上门了
               </text>
               <text class="notice warning">
                 上门公告：谁谁谁 的客户上门了
               </text>
-              <text class="notice primary">
-                上门公告：谁谁谁 的客户上门了 </text
+              <text class="notice primary"> 上门公告：谁谁谁 的客户上门了 </text
               ><text class="notice success">
                 上门公告：谁谁谁 的客户上门了
               </text>
               <text class="notice danger">
                 上门公告：谁谁谁 的客户上门了
               </text>
-              <text class="notice warning">
-                上门公告：谁谁谁 的客户上门了 </text
+              <text class="notice warning"> 上门公告：谁谁谁 的客户上门了 </text
               ><text class="notice primary">
                 上门公告：谁谁谁 的客户上门了
               </text>
@@ -228,7 +225,7 @@
 import uCharts from "../../components/u-charts/u-charts.js";
 var _self;
 var canvasObj = {};
-
+import { mapState } from "vuex";
 export default {
   // components: {
   // 	uniFab
@@ -329,7 +326,35 @@ export default {
       sliderMax: 50
     };
   },
+  computed: mapState(["forcedLogin", "hasLogin", "userName"]),
   onLoad() {
+    if (!this.hasLogin) {
+      uni.showModal({
+        title: "未登录",
+        content: "您未登录，需要登录后才能继续",
+        /**
+         * 如果需要强制登录，不显示取消按钮
+         */
+        showCancel: !this.forcedLogin,
+        success: res => {
+          if (res.confirm) {
+            /**
+             * 如果需要强制登录，使用reLaunch方式
+             */
+            if (this.forcedLogin) {
+              uni.reLaunch({
+                url: "../login/login"
+              });
+            } else {
+              uni.navigateTo({
+                url: "../login/login"
+              });
+            }
+          }
+        }
+      });
+    }
+
     console.log(this.indexDateRange);
     _self = this;
     //#ifdef MP-ALIPAY
@@ -715,10 +740,10 @@ export default {
 }
 
 .company-info {
-	display: flex;
-	flex-direction: column;
-	padding: 0 30upx;
-	color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0 30upx;
+  color: #ffffff;
 }
 
 .stat-list {
@@ -949,19 +974,19 @@ export default {
   text-align: center;
 }
 .notice {
-	height: 40upx;
-	line-height: 40upx;
+  height: 40upx;
+  line-height: 40upx;
 }
 .notice.primary {
-	color: #1ab394;
+  color: #1ab394;
 }
 .notice.success {
-	color: #1c84c6;
+  color: #1c84c6;
 }
 .notice.danger {
-	color: #ed5565;
+  color: #ed5565;
 }
 .notice.warning {
-	color: #f8ac59;
+  color: #f8ac59;
 }
 </style>

@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import App from './App'
 
+import store from './store'
 import MinRequest from './MinRequest'
 import minRequest from './api'
 
 Vue.config.productionTip = false
 
 App.mpType = 'app'
-
+Vue.prototype.$store = store
 // 注册请求
 Vue.use(MinRequest)
 Vue.prototype.$backgroundAudioData = {
@@ -17,7 +18,8 @@ Vue.prototype.$backgroundAudioData = {
 }
 
 const app = new Vue({
-  ...App,
+	...App,
+	store,
   minRequest
 })
 app.$mount()
