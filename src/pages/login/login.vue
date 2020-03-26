@@ -179,6 +179,7 @@ export default {
 .login-form > button {
   background-color: #19aa8d;
   margin: 0;
+  font-size: 32upx;
 }
 .phone-login {
   margin-top: 30upx;
