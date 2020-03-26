@@ -8,18 +8,28 @@ const store = new Vuex.Store({
 		/**
 		 * 是否需要强制登录
 		 */
-		forcedLogin: false,
+		// forcedLogin: false,
 		hasLogin: false,
-		userName: ""
+		userInfo: {}
 	},
 	mutations: {
-		login(state, userName) {
-			state.userName = userName || '新用户';
+		login(state, provider) {
+			console.log(provider);
 			state.hasLogin = true;
+            // state.userInfo.token = provider.token  
+						state.userInfo.userName = provider.username
+						provider.expires = new Date().getTime()
+            uni.setStorage({//将用户信息保存在本地  
+                key: 'userInfo',  
+								data: provider 
+            })  
 		},
 		logout(state) {
-			state.userName = "";
-			state.hasLogin = false;
+            state.hasLogin = false  
+            state.uerInfo = {}  
+            uni.removeStorage({  
+                key: 'userInfo'  
+            })  
 		}
 	}
 })

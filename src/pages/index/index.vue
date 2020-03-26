@@ -326,7 +326,7 @@ export default {
       sliderMax: 50
     };
   },
-  computed: mapState(["forcedLogin", "hasLogin", "userName"]),
+  computed: mapState(["hasLogin"]),
   onLoad() {
     if (!this.hasLogin) {
       uni.showModal({
@@ -335,21 +335,12 @@ export default {
         /**
          * 如果需要强制登录，不显示取消按钮
          */
-        showCancel: !this.forcedLogin,
+        showCancel: false,
         success: res => {
           if (res.confirm) {
-            /**
-             * 如果需要强制登录，使用reLaunch方式
-             */
-            if (this.forcedLogin) {
-              uni.reLaunch({
-                url: "../login/login"
-              });
-            } else {
               uni.navigateTo({
                 url: "../login/login"
               });
-            }
           }
         }
       });

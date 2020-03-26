@@ -1,7 +1,17 @@
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			uni.getStorage({
+				key: 'userInfo',
+				success: res=> {
+					console.log(res)
+					var expires = res.expires // 上一次的登录时间
+					var now = new Date().getTime()
+					this.login(res.data)
+				}
+			})
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -14,6 +24,9 @@
 		onHide: function() {
 			console.log('App Hide')
 		},
+		methods: {
+   		 ...mapMutations(["login", "logout"])
+  	}
 	}
 </script>
 

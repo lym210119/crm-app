@@ -45,9 +45,9 @@
       <view class="phone-login" @tap="changeLoginType">{{
         loginTypeText
       }}</view>
-      <view>{{ account }}</view>
+      <!-- <view>{{ account }}</view>
       <view>{{ password }}</view>
-      <view>{{ account && password }}</view>
+      <view>{{ account && password }}</view> -->
     </view>
   </view>
 </template>
@@ -55,9 +55,9 @@
 <script>
 import uniStatusBar from "@/components/uni-status-bar/uni-status-bar.vue";
 import service from "../../service.js";
-import { mapState, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 export default {
-  computed: mapState(["forcedLogin"]),
+
   components: {
     uniStatusBar
   },
@@ -97,34 +97,30 @@ export default {
        * 实际开发中，使用 uni.request 将账号信息发送至服务端，客户端在回调函数中获取结果信息。
        */
       const data = {
-        account: this.account,
+        username: this.account,
         password: this.password
       };
-      // const validUser = service.getUsers().some(function(user) {
-      //   return data.account === user.account && data.password === user.password;
-      // });
-      // if (validUser) {
-        this.toMain(this.account);
-      // } else {
-        // uni.showToast({
-        //   icon: "none",
-        //   title: "用户账号或密码不正确"
-        // });
-      // }
-    },
-    toMain(userName) {
-      this.login(userName);
-      /**
-       * 强制登录时使用reLaunch方式跳转过来
-       * 返回首页也使用reLaunch方式
-       */
-      if (this.forcedLogin) {
-        uni.reLaunch({
-          url: "../index/index"
-        });
-      } else {
-        uni.navigateBack();
-      }
+      this.login(data);
+      uni.reLaunch({
+        url: '../index/index'
+      });
+      // uni.request({
+      //               url: `${this.$serverUrl}/login.php`,
+      //               header: {
+      //                   "Content-Type": "application/x-www-form-urlencoded"
+      //               },
+      //               data: {
+      //                   "username": name,
+      //                   "password": password
+      //               },
+      //               method: "POST",
+      //               success: (e) => {
+      //                   if (e.data.code === 0) {//登录成功后改变vuex的状态，并退出登录页面
+      //                       this.login(e.data)
+      //                       uni.navigateBack()
+      //                   }
+      //               }
+      //           })
     },
     ...mapMutations(["login"]),
     changeLoginType() {

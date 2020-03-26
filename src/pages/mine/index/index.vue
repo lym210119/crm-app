@@ -114,9 +114,6 @@
         </view>
       </navigator>
 
-      <!-- <side-fab></side-fab> -->
-      <navigator url="/pages/login/login">去登录页面</navigator>
-
     </scroll-view>
   </view>
 </template>

@@ -20,15 +20,38 @@
           <text class="iconfont icon-arrow-right1"></text>
         </view>
       </view>
-      <view class="logout">退出登录</view>
+      <view class="logout" @tap="bindLogout">退出登录</view>
     </scroll-view>
   </view>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
-
-}
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapMutations(['logout']),
+    bindLogout() {
+      uni.showModal({
+        title: "提示",
+        content: "确定要退出登录吗",
+        confirmColor: 'red',
+        success: res => {
+          if (res.confirm) {
+            this.logout()
+            uni.reLaunch({
+              url: '/pages/login/login'
+            })
+          } else if (res.cancel) {
+            console.log("用户点击取消");
+          }
+        }
+      });
+    }
+  }
+};
 </script>
 
 <style>
@@ -52,7 +75,7 @@ export default {
   font-size: 28upx;
   color: #999999;
 }
-.item-value>.iconfont {
+.item-value > .iconfont {
   font-size: 28upx;
 }
 .logout {
@@ -61,7 +84,6 @@ export default {
   color: #333333;
   font-size: 32upx;
   text-align: center;
-  margin-top:20upx;
+  margin-top: 20upx;
 }
 </style>
-
