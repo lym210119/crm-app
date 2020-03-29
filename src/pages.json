@@ -1418,11 +1418,23 @@
       }
     }, 
     {
+      "path": "pages/mine/images/images",
+      "style": {
+        "navigationBarTitleText": "宣传图"
+      }
+    },
+    {
       "path": "pages/mine/setting/setting",
       "style": {
         "navigationBarTitleText": "设置"
       }
-    }, 
+    },
+    {
+      "path": "pages/mine/feedback/feedback",
+      "style": {
+        "navigationBarTitleText": "意见反馈"
+      }
+    },
     {
       "path": "pages/login/login",
       "style": {

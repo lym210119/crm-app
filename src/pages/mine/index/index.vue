@@ -30,10 +30,10 @@
               <text class="iconfont icon-erweima-copy"></text>
               <text class="">名片码</text>
             </view>
-            <view class="qr-item">
+            <navigator url="/pages/mine/images/images" class="qr-item">
               <text class="iconfont icon-tupian"></text>
               <text class="">宣传图</text>
-            </view>
+            </navigator>
             <view class="qr-item">
               <text class="iconfont icon-zhuanfa"></text>
               <text class="">发图片</text>
@@ -83,7 +83,7 @@
           <text class="iconfont icon-arrow-right1"></text>
         </view>
       </navigator>
-      <navigator url="/pages/mine/qichacha/qichacha" class="navigator-item">
+      <navigator url="/pages/mine/feedback/feedback" class="navigator-item">
         <view class="iconfont icon-yijianfankui"> </view>
         <view class="title">
           意见反馈
