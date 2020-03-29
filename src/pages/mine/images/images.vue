@@ -2,7 +2,7 @@
   <view class="images-page">
     <scroll-view scroll-y="true" style="height:100%">
       <view class="img-list">
-        <image v-for="item in 10" :key="item" src="https://source.unsplash.com/random/105x150"><image>
+        <image v-for="item in 10" :key="item" src="https://picsum.photos/105/150"><image>
       </view>
 
     </scroll-view>
