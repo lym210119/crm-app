@@ -1436,6 +1436,31 @@
       }
     },
     {
+      "path": "pages/mine/card/edit",
+      "style": {
+        "navigationBarTitleText": "名片信息",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "14",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/mine/gscx/gscx",
+      "style": {
+        "navigationBarTitleText": "工商查询"
+      }
+    },
+    {
       "path": "pages/login/login",
       "style": {
         "navigationBarTitleText": "登录",

@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/crm-app/static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/crm-app/static/favicon.ico" />
     <title>
       <%= htmlWebpackPlugin.options.title %>
     </title>
@@ -129,32 +129,59 @@
     </div>
 
     <script>
-
       $(function() {
-        window.addEventListener('hashchange', function(event) {
-            console.log(event);
-        })
-        if (location.href.indexOf('login') > -1) {
-          $('#side-move-area').hide()
-        }
-        $('.call-status').on('click', function() {
-          var activeLeftVal = $('#side-fab-bar').css('right')
-          var right = activeLeftVal === '-150px' ? '0px' : '-150px';
-          $('#side-fab-bar').css('right', right)
-        })
-        $('.onOff').on('click', function() {
-          var icon = $(this).find('.iconfont')
-          var isOpen = icon.hasClass('icon-bohao')
-          var right = isOpen ? '0px' : '-225px'
-          var className = isOpen ? 'icon-hebingxingzhuang' : 'icon-bohao'
+        var _wr = function(type) {
+          var orig = history[type];
+          return function() {
+            var rv = orig.apply(this, arguments);
+            var e = new Event(type);
+            e.arguments = arguments;
+            window.dispatchEvent(e);
+            return rv;
+          };
+        };
+        history.pushState = _wr("pushState");
+        history.replaceState = _wr("replaceState");
 
-          $('#side-fab-bar').css('right', right);
-          if (isOpen) {
-            icon.removeClass('icon-bohao').addClass(className)
+        window.addEventListener("replaceState", function(e) {
+          if (location.href.indexOf("login") > -1) {
+            $("#side-move-area").hide();
           } else {
-            icon.removeClass('icon-hebingxingzhuang').addClass(className)
+            $("#side-move-area").show();
           }
-        })
+          console.log("THEY DID IT AGAIN! replaceState 111111");
+        });
+        window.addEventListener("pushState", function(e) {
+          if (location.href.indexOf("login") > -1) {
+            $("#side-move-area").hide();
+          } else {
+            $("#side-move-area").show();
+          }
+          console.log("THEY DID IT AGAIN! pushState 2222222");
+        });
+
+        window.addEventListener("hashchange", function(event) {
+          console.log(event);
+        });
+
+        $(".call-status").on("click", function() {
+          var activeLeftVal = $("#side-fab-bar").css("right");
+          var right = activeLeftVal === "-150px" ? "0px" : "-150px";
+          $("#side-fab-bar").css("right", right);
+        });
+        $(".onOff").on("click", function() {
+          var icon = $(this).find(".iconfont");
+          var isOpen = icon.hasClass("icon-bohao");
+          var right = isOpen ? "0px" : "-225px";
+          var className = isOpen ? "icon-hebingxingzhuang" : "icon-bohao";
+
+          $("#side-fab-bar").css("right", right);
+          if (isOpen) {
+            icon.removeClass("icon-bohao").addClass(className);
+          } else {
+            icon.removeClass("icon-hebingxingzhuang").addClass(className);
+          }
+        });
 
         // fab-bar 上下滑动
         var div1 = document.querySelector("#side-fab-bar");

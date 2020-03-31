@@ -64,7 +64,7 @@
           <text class="iconfont icon-arrow-right1"></text>
         </view>
       </navigator>
-      <navigator url="/pages/mine/qichacha/qichacha" class="navigator-item">
+      <navigator url="/pages/mine/gscx/gscx" class="navigator-item">
         <view class="iconfont icon-gongshangchaxun1"> </view>
         <view class="title">
           工商查询

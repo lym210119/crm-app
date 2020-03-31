@@ -13,8 +13,9 @@
 				}
 			})
 		},
-		onShow: function() {
+		onShow: function(e) {
 			console.log('App Show')
+			console.log(e)
 			// 设置 tabbar badge 
 			uni.setTabBarBadge({
 				index: 3,

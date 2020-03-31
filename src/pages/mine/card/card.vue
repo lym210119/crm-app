@@ -16,13 +16,13 @@
          stroke-width="6"></progress>
       </view>
       <view class="card-item">
-        <view class="card-head">
+        <navigator class="card-head" url="/pages/mine/card/edit">
           <view class="card-head-left">名片信息</view>
           <view class="card-head-right">
             编辑
             <text class="iconfont icon-arrow-right1"></text>
           </view>
-        </view>
+        </navigator>
         <view class="card-content">
           <view class="card-box">
               <image class="card-avatar" src="/static/60x60.png" mode=""></image>
