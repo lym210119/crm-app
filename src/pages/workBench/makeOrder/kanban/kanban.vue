@@ -751,8 +751,8 @@ export default {
 }
 .bank-tag {
   padding: 0 20upx;
-  background-color: greenyellow;
-  color: green;
+  background-color: #4a7ce6;
+  color: #ffffff;
   font-size: 28upx;
 }
 .bg-color {

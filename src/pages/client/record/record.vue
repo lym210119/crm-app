@@ -20,6 +20,7 @@ export default {
   },
   onLoad(opts) {
     this.src = opts.src
+    console.log(this.src)
   }
 }
 </script>
