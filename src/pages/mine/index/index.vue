@@ -5,7 +5,10 @@
         <view class="header-bg"></view>
         <view class="container">
           <view class="user-wrap">
-            <image class="avatar" src="/static/60x60.png" mode=""></image>
+            <navigator url="">
+              <image class="avatar" src="/static/60x60.png" mode=""></image>
+
+            </navigator>
 
             <view class="user-info">
               <view class="name">
