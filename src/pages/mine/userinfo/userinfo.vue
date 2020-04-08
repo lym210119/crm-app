@@ -1,45 +1,49 @@
 <template>
   <view class="userinfo-page">
     <scroll-view scroll-y="true" style="height:100%;">
-      <view class="avatar-container">
-        <image class="avatar-img" src="https://picsum.photos/60/60"></image>
+      <view class="avatar-container" @tap="changeAvatar">
+        <image class="avatar-img" :src="avatar"></image>
         <text class="avatar-text">修改头像</text>
       </view>
       <view class="item-list">
         <view class="item">
           <view class="item-label">姓名</view>
           <view class="item-input">
-            <input type="text" placeholder="请输入姓名">
+            <input type="text" placeholder="请输入姓名" />
           </view>
         </view>
         <view class="item">
           <view class="item-label">性别</view>
           <view class="item-input">
-            <picker></picker>
+            <picker @change="changeGender" :value="genderIndex" :range="gender">
+              <view :class="genderIndex === null ? 'text-grey' : ''">{{
+                genderIndex === null ? '未设置' : gender[genderIndex]
+              }}</view>
+            </picker>
           </view>
         </view>
         <view class="item">
           <view class="item-label">手机</view>
           <view class="item-input">
-            <input type="number" placeholder="请输入手机">
+            <input type="number" placeholder="请输入手机" />
           </view>
         </view>
         <view class="item">
           <view class="item-label">邮箱</view>
           <view class="item-input">
-            <input type="email" placeholder="请输入邮箱">
+            <input type="email" placeholder="请输入邮箱" />
           </view>
         </view>
-                <view class="item">
+        <view class="item">
           <view class="item-label">部门</view>
           <view class="item-input">
-            <input type="email" placeholder="请输入邮箱">
+            <input type="email" placeholder="请输入部门" />
           </view>
         </view>
-                <view class="item">
+        <view class="item">
           <view class="item-label">岗位</view>
           <view class="item-input">
-            <input type="email" placeholder="请输入邮箱">
+            <input type="email" placeholder="请输入岗位" />
           </view>
         </view>
       </view>
@@ -49,13 +53,53 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      avatar: 'https://picsum.photos/90/90',
+      file: '',
+      gender: ['先生', '女士'],
+      genderIndex: null,
+    }
+  },
+  onNavigationBarButtonTap(e) {
+    console.log(e)
+  },
+  methods: {
+    changeAvatar() {
+      uni.chooseImage({
+        count: 1, //默认9
+        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+        // sourceType: ['album'], // 从相册选择
+        success: res => {
+          console.log(res)
+          console.log(JSON.stringify(res.tempFilePaths))
+          this.avatar = res.tempFilePaths[0]
+          this.file = res.tempFiles
+          // uni.uploadFile({
+          //   url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
+          //   filePath: tempFilePaths[0],
+          //   name: 'file',
+          //   formData: {
+          //     user: 'test',
+          //   },
+          //   success: (uploadFileRes) => {
+          //     console.log(uploadFileRes.data)
+          //   },
+          // })
+        },
+      })
+    },
+    changeGender(e) {
+      console.log(e)
+      this.genderIndex = e.target.value
+    },
+  },
 }
 </script>
 
 <style>
 .userinfo-page {
-  height: 100%
+  height: 100%;
 }
 .avatar-container {
   display: flex;
@@ -65,8 +109,8 @@ export default {
   padding: 30upx 0;
 }
 .avatar-img {
-  width: 120upx;
-  height: 120upx;
+  width: 180upx;
+  height: 180upx;
   border-radius: 50%;
   border: 10upx solid #ffffff;
 }
@@ -96,9 +140,13 @@ export default {
 }
 .item-input {
   flex: 1;
+  text-align: right;
 }
 .item-input input {
   width: 100%;
   text-align: right;
+}
+.text-grey {
+  color: grey;
 }
 </style>

@@ -1401,7 +1401,20 @@
     {
       "path": "pages/mine/userinfo/userinfo",
       "style": {
-        "navigationBarTitleText": "个人信息"
+        "navigationBarTitleText": "个人信息",
+        "app-plus": {
+          "titleNView": {
+            "buttons": [
+              {
+                "text": "保存",
+                "fontSize": "14",
+                "width": "44px",
+                "float": "right",
+                "color": "#ffffff"
+              }
+            ]
+          }
+        }
       }
     }, 
     {
