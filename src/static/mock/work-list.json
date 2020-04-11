@@ -410,12 +410,12 @@
 				"id": "12003",
 				"icon": "icon-qunhujieguo",
 				"text": "群呼结果",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/call/result/result"
 			}, {
 				"id": "12004",
 				"icon": "icon-qunhutongji1",
 				"text": "群呼统计",
-				"url": "/pages/client/client"
+				"url": "/pages/workBench/call/stat/stat"
 			}
 		]
 	}]

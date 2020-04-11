@@ -1100,6 +1100,20 @@
       }
     },
     {
+      "path": "pages/workBench/call/result/result",
+      "style": {
+        "navigationBarTitleText": "群呼结果"
+    
+      }
+    },
+    {
+      "path": "pages/workBench/call/stat/stat",
+      "style": {
+        "navigationBarTitleText": "群呼统计"
+    
+      }
+    },
+    {
       "path": "pages/workBench/yingxiao/highSeas/highSeas",
       "style": {
         "navigationBarTitleText": "公海客户",
