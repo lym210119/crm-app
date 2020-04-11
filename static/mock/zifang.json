@@ -1,0 +1,27 @@
+{
+  "code": 10000,
+  "message": "success",
+  "data": [{
+    "label": "银行",
+    "value": "1",
+    "children": [{
+      "label": "中国人民银行",
+      "value": "11",
+      "children": [{
+        "label": "福利袋",
+        "value": "111"
+      }]
+    }]
+  }, {
+    "label": "信保",
+    "value": "2",
+    "children": [{
+      "label": "平安保险",
+      "value": "22",
+      "children": [{
+        "label": "新一代",
+        "value": "222"
+      }]
+    }]
+  }]
+}

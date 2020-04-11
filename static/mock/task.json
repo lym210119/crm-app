@@ -1,0 +1,372 @@
+{
+  "code": 10000,
+  "message": "success",
+  "data": [
+    {
+      "id": "1",
+      "label": "总机",
+      "task": [
+        {
+          "icon":"icon-weijielaidiandekehu",
+          "title": "未接来电的客户",
+          "desc": "1"
+        },
+        {
+          "icon":"icon-youxindeweifenpeixiansuo",
+          "title": "有新的未分配线索",
+          "desc": "1"
+        },
+        {
+          "icon":"icon-youxuheshidexiansuo",
+          "title": "有需核实的线索",
+          "desc": "1"
+        },
+        {
+          "icon":"icon-xindegonggaoweichakan",
+          "title": "新的公告未查看",
+          "desc": "1"
+        },
+        {
+          "icon":"icon-wuxiaodianhuaweishenhe",
+          "title": "无效电话未审核",
+          "desc": "1"
+        },
+        {
+          "icon":"icon-weiguixinxiweichuli",
+          "title": "违规信息未处理",
+          "desc": "1"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "label": "销售",
+
+      "task": [
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "今日需联系的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "分配给我的线索",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "分配给我的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "待进入公海的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "未接来电的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "未回复短信的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "即将到期未完成的任务计划",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "已过期未到店的预约上门客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "即将贷款还清的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "三日后到期需还款的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "即将过生日的客户",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "待审核的合同",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "即将到期的员工通关未审核",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "有新的有效线索未分配",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "本月的销售任务未下达分配",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "有新的离职转移数据未分配",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xindegonggaoweichakan",
+          "title": "新的公告未查看",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "知识中心有新的更新",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "新员工加入未分配资源",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "有新的未分配线索（总监）",
+          "desc": "2"
+        },
+        {
+          "icon": "icon-xiansuojilu",
+          "title": "已退件的客户未处理",
+          "desc": "2"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "labee": "渠道",
+      "task": [
+        {
+          "icon": "icon-wodekehu1",
+          "title": "今日需联系的客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "分配给我的客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "即将贷款到期的客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "预约进件客户（）",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "未完结客户及两天未跟进的客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "需要在线配单的客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "三日后到期需要还款客户",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "代扣结果未查看",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-xindegonggaoweichakan",
+          "title": "新的公告未查看",
+          "desc": "3"
+        },
+        {
+          "icon": "icon-wodekehu1",
+          "title": "一周未更新的产品",
+          "desc": "3"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "label": "财务",
+      "task": [
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "客户转账服务费或者定金的（销售点击提醒财务）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "定金未确认的客户（提醒财务）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "签单点位或定金金额不符（财务手动点击提醒）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "绑定代扣的客户（需要财务代扣的点击提醒）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "放款待结算的客户（提醒财务）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "客户放款渠道没录放款机构的或者收费与签单点位不符合的（财务点击提醒）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "渠道做单成本待确认的客户（提醒财务）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-gonghaikehu",
+          "title": "员工借支待确认的客户（提醒财务）",
+          "desc": "4"
+        },
+        {
+          "icon": "icon-xindegonggaoweichakan",
+          "title": "新的公告未查看",
+          "desc": "4"
+        }
+      ]
+    }, {
+      "id": "5",
+      "label": "sddd",
+      "task": [
+        {
+          "icon": "",
+          "title": "定金未确认的（提醒出纳＼销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "放款待结算的（提醒出纳＼销售",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "定金退款成功的（提醒销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "费用未确认分摊方式的（提醒会计）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "结算未审核的（提醒财务经理）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "成本费用未审核的（提醒会计）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "渠道放款信息录入错误的（财务反馈给渠道经理）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "代扣结果反馈给渠道经理",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "日常费用未审核的（提醒会计）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "工资数据未录入的（提醒人事）",
+          "desc": ""
+        },
+        {
+          "icon": "icon-xindegonggaoweichakan",
+          "title": "新的公告未查看",
+          "desc": ""
+        }
+      ]
+    }, {
+      "id": "6",
+      "label": "贷后管理人员",
+      "task": [
+        {
+          "icon": "",
+          "title": "还款前三天提醒（销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "客户生日前一周提醒（贷后）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "信贷到期前一个月提醒（销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "抵押到期前2个月提醒 （销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "优惠券使用每个月提醒（直至客户二次消费）（销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "贷款金额20万以上客户节假日问候提醒（销售）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "放款客户服务满意度回访提醒（贷后）",
+          "desc": ""
+        },
+        {
+          "icon": "",
+          "title": "投诉处理进度24小时内提醒（贷后）",
+          "desc": ""
+        },
+        {
+          "icon": "icon-xindegonggaoweichakan",
+          "title": "新的公告未查看 ",
+          "desc": ""
+        }
+      ]
+    }
+
+  ]
+}

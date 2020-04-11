@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang=zh-CN><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon type=image/x-icon href=/crm-app/static/favicon.ico><title>锦衣卫</title><script>document.addEventListener("DOMContentLoaded", function() {
+        document.documentElement.style.fontSize =
+          document.documentElement.clientWidth / 20 + "px";
+      });
+      var coverSupport =
+        "CSS" in window &&
+        typeof CSS.supports === "function" &&
+        (CSS.supports("top: env(a)") || CSS.supports("top: constant(a)"));
+      document.write(
+        '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+          (coverSupport ? ", viewport-fit=cover" : "") +
+          '" />'
+      );</script><link rel=stylesheet href=/crm-app/static/index.c4fe38c7.css><script src=/crm-app/static/js/zepto.min.js></script><style>#side-move-area {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        /* width: 10px; */
+        z-index: 9999;
+        /* background-color: red; */
+      }
+      #side-fab-bar {
+        position: fixed;
+        top: 80px;
+        right: -225px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: row;
+        width: 275px;
+        height: 50px;
+      }
+      .fab-item {
+        position: relative;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+      }
+      .fab-item::after {
+        position: absolute;
+        content: "";
+        background-color: #e5e5e5;
+        display: block;
+        height: 100%;
+        width: 1px; /*no*/
+        transform: scale(0.5, 1);
+        top: 0;
+        right: 0;
+      }
+      .fab-item:nth-of-type(1) {
+        border-radius: 50% 0 0 50%;
+        background-color: #1ab394;
+      }
+      .fab-item:nth-of-type(2) {
+        background-color: #1ab394;
+      }
+      .fab-item:nth-of-type(3) {
+        background-color: #f8ac59;
+      }
+      .fab-item:nth-of-type(4) {
+        background-color: #23c6c8;
+      }
+      .fab-item:nth-of-type(5) {
+        background-color: #666666;
+      }
+      .fab-item .iconfont {
+        font-size: 26px;
+      }
+      .fab-item > span {
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .fab-item:nth-of-type(2) {
+        width: 75px;
+      }</style></head><body style="position:relative;overflow: hidden;"><noscript><strong>Please enable JavaScript to continue.</strong></noscript><div id=app></div><div id=side-move-area><div id=side-fab-bar><div class="fab-item onOff"><i class="iconfont icon-bohao"></i></div><div class="fab-item call-status"><span class="">示闲中</span> <span>00:00:00</span></div><div class=fab-item><i class="iconfont icon-shimang"></i> <span>示忙</span></div><div class=fab-item><i class="iconfont icon-bohao"></i> <span>拨号</span></div><div class=fab-item><i class="iconfont icon-guaji"></i> <span>挂机</span></div></div></div><script>$(function() {
+        var _wr = function(type) {
+          var orig = history[type];
+          return function() {
+            var rv = orig.apply(this, arguments);
+            var e = new Event(type);
+            e.arguments = arguments;
+            window.dispatchEvent(e);
+            return rv;
+          };
+        };
+        history.pushState = _wr("pushState");
+        history.replaceState = _wr("replaceState");
+
+        window.addEventListener("replaceState", function(e) {
+          if (location.href.indexOf("login") > -1) {
+            $("#side-move-area").hide();
+          } else {
+            $("#side-move-area").show();
+          }
+          console.log("THEY DID IT AGAIN! replaceState 111111");
+        });
+        window.addEventListener("pushState", function(e) {
+          if (location.href.indexOf("login") > -1) {
+            $("#side-move-area").hide();
+          } else {
+            $("#side-move-area").show();
+          }
+          console.log("THEY DID IT AGAIN! pushState 2222222");
+        });
+
+        window.addEventListener("hashchange", function(event) {
+          console.log(event);
+        });
+
+        $(".call-status").on("click", function() {
+          var activeLeftVal = $("#side-fab-bar").css("right");
+          var right = activeLeftVal === "-150px" ? "0px" : "-150px";
+          $("#side-fab-bar").css("right", right);
+        });
+        $(".onOff").on("click", function() {
+          var icon = $(this).find(".iconfont");
+          var isOpen = icon.hasClass("icon-bohao");
+          var right = isOpen ? "0px" : "-225px";
+          var className = isOpen ? "icon-hebingxingzhuang" : "icon-bohao";
+
+          $("#side-fab-bar").css("right", right);
+          if (isOpen) {
+            icon.removeClass("icon-bohao").addClass(className);
+          } else {
+            icon.removeClass("icon-hebingxingzhuang").addClass(className);
+          }
+        });
+
+        // fab-bar 上下滑动
+        var div1 = document.querySelector("#side-fab-bar");
+        console.log(div1);
+        //限制最大宽高，不让滑块出去
+        var maxW = document.body.clientWidth - div1.offsetWidth;
+        var maxH = document.body.clientHeight - div1.offsetHeight;
+        //手指触摸开始，记录div的初始位置
+        div1.addEventListener("touchstart", function(e) {
+          var ev = e || window.event;
+          var touch = ev.targetTouches[0];
+          // oL = touch.clientX - div1.offsetLeft;
+          oT = touch.clientY - div1.offsetTop;
+          document.addEventListener("touchmove", defaultEvent, {
+            passive: false
+          });
+        });
+        //触摸中的，位置记录
+        div1.addEventListener("touchmove", function(e) {
+          var ev = e || window.event;
+          var touch = ev.targetTouches[0];
+          // var oLeft = touch.clientX - oL;
+          var oTop = touch.clientY - oT;
+          // if (oLeft < 0) {
+          //   oLeft = 0;
+          // } else if (oLeft >= maxW) {
+          //   oLeft = maxW;
+          // }
+          if (oTop < 0) {
+            oTop = 0;
+          } else if (oTop >= maxH) {
+            oTop = maxH;
+          }
+          // div1.style.left = oLeft + "px";
+          div1.style.top = oTop + "px";
+        });
+        //触摸结束时的处理
+        div1.addEventListener("touchend", function() {
+          document.removeEventListener("touchmove", defaultEvent);
+        });
+        //阻止默认事件
+        function defaultEvent(e) {
+          e.preventDefault();
+        }
+      });</script><script src=/crm-app/static/js/chunk-vendors.6bb84c41.js></script><script src=/crm-app/static/js/index.2aaa7f37.js></script></body></html>

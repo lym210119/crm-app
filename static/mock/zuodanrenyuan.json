@@ -1,0 +1,27 @@
+{
+  "code": 10000,
+  "message": "success",
+  "data": [{
+    "label": "房贷1中心",
+    "value": "1",
+    "children": [{
+      "label": "房1-1",
+      "value": "11",
+      "children": [{
+        "label": "张三",
+        "value": "111"
+      }]
+    }]
+  }, {
+    "label": "信贷1中心",
+    "value": "2",
+    "children": [{
+      "label": "信1-1",
+      "value": "22",
+      "children": [{
+        "label": "李四",
+        "value": "222"
+      }]
+    }]
+  }]
+}
